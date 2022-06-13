@@ -14,4 +14,8 @@
     <Folder Include="Controllers\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\GameReview.Application\GameReview.Application.csproj" />
+  </ItemGroup>
+
 </Project>

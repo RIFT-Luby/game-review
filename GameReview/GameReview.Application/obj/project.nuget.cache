@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "edWHnx1BYYEJvoPsQz3u63D04LeUqlgWe23rQD+PDeiVsPafEUc3gmfyAvyWbORXkAU4bB+GxIsWEbvW04yR8A==",
+  "dgSpecHash": "wOTyxERgJlnWkHE3KiO/8ayCHfnpyPlYCsQCNlEreDYqJcsisClRXt1EjWPCe7FZJM5p+Jtq3h7xQJWztd5Jnw==",
   "success": true,
   "projectFilePath": "D:\\AreaDoCodigo\\Codigos\\2-Estágio\\game-review\\GameReview\\GameReview.Application\\GameReview.Application.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\IGOR-NOT\\.nuget\\packages\\fluentvalidation\\11.0.3\\fluentvalidation.11.0.3.nupkg.sha512"
+  ],
   "logs": []
 }
