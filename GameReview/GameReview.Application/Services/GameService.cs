@@ -1,6 +1,10 @@
-﻿
+﻿using AutoMapper;
+using FluentValidation;
+using GameReview.Application.Exceptions;
 using GameReview.Application.Interfaces;
 using GameReview.Application.ViewModels.Game;
+using GameReview.Domain.Interfaces.Repositories;
+using GameReview.Domain.Models;
 using Microsoft.EntityFrameworkCore.Query;
 using System.Linq.Expressions;
 
@@ -8,19 +12,62 @@ namespace GameReview.Application.Services
 {
     public class GameService : IGameService
     {
-        public Task<GameResquest> RegisterAsync(GameResquest gameResquest)
+        private IGameRepository _gameRepository;
+        private readonly IValidator<GameResquest> _validator;
+        private IMapper _mapper;
+
+        public GameService(IGameRepository gameRepository, 
+                           IValidator<GameResquest> validator)
         {
-            throw new NotImplementedException();
+            _gameRepository = gameRepository;
+            _validator = validator;
         }
 
-        public Task<GameResquest> UpdateAsync(GameResquest gameResquest, int id)
+        public async Task<GameResquest> RegisterAsync(GameResquest gameResquest)
         {
-            throw new NotImplementedException();
+
+            var validationResult = await _validator.ValidateAsync(gameResquest);
+
+            if (!validationResult.IsValid)
+                throw new BadRequestException("Game is invalid");
+
+            var result = _mapper.Map<Game>(gameResquest);
+            await _gameRepository.RegisterAsync(result);
+
+            return gameResquest;
         }
 
-        public Task<GameResquest> DeleteAsync(GameResquest gameResquest)
+        public async Task<GameResquest> UpdateAsync(GameResquest gameResquest, int id)
         {
-            throw new NotImplementedException();
+
+            var validationResult = await _validator.ValidateAsync(gameResquest);
+
+            if (!validationResult.IsValid)
+                throw new BadRequestException("Game is invalid.");
+
+            var gameVerify = await _gameRepository.FirstAsync(x => x.Id == id);
+
+            if (gameVerify == null)
+                throw new NotFoundRequestException("Game not found.");
+
+            var result = _mapper.Map(gameResquest, gameVerify);
+
+
+            return gameResquest;
+
+        }
+
+        public async Task<GameResquest> DeleteAsync(GameResquest gameResquest)
+        {
+            var validationResult = await _validator.ValidateAsync(gameResquest);
+
+            if (!validationResult.IsValid)
+                throw new BadRequestException("Game is invalid");
+
+            var result = _mapper.Map<Game>(gameResquest);
+            await _gameRepository.DeleteAsync(result);
+
+            return gameResquest;
         }
 
         public Task<GameResquest?> FirstAsync(Expression<Func<GameResquest, bool>> filter, Func<IQueryable<GameResquest>, IIncludableQueryable<GameResquest, object>>? include = null)
