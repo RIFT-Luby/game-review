@@ -1,8 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "L6snemDeBhA2U86uJt1i6tcBHPidpff47/LOeVdEmYv1sDvVAd21J1/7sXF878v1rArdfTyyXFZ+G54dzogr0g==",
+  "dgSpecHash": "9usNYPkDSJyiWB49G194xqY7uBZKJlj6cq8MqEdZIGMXWPCg4WOcOzgVPD2HmRWwIMzJOhtKZd1v+UjYm1ibSg==",
   "success": true,
   "projectFilePath": "D:\\AreaDoCodigo\\Codigos\\2-Estágio\\game-review\\GameReview\\GameReview.Infrastructure\\GameReview.Infrastructure.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\IGOR-NOT\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\6.0.5\\microsoft.aspnetcore.cryptography.internal.6.0.5.nupkg.sha512",
+    "C:\\Users\\IGOR-NOT\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\6.0.5\\microsoft.aspnetcore.cryptography.keyderivation.6.0.5.nupkg.sha512"
+  ],
   "logs": []
 }
