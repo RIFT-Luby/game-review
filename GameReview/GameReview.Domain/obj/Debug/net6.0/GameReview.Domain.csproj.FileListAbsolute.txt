@@ -1,0 +1,12 @@
+D:\AreaDoCodigo\Codigos\2-Estágio\game-review\GameReview\GameReview.Domain\bin\Debug\net6.0\GameReview.Domain.deps.json
+D:\AreaDoCodigo\Codigos\2-Estágio\game-review\GameReview\GameReview.Domain\bin\Debug\net6.0\GameReview.Domain.dll
+D:\AreaDoCodigo\Codigos\2-Estágio\game-review\GameReview\GameReview.Domain\bin\Debug\net6.0\GameReview.Domain.pdb
+D:\AreaDoCodigo\Codigos\2-Estágio\game-review\GameReview\GameReview.Domain\obj\Debug\net6.0\GameReview.Domain.csproj.AssemblyReference.cache
+D:\AreaDoCodigo\Codigos\2-Estágio\game-review\GameReview\GameReview.Domain\obj\Debug\net6.0\GameReview.Domain.GeneratedMSBuildEditorConfig.editorconfig
+D:\AreaDoCodigo\Codigos\2-Estágio\game-review\GameReview\GameReview.Domain\obj\Debug\net6.0\GameReview.Domain.AssemblyInfoInputs.cache
+D:\AreaDoCodigo\Codigos\2-Estágio\game-review\GameReview\GameReview.Domain\obj\Debug\net6.0\GameReview.Domain.AssemblyInfo.cs
+D:\AreaDoCodigo\Codigos\2-Estágio\game-review\GameReview\GameReview.Domain\obj\Debug\net6.0\GameReview.Domain.csproj.CoreCompileInputs.cache
+D:\AreaDoCodigo\Codigos\2-Estágio\game-review\GameReview\GameReview.Domain\obj\Debug\net6.0\GameReview.Domain.dll
+D:\AreaDoCodigo\Codigos\2-Estágio\game-review\GameReview\GameReview.Domain\obj\Debug\net6.0\refint\GameReview.Domain.dll
+D:\AreaDoCodigo\Codigos\2-Estágio\game-review\GameReview\GameReview.Domain\obj\Debug\net6.0\GameReview.Domain.pdb
+D:\AreaDoCodigo\Codigos\2-Estágio\game-review\GameReview\GameReview.Domain\obj\Debug\net6.0\ref\GameReview.Domain.dll

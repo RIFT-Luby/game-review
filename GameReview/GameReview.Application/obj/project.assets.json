@@ -551,6 +551,7 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
+          "GameReview.Domain": "1.0.0",
           "Microsoft.AspNetCore.Cryptography.KeyDerivation": "6.0.5"
         },
         "compile": {

@@ -174,7 +174,11 @@
         "frameworks": {
           "net6.0": {
             "targetAlias": "net6.0",
-            "projectReferences": {}
+            "projectReferences": {
+              "D:\\AreaDoCodigo\\Codigos\\2-Estágio\\game-review\\GameReview\\GameReview.Domain\\GameReview.Domain.csproj": {
+                "projectPath": "D:\\AreaDoCodigo\\Codigos\\2-Estágio\\game-review\\GameReview\\GameReview.Domain\\GameReview.Domain.csproj"
+              }
+            }
           }
         },
         "warningProperties": {

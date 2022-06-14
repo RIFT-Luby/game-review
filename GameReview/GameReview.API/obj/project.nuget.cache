@@ -1,10 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "+YWnbC+5PJrJFX+duqyZvnU83C+02PB1IE1UJMRCpOMoEaTualxQu6XidJ66c/1VQQZdx3Z84wq47u6Q8rY1eQ==",
+  "dgSpecHash": "xWbPFn9LU3BOhSlv5/ng2WuPN4xhhJ9eeq6QjD+36M/yWtL5eb7S0rUNeGHuZc4mQ/vf8bWp3XdNyZ6mBniEYA==",
   "success": true,
   "projectFilePath": "D:\\AreaDoCodigo\\Codigos\\2-Estágio\\game-review\\GameReview\\GameReview.API\\GameReview.API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\IGOR-NOT\\.nuget\\packages\\automapper\\11.0.1\\automapper.11.0.1.nupkg.sha512",
+    "C:\\Users\\IGOR-NOT\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\11.0.0\\automapper.extensions.microsoft.dependencyinjection.11.0.0.nupkg.sha512",
     "C:\\Users\\IGOR-NOT\\.nuget\\packages\\entityframework\\6.3.0\\entityframework.6.3.0.nupkg.sha512",
     "C:\\Users\\IGOR-NOT\\.nuget\\packages\\fluentvalidation\\11.0.3\\fluentvalidation.11.0.3.nupkg.sha512",
     "C:\\Users\\IGOR-NOT\\.nuget\\packages\\fluentvalidation.aspnetcore\\11.0.3\\fluentvalidation.aspnetcore.11.0.3.nupkg.sha512",

@@ -1,5 +1,6 @@
 ﻿using GameReview.Application.Interfaces;
 using GameReview.Application.ViewModels;
+using GameReview.Application.ViewModels.UserViews;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GameReview.API.Controllers
@@ -16,7 +17,7 @@ namespace GameReview.API.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> Post([FromBody] UserRequest model)
+        public async Task<ActionResult> Post([FromBody] CreateUserRequest model)
         {
             var result = await _userService.RegisterAsync(model);
             return Ok(result);
@@ -29,14 +30,21 @@ namespace GameReview.API.Controllers
             return Ok(result);
         }
 
-        [HttpDelete("id:int")]
+        [HttpPut("password/{id:int}")]
+        public async Task<ActionResult> PutPassword([FromBody] PasswordRequest model, [FromRoute] int id)
+        {
+            var result = await _userService.UpdatePasswordAsync(model, id);
+            return Ok(result);
+        }
+
+        [HttpDelete("{id:int}")]
         public async Task<ActionResult> Delete([FromRoute] int id)
         {
             var result = await _userService.RemoveAsync(id);
             return Ok(result);
         }
 
-        [HttpGet("id:int")]
+        [HttpGet("{id:int}")]
         public async Task<ActionResult> GetByIdAsync(int id)
         {
             var result = await _userService.GetByIdAsync(id);
