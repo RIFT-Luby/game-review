@@ -40,9 +40,7 @@ namespace GameReview.Application.Services
 
         public async Task<ReviewResponse> UpdateAsync(ReviewRequest model, int id)
         {
-            var reviewExist = await _reviewRepository.FirstAsync(x => x.Id == id);
-            if (reviewExist == null)
-                throw new NotFoundRequestException();
+            var reviewExist = await _reviewRepository.FirstAsync(x => x.Id == id) ?? throw new NotFoundRequestException($"Review com id: {id} não encontrado.");
 
             var validation = await _validator.ValidateAsync(model);
             if (!validation.IsValid)
@@ -52,18 +50,19 @@ namespace GameReview.Application.Services
             var result = _mapper.Map(model, reviewExist);
 
             var updated = await _reviewRepository.UpdateAsync(result);
+            await _unitOfWork.CommitAsync();
 
             return _mapper.Map<ReviewResponse>(updated);
         }
 
-        public async Task RemoveAsync(int id)
+        public async Task<ReviewResponse> RemoveAsync(int id)
         {
-            var reviewExist = await _reviewRepository.FirstAsync(x => x.Id == id);
-            if (reviewExist == null)
-                throw new NotFoundRequestException();
+            var reviewExist = await _reviewRepository.FirstAsync(x => x.Id == id) ?? throw new NotFoundRequestException($"Review com id: {id} não encontrado.");
 
             await _reviewRepository.DeleteAsync(reviewExist);
             await _unitOfWork.CommitAsync();
+
+            return _mapper.Map<ReviewResponse>(reviewExist);
         }
 
         public async Task<IEnumerable<ReviewResponse>> GetAllAsync()
@@ -73,7 +72,9 @@ namespace GameReview.Application.Services
 
         public async Task<ReviewResponse> GetByIdAsync(int id)
         {
-            return _mapper.Map<ReviewResponse>(await _reviewRepository.FirstAsync(x => x.Id == id));
+            var reviewExist = await _reviewRepository.FirstAsync(x => x.Id == id) ?? throw new NotFoundRequestException($"Review com id: {id} não encontrado.");
+
+            return _mapper.Map<ReviewResponse>(reviewExist);
         }
     }
 }

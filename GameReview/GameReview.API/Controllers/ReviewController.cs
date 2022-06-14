@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace GameReview.API.Controllers
 {
-    [Route("api/admin/[controller]")]
+    [Route("api/v1/[controller]")]
     [ApiController]
     public class ReviewController : ControllerBase
     {
@@ -32,8 +32,8 @@ namespace GameReview.API.Controllers
         [HttpDelete("{id:int}")]
         public async Task<IActionResult> RemoveAsync([FromRoute] int id)
         {
-            await _reviewService.RemoveAsync(id);
-            return Ok();
+            var review = await _reviewService.RemoveAsync(id);
+            return Ok(review);
         }
 
         [HttpGet]

@@ -6,7 +6,7 @@ namespace GameReview.Application.Interfaces
     {
         Task<ReviewResponse> CreateAsync(ReviewRequest model);
         Task<ReviewResponse> UpdateAsync(ReviewRequest model, int id);
-        Task RemoveAsync(int id);
+        Task<ReviewResponse> RemoveAsync(int id);
         Task<IEnumerable<ReviewResponse>> GetAllAsync();
         Task<ReviewResponse> GetByIdAsync(int id);
     }
