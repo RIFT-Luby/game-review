@@ -6,6 +6,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Folder Include="Models\Enumerations\" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.5" />
   </ItemGroup>
 

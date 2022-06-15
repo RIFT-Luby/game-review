@@ -1,4 +1,6 @@
 using GameReview.API.Configuration;
+using GameReview.API.Filters;
+using GameReview.Application.Mappers;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -6,8 +8,12 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.ResolveDependencies();
 
+builder.Services.AddAutoMapper(typeof(DomainToResponseProfile), typeof(RequestToDomainProfile));
 
-builder.Services.AddControllers();
+builder.Services.AddControllers( opts =>
+{
+    opts.Filters.Add(new ApplicationExceptionFilter());
+});
 
 
 builder.Services.AddEndpointsApiExplorer();
