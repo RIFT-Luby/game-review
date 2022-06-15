@@ -47,7 +47,7 @@ namespace GameReview.Application.Services
 
         public async Task<UserResponse> UpdateAsync(UserRequest model, int id)
         {
-            var entity = await _userRepository.FirstAsync(e => e.Id == id) ?? throw new NotFoundRequestException();
+            var entity = await _userRepository.FirstAsync(e => e.Id == id) ?? throw new NotFoundRequestException($"Usuario com id: {id} não encontrado.");
             var contextValidation = new ValidationContext<UserRequest>(model);
             contextValidation.RootContextData["userId"] = id;
             var validation = await _validatorFactory.GetValidator<UserRequest>().ValidateAsync(model);
@@ -64,7 +64,7 @@ namespace GameReview.Application.Services
 
         public async Task<UserResponse> UpdatePasswordAsync(PasswordRequest model, int id)
         {
-            var entity = await _userRepository.FirstAsync(e => e.Id == id) ?? throw new NotFoundRequestException();
+            var entity = await _userRepository.FirstAsync(e => e.Id == id) ?? throw new NotFoundRequestException($"Usuario com id: {id} não encontrado."));
             
             var contextValidation = new ValidationContext<PasswordRequest>(model);
             contextValidation.RootContextData["userId"] = id;

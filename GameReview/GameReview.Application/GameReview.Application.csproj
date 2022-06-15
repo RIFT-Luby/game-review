@@ -3,7 +3,6 @@
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <ItemGroup>
@@ -13,6 +12,12 @@
   </ItemGroup>
 
   <ItemGroup>
+<<<<<<< HEAD
+=======
+    <Folder Include="Constants\" />
+    <Folder Include="Mappers\" />
+    <Folder Include="Utils\" />
+>>>>>>> 955813aa2fa87a6871e009e01f0f19a8fabac86c
     <Folder Include="Params\" />
     <Folder Include="Utils\" />
     <Folder Include="Options\" />
@@ -20,7 +25,10 @@
 
   <ItemGroup>
     <ProjectReference Include="..\GameReview.Domain\GameReview.Domain.csproj" />
+<<<<<<< HEAD
     <ProjectReference Include="..\GameReview.Infrastructure\GameReview.Infrastructure.csproj" />
+=======
+>>>>>>> 955813aa2fa87a6871e009e01f0f19a8fabac86c
   </ItemGroup>
 
 </Project>
