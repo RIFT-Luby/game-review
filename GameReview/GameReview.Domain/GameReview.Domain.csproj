@@ -6,10 +6,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+<<<<<<< HEAD
+=======
     <Folder Include="Models\Enumerations\" />
   </ItemGroup>
 
   <ItemGroup>
+>>>>>>> 955813aa2fa87a6871e009e01f0f19a8fabac86c
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.5" />
   </ItemGroup>
 
