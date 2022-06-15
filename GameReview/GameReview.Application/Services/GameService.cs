@@ -15,11 +15,11 @@ namespace GameReview.Application.Services
     {
         private IGameRepository _gameRepository;
         private IUnitOfWork _unitOfWork;
-        private readonly IValidator<GameResquest> _validator;
+        private readonly IValidator<GameRequest> _validator;
         private IMapper _mapper;
 
         public GameService(IGameRepository gameRepository, 
-                           IValidator<GameResquest> validator)
+                           IValidator<GameRequest> validator)
         {
             _gameRepository = gameRepository;
             _validator = validator;
@@ -45,7 +45,7 @@ namespace GameReview.Application.Services
             return _mapper.Map<IEnumerable<GameGenderResponse>>(results);
         }
 
-        public async Task<GameResponse> RegisterAsync(GameResquest gameResquest)
+        public async Task<GameResponse> RegisterAsync(GameRequest gameResquest)
         {
 
             var validationResult = await _validator.ValidateAsync(gameResquest);
@@ -60,7 +60,7 @@ namespace GameReview.Application.Services
             return _mapper.Map<GameResponse>(gameResquest);
         }
 
-        public async Task<GameResponse> UpdateAsync(GameResquest gameResquest, int id)
+        public async Task<GameResponse> UpdateAsync(GameRequest gameResquest, int id)
         {
 
             var validationResult = await _validator.ValidateAsync(gameResquest);

@@ -28,21 +28,21 @@ namespace GameReview.API.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<GameResponse>> Post([FromBody] GameResquest gameResquest)
+        public async Task<ActionResult<GameResponse>> Post([FromBody] GameRequest gameResquest)
         {
             return await _gameService.RegisterAsync(gameResquest);
             
         }
 
         [HttpPut("{id:int}")]
-        public async Task<ActionResult<GameResponse>> Put([FromBody] GameResquest gameResquest, [FromRoute] int id)
+        public async Task<ActionResult<GameResponse>> Put([FromBody] GameRequest gameResquest, [FromRoute] int id)
         {
             return await _gameService.UpdateAsync(gameResquest, id);
         }
 
         
         [HttpDelete]
-        public async Task<ActionResult<GameResponse>> Delete(int id)
+        public async Task<ActionResult<GameResponse>> Delete([FromRoute] int id)
         {
             return await _gameService.DeleteAsync(id);
         }

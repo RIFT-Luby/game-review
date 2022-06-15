@@ -7,8 +7,8 @@ namespace GameReview.Application.Interfaces
 {
     public interface IGameService
     {
-        Task<GameResponse> RegisterAsync(GameResquest gameResquest);
-        Task<GameResponse> UpdateAsync(GameResquest gameResquest, int id);
+        Task<GameResponse> RegisterAsync(GameRequest gameResquest);
+        Task<GameResponse> UpdateAsync(GameRequest gameResquest, int id);
         Task<GameResponse> DeleteAsync(int id);
         Task<GameResponse> GetById(int id);
         Task<IEnumerable<GameResponse>> GetAll();

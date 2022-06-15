@@ -6,7 +6,7 @@ using GameReview.Domain.Models.Enumerations;
 
 namespace GameReview.Application.Validations
 {
-    public class GameValidator : AbstractValidator<GameResquest>
+    public class GameValidator : AbstractValidator<GameRequest>
     {
         public GameValidator()
         {
