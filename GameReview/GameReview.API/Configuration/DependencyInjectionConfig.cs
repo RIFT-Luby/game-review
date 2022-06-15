@@ -1,3 +1,9 @@
+<<<<<<< HEAD
+﻿using FluentValidation.AspNetCore;
+using GameReview.Application.Interfaces;
+using GameReview.Application.Services;
+using GameReview.Application.Validations;
+=======
 ﻿using GameReview.Application.Interfaces;
 using GameReview.Application.Services;
 <<<<<<< HEAD
@@ -9,6 +15,7 @@ using GameReview.Domain.Interfaces.Commom;
 using GameReview.Infrastructure.UnitOfWork;
 =======
 >>>>>>> 955813aa2fa87a6871e009e01f0f19a8fabac86c
+>>>>>>> 67a53f209d7772218ede0dc0eeec517d6d5c1d44
 
 namespace GameReview.API.Configuration
 {
@@ -16,6 +23,13 @@ namespace GameReview.API.Configuration
     {
         public static IServiceCollection ResolveDependencies(this IServiceCollection service)
         {
+<<<<<<< HEAD
+            service.AddScoped<IGameService, GameService>();
+
+            service.AddFluentValidation(fv 
+                => fv.RegisterValidatorsFromAssemblyContaining<GameValidator>());
+
+=======
 <<<<<<< HEAD
             //repositories
             service.AddScoped<IUserRepository, TempUserRepository>();
@@ -36,6 +50,7 @@ namespace GameReview.API.Configuration
 =======
             service.AddScoped<IReviewService, ReviewService>();
 >>>>>>> 955813aa2fa87a6871e009e01f0f19a8fabac86c
+>>>>>>> 67a53f209d7772218ede0dc0eeec517d6d5c1d44
             return service;
         }
     }

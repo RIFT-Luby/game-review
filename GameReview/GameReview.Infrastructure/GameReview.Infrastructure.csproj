@@ -18,4 +18,8 @@
     <ProjectReference Include="..\GameReview.Domain\GameReview.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\GameReview.Domain\GameReview.Domain.csproj" />
+  </ItemGroup>
+
 </Project>

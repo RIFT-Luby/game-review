@@ -15,9 +15,13 @@
 <<<<<<< HEAD
 =======
     <Folder Include="Constants\" />
+<<<<<<< HEAD
+    <Folder Include="Utils\" />
+=======
     <Folder Include="Mappers\" />
     <Folder Include="Utils\" />
 >>>>>>> 955813aa2fa87a6871e009e01f0f19a8fabac86c
+>>>>>>> 67a53f209d7772218ede0dc0eeec517d6d5c1d44
     <Folder Include="Params\" />
     <Folder Include="Utils\" />
     <Folder Include="Options\" />
@@ -28,7 +32,11 @@
 <<<<<<< HEAD
     <ProjectReference Include="..\GameReview.Infrastructure\GameReview.Infrastructure.csproj" />
 =======
+<<<<<<< HEAD
+    <ProjectReference Include="..\GameReview.Infrastructure\GameReview.Infrastructure.csproj" />
+=======
 >>>>>>> 955813aa2fa87a6871e009e01f0f19a8fabac86c
+>>>>>>> 67a53f209d7772218ede0dc0eeec517d6d5c1d44
   </ItemGroup>
 
 </Project>
