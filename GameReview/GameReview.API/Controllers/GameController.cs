@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace GameReview.API.Controllers
 {
     [ApiController]
-    [Route("api/games")]
+    [Route("api/v1/games")]
     public class GameController : ControllerBase
     {
 
@@ -14,41 +14,39 @@ namespace GameReview.API.Controllers
         {
             _gameService = gameService;
         }
-
-        /* Em testes
+        
         [HttpGet]
-        public async IEnumerable<GameResquest> GetAllGames()
+        public async Task<IEnumerable<GameResponse>> GetAllGames()
         {
-
+            return await _gameService.GetAll();
         }
 
         [HttpGet("{id:int}")]
-        public async Task<GameResquest> GetGame(int id)
+        public async Task<GameResponse> GetGame([FromRoute] int id)
         {
-
+            return await _gameService.GetById(id);
         }
-        */
 
         [HttpPost]
-        public async Task<ActionResult<GameResquest>> Post([FromBody] GameResquest gameResquest)
+        public async Task<ActionResult<GameResponse>> Post([FromBody] GameResquest gameResquest)
         {
             return await _gameService.RegisterAsync(gameResquest);
             
         }
 
-        [HttpPut]
-        public async Task<ActionResult<GameResquest>> Put([FromBody] GameResquest gameResquest, int id)
+        [HttpPut("{id:int}")]
+        public async Task<ActionResult<GameResponse>> Put([FromBody] GameResquest gameResquest, [FromRoute] int id)
         {
             return await _gameService.UpdateAsync(gameResquest, id);
         }
 
-        /* Em testes
+        
         [HttpDelete]
-        public async Task<ActionResult<GameResquest>> Delete(int id)
+        public async Task<ActionResult<GameResponse>> Delete(int id)
         {
-            //return await _gameService.DeleteAsync();
+            return await _gameService.DeleteAsync(id);
         }
-        */
+        
 
 
     }

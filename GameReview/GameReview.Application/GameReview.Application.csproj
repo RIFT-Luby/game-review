@@ -3,23 +3,23 @@
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="11.0.1" />
     <PackageReference Include="FluentValidation" Version="11.0.3" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Constants\" />
-    <Folder Include="Interfaces\" />
-    <Folder Include="Mappers\" />
-    <Folder Include="Validations\" />
     <Folder Include="Utils\" />
-    <Folder Include="Services\" />
     <Folder Include="Params\" />
     <Folder Include="Options\" />
-    <Folder Include="ViewModels\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\GameReview.Domain\GameReview.Domain.csproj" />
+    <ProjectReference Include="..\GameReview.Infrastructure\GameReview.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

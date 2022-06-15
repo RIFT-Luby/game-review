@@ -22,16 +22,13 @@ namespace GameReview.Application.Validations
                 .Length(5, 100)
                 .NotEmpty();
 
-            RuleFor(g => g.Score)
-                .NotEmpty();
-
             RuleFor(g => g.Console)
                 .Length(5, 100)
                 .NotEmpty();
 
             RuleFor(g => g.GameGenderResponse)
                 .Must(gender => Enumeration.GetAll<GameGender>().Any(x => x.Id == gender.Id))
-                .WithMessage("Game Gender not existis");
+                .WithMessage("O genêro do jogo não existe");
 
         }
     }

@@ -10,6 +10,7 @@ namespace GameReview.Application.Mappers
         public DomainToRequest()
         {
             CreateMap<Game, GameResquest>().ReverseMap();
+            CreateMap<Game, GameResponse>().ReverseMap();
         }   
     }
 }
