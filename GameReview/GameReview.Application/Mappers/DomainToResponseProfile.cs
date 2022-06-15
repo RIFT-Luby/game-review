@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using GameReview.Application.ViewModels;
+using GameReview.Application.ViewModels.Review;
 using GameReview.Application.ViewModels.UserViews;
 using GameReview.Domain.Models;
 using System;
@@ -15,6 +16,7 @@ namespace GameReview.Application.Mappers
         public DomainToResponseProfile()
         {
             CreateMap<User, UserResponse>();
+            CreateMap<Review, ReviewResponse>();
         }
     }
 }

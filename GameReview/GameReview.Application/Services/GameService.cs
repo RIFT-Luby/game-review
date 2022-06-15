@@ -57,11 +57,11 @@ namespace GameReview.Application.Services
             if (!validationResult.IsValid)
                 throw new BadRequestException(validationResult);
 
-            var result = _mapper.Map<Game>(gameResquest);
-            await _gameRepository.RegisterAsync(result);
+            var entity = _mapper.Map<Game>(gameResquest);
+            var result = await _gameRepository.RegisterAsync(entity);
             await _unitOfWork.CommitAsync();
 
-            return _mapper.Map<GameResponse>(gameResquest);
+            return _mapper.Map<GameResponse>(result);
         }
 
         public async Task<GameResponse> UpdateAsync(GameRequest gameResquest, int id)
@@ -72,14 +72,14 @@ namespace GameReview.Application.Services
             if (!validationResult.IsValid)
                 throw new BadRequestException(validationResult);
 
-            var gameVerify = await _gameRepository.FirstAsync(x => x.Id == id) 
+            var entity = await _gameRepository.FirstAsync(x => x.Id == id) 
                 ?? throw new NotFoundRequestException($"Jogo com id: {id} não encontrado.");           
 
-            var result = _mapper.Map(gameResquest, gameVerify);
-            await _gameRepository.UpdateAsync(result);
+            _mapper.Map(gameResquest, entity);
+            var result = await _gameRepository.UpdateAsync(entity);
             await _unitOfWork.CommitAsync();
 
-            return _mapper.Map<GameResponse>(gameResquest);
+            return _mapper.Map<GameResponse>(result);
 
         }
 

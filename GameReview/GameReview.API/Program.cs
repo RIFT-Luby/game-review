@@ -5,7 +5,6 @@ using GameReview.Application.Mappers;
 var builder = WebApplication.CreateBuilder(args);
 
 
-
 builder.Services.ResolveDependencies();
 
 builder.Services.AddAutoMapper(typeof(DomainToResponseProfile), typeof(RequestToDomainProfile));

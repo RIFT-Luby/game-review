@@ -1,4 +1,6 @@
-﻿using GameReview.Domain.Core;
+﻿using GameReview.Application.ViewModels.Game;
+using GameReview.Application.ViewModels.UserViews;
+using GameReview.Domain.Core;
 
 namespace GameReview.Application.ViewModels.Review
 {

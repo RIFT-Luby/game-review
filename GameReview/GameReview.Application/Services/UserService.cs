@@ -64,7 +64,7 @@ namespace GameReview.Application.Services
 
         public async Task<UserResponse> UpdatePasswordAsync(PasswordRequest model, int id)
         {
-            var entity = await _userRepository.FirstAsync(e => e.Id == id) ?? throw new NotFoundRequestException($"Usuario com id: {id} não encontrado."));
+            var entity = await _userRepository.FirstAsync(e => e.Id == id) ?? throw new NotFoundRequestException($"Usuario com id: {id} não encontrado.");
             
             var contextValidation = new ValidationContext<PasswordRequest>(model);
             contextValidation.RootContextData["userId"] = id;

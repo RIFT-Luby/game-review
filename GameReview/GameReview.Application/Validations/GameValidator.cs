@@ -26,8 +26,8 @@ namespace GameReview.Application.Validations
                 .Length(5, 100)
                 .NotEmpty();
 
-            RuleFor(g => g.GameGenderResponse)
-                .Must(gender => Enumeration.GetAll<GameGender>().Any(x => x.Id == gender.Id))
+            RuleFor(g => g.IdGenderType)
+                .Must(id => Enumeration.GetAll<GameGender>().Any(x => x.Id == id))
                 .WithMessage("O genêro do jogo não existe");
 
         }

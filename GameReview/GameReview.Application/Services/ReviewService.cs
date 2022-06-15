@@ -35,7 +35,7 @@ namespace GameReview.Application.Services
             var created = await _reviewRepository.RegisterAsync(result);
             await _unitOfWork.CommitAsync();
 
-            return _mapper.Map<ReviewResponse>(model);
+            return _mapper.Map<ReviewResponse>(created);
         }
 
         public async Task<ReviewResponse> UpdateAsync(ReviewRequest model, int id)
