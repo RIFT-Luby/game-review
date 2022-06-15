@@ -524,25 +524,30 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\IGOR-NOT\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\Tiago Vazzoller\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {},
+    "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\": {},
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\AreaDoCodigo\\Codigos\\2-Estágio\\game-review\\GameReview\\GameReview.Domain\\GameReview.Domain.csproj",
+      "projectUniqueName": "C:\\Users\\Tiago Vazzoller\\Documents\\GitHub\\GameReview\\GameReview\\GameReview.Domain\\GameReview.Domain.csproj",
       "projectName": "GameReview.Domain",
-      "projectPath": "D:\\AreaDoCodigo\\Codigos\\2-Estágio\\game-review\\GameReview\\GameReview.Domain\\GameReview.Domain.csproj",
-      "packagesPath": "C:\\Users\\IGOR-NOT\\.nuget\\packages\\",
-      "outputPath": "D:\\AreaDoCodigo\\Codigos\\2-Estágio\\game-review\\GameReview\\GameReview.Domain\\obj\\",
+      "projectPath": "C:\\Users\\Tiago Vazzoller\\Documents\\GitHub\\GameReview\\GameReview\\GameReview.Domain\\GameReview.Domain.csproj",
+      "packagesPath": "C:\\Users\\Tiago Vazzoller\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Tiago Vazzoller\\Documents\\GitHub\\GameReview\\GameReview\\GameReview.Domain\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+        "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\",
+        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\IGOR-NOT\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Tiago Vazzoller\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net6.0"
@@ -587,7 +592,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.203\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.202\\RuntimeIdentifierGraph.json"
       }
     }
   }
