@@ -41,7 +41,7 @@ namespace GameReview.API.Controllers
         }
 
         
-        [HttpDelete]
+        [HttpDelete("{id:int}")]
         public async Task<ActionResult<GameResponse>> Delete([FromRoute] int id)
         {
             return await _gameService.DeleteAsync(id);
