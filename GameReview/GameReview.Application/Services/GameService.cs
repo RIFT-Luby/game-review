@@ -18,10 +18,14 @@ namespace GameReview.Application.Services
         private readonly IValidator<GameRequest> _validator;
         private IMapper _mapper;
 
-        public GameService(IGameRepository gameRepository, 
+        public GameService(IGameRepository gameRepository,
+                           IUnitOfWork unitOfWork,
+                           IMapper mapper,
                            IValidator<GameRequest> validator)
         {
             _gameRepository = gameRepository;
+            _unitOfWork = unitOfWork;
+            _mapper = mapper;
             _validator = validator;
         }
 
