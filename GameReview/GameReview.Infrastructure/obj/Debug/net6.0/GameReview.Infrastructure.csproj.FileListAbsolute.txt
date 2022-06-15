@@ -1,0 +1,15 @@
+C:\Users\Fabio\Documents\Linguagens de Programação\C#.NET\HacktonLuby\game-review\GameReview\GameReview.Infrastructure\bin\Debug\net6.0\GameReview.Infrastructure.deps.json
+C:\Users\Fabio\Documents\Linguagens de Programação\C#.NET\HacktonLuby\game-review\GameReview\GameReview.Infrastructure\bin\Debug\net6.0\GameReview.Infrastructure.dll
+C:\Users\Fabio\Documents\Linguagens de Programação\C#.NET\HacktonLuby\game-review\GameReview\GameReview.Infrastructure\bin\Debug\net6.0\GameReview.Infrastructure.pdb
+C:\Users\Fabio\Documents\Linguagens de Programação\C#.NET\HacktonLuby\game-review\GameReview\GameReview.Infrastructure\bin\Debug\net6.0\GameReview.Domain.dll
+C:\Users\Fabio\Documents\Linguagens de Programação\C#.NET\HacktonLuby\game-review\GameReview\GameReview.Infrastructure\bin\Debug\net6.0\GameReview.Domain.pdb
+C:\Users\Fabio\Documents\Linguagens de Programação\C#.NET\HacktonLuby\game-review\GameReview\GameReview.Infrastructure\obj\Debug\net6.0\GameReview.Infrastructure.csproj.AssemblyReference.cache
+C:\Users\Fabio\Documents\Linguagens de Programação\C#.NET\HacktonLuby\game-review\GameReview\GameReview.Infrastructure\obj\Debug\net6.0\GameReview.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Fabio\Documents\Linguagens de Programação\C#.NET\HacktonLuby\game-review\GameReview\GameReview.Infrastructure\obj\Debug\net6.0\GameReview.Infrastructure.AssemblyInfoInputs.cache
+C:\Users\Fabio\Documents\Linguagens de Programação\C#.NET\HacktonLuby\game-review\GameReview\GameReview.Infrastructure\obj\Debug\net6.0\GameReview.Infrastructure.AssemblyInfo.cs
+C:\Users\Fabio\Documents\Linguagens de Programação\C#.NET\HacktonLuby\game-review\GameReview\GameReview.Infrastructure\obj\Debug\net6.0\GameReview.Infrastructure.csproj.CoreCompileInputs.cache
+C:\Users\Fabio\Documents\Linguagens de Programação\C#.NET\HacktonLuby\game-review\GameReview\GameReview.Infrastructure\obj\Debug\net6.0\GameReview.Infrastructure.csproj.CopyComplete
+C:\Users\Fabio\Documents\Linguagens de Programação\C#.NET\HacktonLuby\game-review\GameReview\GameReview.Infrastructure\obj\Debug\net6.0\GameReview.Infrastructure.dll
+C:\Users\Fabio\Documents\Linguagens de Programação\C#.NET\HacktonLuby\game-review\GameReview\GameReview.Infrastructure\obj\Debug\net6.0\refint\GameReview.Infrastructure.dll
+C:\Users\Fabio\Documents\Linguagens de Programação\C#.NET\HacktonLuby\game-review\GameReview\GameReview.Infrastructure\obj\Debug\net6.0\GameReview.Infrastructure.pdb
+C:\Users\Fabio\Documents\Linguagens de Programação\C#.NET\HacktonLuby\game-review\GameReview\GameReview.Infrastructure\obj\Debug\net6.0\ref\GameReview.Infrastructure.dll
