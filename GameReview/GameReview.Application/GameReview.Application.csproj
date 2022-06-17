@@ -9,6 +9,7 @@
     <PackageReference Include="AutoMapper" Version="11.0.1" />
     <PackageReference Include="FluentValidation" Version="11.0.3" />
     <PackageReference Include="LinqKit" Version="1.2.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Http.Features" Version="5.0.17" />
   </ItemGroup>
 
   <ItemGroup>
@@ -16,7 +17,6 @@
     <Folder Include="Utils\" />
     <Folder Include="Mappers\" />
     <Folder Include="Params\" />
-    <Folder Include="Options\" />
   </ItemGroup>
 
   <ItemGroup>

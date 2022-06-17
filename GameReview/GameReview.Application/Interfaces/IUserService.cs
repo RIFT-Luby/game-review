@@ -1,5 +1,6 @@
 ﻿using GameReview.Application.ViewModels;
 using GameReview.Application.ViewModels.UserViews;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,5 +16,10 @@ namespace GameReview.Application.Interfaces
         Task<UserResponse> UpdatePasswordAsync(PasswordRequest model, int id);
         Task<UserResponse> RemoveAsync(int id);
         Task<UserResponse> GetByIdAsync(int id);
+        Task<UserResponse> UploadImg(int id, IFormFile img);
+        Task<UserResponse> RemoveImg(int id);
+        FileStream GetImg(int id);
+
+
     }
 }
