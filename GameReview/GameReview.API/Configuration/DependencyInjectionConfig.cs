@@ -22,6 +22,8 @@ namespace GameReview.API.Configuration
             service.AddScoped<IUserService, UserService>();
             service.AddScoped<IGameService, GameService>();
             service.AddScoped<IReviewService, ReviewService>();
+            service.AddScoped<ILoginService, LoginService>();
+            service.AddScoped<ITokenGeneratorService, TokenGeneratorService>();
 
             //uow
             service.AddScoped<IUnitOfWork, UnitOfWork>();
@@ -32,8 +34,6 @@ namespace GameReview.API.Configuration
                 fv.AutomaticValidationEnabled = false;
                 fv.RegisterValidatorsFromAssemblyContaining<UserRequestValidator>();
             });
-
-            
 
             return service;
         }
