@@ -6,6 +6,8 @@ using GameReview.Domain.Interfaces.Repositories;
 using GameReview.Infrastructure.Repositories;
 using GameReview.Domain.Interfaces.Commom;
 using GameReview.Infrastructure.UnitOfWork;
+using Swashbuckle.AspNetCore.SwaggerGen;
+using Microsoft.Extensions.Options;
 
 namespace GameReview.API.Configuration
 {
@@ -33,7 +35,8 @@ namespace GameReview.API.Configuration
                 fv.RegisterValidatorsFromAssemblyContaining<UserRequestValidator>();
             });
 
-            
+            service.AddTransient<IConfigureOptions<SwaggerGenOptions>, ConfigureSwaggerOptions>();
+
 
             return service;
         }

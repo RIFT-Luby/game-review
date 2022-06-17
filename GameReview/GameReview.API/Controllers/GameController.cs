@@ -5,7 +5,8 @@ using Microsoft.AspNetCore.Mvc;
 namespace GameReview.API.Controllers
 {
     [ApiController]
-    [Route("api/v1/games")]
+    [ApiVersion("1.0")]
+    [Route("api/v{version:ApiVersion}/games")]
     public class GameController : ControllerBase
     {
 
