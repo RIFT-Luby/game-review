@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace GameReview.API.Controllers
 {
     [ApiController]
-    [Route("api/v1/games")]
+    [Route("api/v1/[Controller]")]
     public class GameController : ControllerBase
     {
 
@@ -16,35 +16,61 @@ namespace GameReview.API.Controllers
         }
         
         [HttpGet]
-        public async Task<IEnumerable<GameResponse>> GetAllGames()
+        public async Task<ActionResult> GetAllGames()
         {
-            return await _gameService.GetAll();
+            var result = await _gameService.GetAll();
+            return Ok(result);
         }
 
         [HttpGet("{id:int}")]
-        public async Task<GameResponse> GetGame([FromRoute] int id)
+        public async Task<ActionResult> GetGame([FromRoute] int id)
         {
-            return await _gameService.GetById(id);
+            var result = await _gameService.GetById(id);
+            return Ok(result);
         }
 
         [HttpPost]
-        public async Task<ActionResult<GameResponse>> Post([FromBody] GameRequest gameResquest)
+        public async Task<ActionResult> Post([FromBody] GameRequest gameResquest)
         {
-            return await _gameService.RegisterAsync(gameResquest);
+            var result = await _gameService.RegisterAsync(gameResquest);
+            return Ok(result);
             
         }
 
         [HttpPut("{id:int}")]
-        public async Task<ActionResult<GameResponse>> Put([FromBody] GameRequest gameResquest, [FromRoute] int id)
+        public async Task<ActionResult> Put([FromBody] GameRequest gameResquest, [FromRoute] int id)
         {
-            return await _gameService.UpdateAsync(gameResquest, id);
+            var result = await _gameService.UpdateAsync(gameResquest, id);
+            return Ok(result);
         }
 
-        
-        [HttpDelete("{id:int}")]
-        public async Task<ActionResult<GameResponse>> Delete([FromRoute] int id)
+        [HttpPut("img/{id:int}")]
+        public async Task<ActionResult> PutImg([FromForm]IFormFile img, [FromRoute] int id)
         {
-            return await _gameService.DeleteAsync(id);
+            var result = await _gameService.UploadImg(id, img);
+            return Ok(result);
+        }
+
+        [HttpDelete("img/{id:int}")]
+        public async Task<ActionResult> DeleteImg([FromRoute] int id)
+        {
+            var result = await _gameService.RemoveImg(id);
+            return Ok(result);
+        }
+
+        [HttpGet("img/{id:int}")]
+        public ActionResult GetImg([FromRoute] int id)
+        {
+            var result = _gameService.GetImg(id);
+            return Ok(result);
+        }
+
+
+        [HttpDelete("{id:int}")]
+        public async Task<ActionResult> Delete([FromRoute] int id)
+        {
+            var result = await _gameService.DeleteAsync(id);
+            return Ok(result);
         }
         
 

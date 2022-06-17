@@ -6,17 +6,26 @@ using GameReview.Domain.Interfaces.Repositories;
 using GameReview.Infrastructure.Repositories;
 using GameReview.Domain.Interfaces.Commom;
 using GameReview.Infrastructure.UnitOfWork;
+using GameReview.Domain.Interfaces.Storage;
+using GameReview.Infrastructure.Storage;
+using GameReview.Application.Options;
 
 namespace GameReview.API.Configuration
 {
     public static class DependencyInjectionConfig
     {
-        public static IServiceCollection ResolveDependencies(this IServiceCollection service)
+        public static IServiceCollection ResolveDependencies(this IServiceCollection service, ConfigurationManager configuration)
         {
+            //storage
+            service.AddSingleton<IFileStorage, FileStorage>();
+
             //repositories
             service.AddScoped<IUserRepository, TempUserRepository>();
             service.AddScoped<IGameRepository, TempGameRepository>();
             service.AddScoped<IReviewRepository, TempReviewRepository>();
+
+            //options
+            service.Configure<Application.Options.FileApiOptions>(configuration.GetSection("FileApiOptions"));
 
             //services
             service.AddScoped<IUserService, UserService>();

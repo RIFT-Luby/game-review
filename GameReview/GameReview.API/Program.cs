@@ -5,7 +5,7 @@ using GameReview.Application.Mappers;
 var builder = WebApplication.CreateBuilder(args);
 
 
-builder.Services.ResolveDependencies();
+builder.Services.ResolveDependencies(builder.Configuration);
 
 builder.Services.AddAuthConfig(builder.Configuration);
 
