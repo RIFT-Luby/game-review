@@ -23,6 +23,13 @@ namespace GameReview.API.Controllers
             return Ok(result);
         }
 
+        [HttpPut("img/{id:int}")]
+        public async Task<ActionResult> PutImg([FromRoute] int id, [FromForm] IFormFile img)
+        {
+            await _userService.UploadImg(id, img);
+            return Ok();
+        }
+
         [HttpPut("{id:int}")]
         public async Task<ActionResult> Put([FromBody] UserRequest model, [FromRoute] int id)
         {
@@ -44,12 +51,27 @@ namespace GameReview.API.Controllers
             return Ok(result);
         }
 
+        [HttpDelete("img/{id:int}")]
+        public async Task<ActionResult> DeleteImg(int id)
+        {
+            var result = await _userService.RemoveImg(id);
+            return Ok(result);
+        }
+
         [HttpGet("{id:int}")]
         public async Task<ActionResult> GetByIdAsync(int id)
         {
             var result = await _userService.GetByIdAsync(id);
             return Ok(result);
         }
+
+        [HttpGet("img/{id:int}")]
+        public ActionResult GetImgById(int id)
+        {
+            var result =  _userService.GetImg(id);
+            return Ok(result);
+        }
+
 
 
     }
