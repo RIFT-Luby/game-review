@@ -7,6 +7,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.ResolveDependencies();
 
+builder.Services.AddAuthConfig(builder.Configuration);
+
 builder.Services.AddAutoMapper(typeof(DomainToResponseProfile), typeof(RequestToDomainProfile));
 
 builder.Services.AddControllers( opts =>
