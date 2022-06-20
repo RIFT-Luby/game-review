@@ -19,7 +19,9 @@ builder.Services.AddVersionedApiExplorer(options =>
     options.SubstituteApiVersionInUrl = true;
 });
 
-builder.Services.ResolveDependencies();
+builder.Services.ResolveDependencies(builder.Configuration);
+
+builder.Services.AddAuthConfig(builder.Configuration);
 
 builder.Services.AddSwaggerConfig();
 

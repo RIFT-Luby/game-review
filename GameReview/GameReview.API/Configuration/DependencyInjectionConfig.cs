@@ -8,22 +8,33 @@ using GameReview.Domain.Interfaces.Commom;
 using GameReview.Infrastructure.UnitOfWork;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using Microsoft.Extensions.Options;
+using GameReview.Domain.Interfaces.Storage;
+using GameReview.Infrastructure.Storage;
+using GameReview.Application.Options;
 
 namespace GameReview.API.Configuration
 {
     public static class DependencyInjectionConfig
     {
-        public static IServiceCollection ResolveDependencies(this IServiceCollection service)
+        public static IServiceCollection ResolveDependencies(this IServiceCollection service, ConfigurationManager configuration)
         {
+            //storage
+            service.AddSingleton<IFileStorage, FileStorage>();
+
             //repositories
             service.AddScoped<IUserRepository, TempUserRepository>();
             service.AddScoped<IGameRepository, TempGameRepository>();
             service.AddScoped<IReviewRepository, TempReviewRepository>();
 
+            //options
+            service.Configure<Application.Options.FileApiOptions>(configuration.GetSection("FileApiOptions"));
+
             //services
             service.AddScoped<IUserService, UserService>();
             service.AddScoped<IGameService, GameService>();
             service.AddScoped<IReviewService, ReviewService>();
+            service.AddScoped<ILoginService, LoginService>();
+            service.AddScoped<ITokenGeneratorService, TokenGeneratorService>();
 
             //uow
             service.AddScoped<IUnitOfWork, UnitOfWork>();
@@ -36,7 +47,6 @@ namespace GameReview.API.Configuration
             });
 
             service.AddTransient<IConfigureOptions<SwaggerGenOptions>, ConfigureSwaggerOptions>();
-
 
             return service;
         }

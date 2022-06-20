@@ -13,6 +13,14 @@ namespace GameReview.Infrastructure.Repositories
 {
     public class TempUserRepository : IUserRepository
     {
+        User user = new User()
+        {
+            Id = 22,
+            Name = "FirstTeste",
+            Email = "FirstTeste",
+            Password = "FirstTeste",
+            UserRoleId = 1,
+        };
         public Task DeleteAsync(User model)
         {
             return Task.CompletedTask;
@@ -20,20 +28,12 @@ namespace GameReview.Infrastructure.Repositories
 
         public Task<User?> FirstAsync(Expression<Func<User, bool>> filter, Func<IQueryable<User>, IIncludableQueryable<User, object>>? include = null)
         {
-            var entity = new User()
-            {
-                Id = 22,
-                Name = "FirstTeste",
-                Email = "FirstTeste",
-                Password = "FirstTeste",
-                UserRoleId = 1,
-            };
-            return Task.FromResult(entity)!;
+            return Task.FromResult(user)!;
         }
 
         public Task<User?> FirstAsyncAsTracking(Expression<Func<User, bool>> filter, Func<IQueryable<User>, IIncludableQueryable<User, object>>? include = null)
         {
-            throw new NotImplementedException();
+            return Task.FromResult(user)!;
         }
 
         public Task<IEnumerable<User>> GetDataAsync(Expression<Func<User, bool>>? filter = null, Func<IQueryable<User>, IIncludableQueryable<User, object>>? include = null, int? skip = null, int? take = null)
@@ -53,28 +53,12 @@ namespace GameReview.Infrastructure.Repositories
 
         public Task<User> RegisterAsync(User model)
         {
-            var entity = new User()
-            {
-                Id = 0,
-                Name = model.Name,
-                Email = model.Email,
-                Password = model.Password,
-                UserRoleId = model.UserRoleId,
-            };
-            return Task.FromResult(entity);
+            return Task.FromResult(model);
         }
 
         public Task<User> UpdateAsync(User model)
         {
-            var entity = new User()
-            {
-                Id = model.Id,
-                Name = model.Name,
-                Email = model.Email,
-                Password = model.Password,
-                UserRoleId = model.UserRoleId,
-            };
-            return Task.FromResult(entity);
+            return Task.FromResult(model);
         }
     }
 }
