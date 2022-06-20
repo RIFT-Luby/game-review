@@ -1,8 +1,10 @@
 using GameReview.API.Configuration;
 using GameReview.API.Filters;
 using GameReview.Application.Mappers;
+using GameReview.Infrastructure.Context;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,6 +19,16 @@ builder.Services.AddVersionedApiExplorer(options =>
 {
     options.GroupNameFormat = "'v'VVV";
     options.SubstituteApiVersionInUrl = true;
+});
+
+builder.Services.AddDbContext<ApplicationContext>(options =>
+{
+    options
+        .UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))
+        .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTrackingWithIdentityResolution)
+        .EnableDetailedErrors()
+        .EnableSensitiveDataLogging();
+
 });
 
 builder.Services.ResolveDependencies(builder.Configuration);

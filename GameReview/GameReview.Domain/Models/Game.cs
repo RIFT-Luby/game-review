@@ -10,7 +10,7 @@ namespace GameReview.Domain.Models
         public string Summary { get; set; }
         public string Developer { get; set; }
         public GameGender GameGender { get; set; }
-        public int IdGenderType { get; set; }
+        public int GameGenderId { get; set; }
         public decimal Score { get; set; }
         public string Console { get; set; }
         public string? ImgPath { get; set; }

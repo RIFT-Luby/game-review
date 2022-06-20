@@ -8,7 +8,7 @@ namespace GameReview.Domain.Models
         public Game? Game { get; set; }
         public int UserId { get; set; }
         public User? User { get; set; }
-        public string ReviewUser { get; set; }
+        public string UserReview { get; set; }
         public int Score { get; set; }
     }
 }
