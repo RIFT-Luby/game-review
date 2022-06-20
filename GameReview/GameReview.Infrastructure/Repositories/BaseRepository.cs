@@ -81,9 +81,9 @@ namespace GameReview.Infrastructure.Repositories
             return result;
         }
 
-        public async Task<bool> HasAnyAsync(Expression<Func<T, bool>> filter, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<bool> HasAnyAsync(Expression<Func<T, bool>> filter)
         {
-            var result = await _context.Set<T>().AnyAsync(filter, cancellationToken);
+            var result = await _context.Set<T>().AnyAsync(filter);
             return result;
         }
     }

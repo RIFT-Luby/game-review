@@ -32,3 +32,11 @@ D:\AreaDoCodigo\Codigos\2-Estágio\game-review\GameReview\GameReview.Application
 D:\AreaDoCodigo\Codigos\2-Estágio\game-review\GameReview\GameReview.Application\bin\Debug\net6.0\GameReview.Infrastructure.pdb
 D:\AreaDoCodigo\Codigos\2-Estágio\game-review\GameReview\GameReview.Application\obj\Debug\net6.0\GameReview.Application.csproj.CopyComplete
 D:\AreaDoCodigo\Codigos\2-Estágio\game-review\GameReview\GameReview.Application\obj\Debug\net6.0\ref\GameReview.Application.dll
+C:\Users\rafis\OneDrive\Documentos\Luby\game-review\GameReview\GameReview.Application\obj\Debug\net6.0\GameReview.Application.csproj.AssemblyReference.cache
+C:\Users\rafis\OneDrive\Documentos\Luby\game-review\GameReview\GameReview.Application\obj\Debug\net6.0\GameReview.Application.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\rafis\OneDrive\Documentos\Luby\game-review\GameReview\GameReview.Application\obj\Debug\net6.0\GameReview.Application.AssemblyInfoInputs.cache
+C:\Users\rafis\OneDrive\Documentos\Luby\game-review\GameReview\GameReview.Application\obj\Debug\net6.0\GameReview.Application.AssemblyInfo.cs
+C:\Users\rafis\OneDrive\Documentos\Luby\game-review\GameReview\GameReview.Application\obj\Debug\net6.0\GameReview.Application.csproj.CoreCompileInputs.cache
+C:\Users\rafis\OneDrive\Documentos\Luby\game-review\GameReview\GameReview.Application\obj\Debug\net6.0\GameReview.Application.dll
+C:\Users\rafis\OneDrive\Documentos\Luby\game-review\GameReview\GameReview.Application\obj\Debug\net6.0\refint\GameReview.Application.dll
+C:\Users\rafis\OneDrive\Documentos\Luby\game-review\GameReview\GameReview.Application\obj\Debug\net6.0\GameReview.Application.pdb

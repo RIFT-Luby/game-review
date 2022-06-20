@@ -16,6 +16,6 @@ namespace GameReview.Domain.Interfaces
             IIncludableQueryable<T, object>>? include = null,
             int? skip = null, int? take = null);
         TResult QueryData<TResult>(Func<IQueryable<T>, TResult> queryParm, Expression<Func<T, bool>>? filter = null);
-        Task<bool> HasAnyAsync(Expression<Func<T, bool>> filter, CancellationToken cancellationToken);
+        Task<bool> HasAnyAsync(Expression<Func<T, bool>> filter);
     }
 }
