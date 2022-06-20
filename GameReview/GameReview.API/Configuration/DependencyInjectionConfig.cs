@@ -20,9 +20,9 @@ namespace GameReview.API.Configuration
             service.AddSingleton<IFileStorage, FileStorage>();
 
             //repositories
-            service.AddScoped<IUserRepository, TempUserRepository>();
+            service.AddScoped<IUserRepository, UserRepository>();
             service.AddScoped<IGameRepository, GameRepository>();
-            service.AddScoped<IReviewRepository, TempReviewRepository>();
+            service.AddScoped<IReviewRepository, ReviewRepository>();
 
             //options
             service.Configure<Application.Options.FileApiOptions>(configuration.GetSection("FileApiOptions"));
