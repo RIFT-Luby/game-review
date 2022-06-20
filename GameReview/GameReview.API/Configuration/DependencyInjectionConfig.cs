@@ -27,7 +27,8 @@ namespace GameReview.API.Configuration
             service.AddScoped<IReviewRepository, ReviewRepository>();
 
             //options
-            service.Configure<Application.Options.FileApiOptions>(configuration.GetSection("FileSettings"));
+            service.Configure<Application.Options.FileSettings>(configuration.GetSection("FileSettings"));
+            service.Configure<EmailSettings>(configuration.GetSection("EmailSettings"));
 
             //services
             service.AddScoped<IUserService, UserService>();
@@ -35,6 +36,7 @@ namespace GameReview.API.Configuration
             service.AddScoped<IReviewService, ReviewService>();
             service.AddScoped<ILoginService, LoginService>();
             service.AddScoped<ITokenGeneratorService, TokenGeneratorService>();
+            service.AddScoped<IMailService, MailService>();
 
             //uow
             service.AddScoped<IUnitOfWork, UnitOfWork>();

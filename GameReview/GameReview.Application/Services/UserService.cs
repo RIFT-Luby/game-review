@@ -4,6 +4,7 @@ using GameReview.Application.Exceptions;
 using GameReview.Application.Interfaces;
 using GameReview.Application.Options;
 using GameReview.Application.ViewModels;
+using GameReview.Application.ViewModels.Email;
 using GameReview.Application.ViewModels.UserViews;
 using GameReview.Domain.Interfaces.Commom;
 using GameReview.Domain.Interfaces.Repositories;
@@ -28,9 +29,10 @@ namespace GameReview.Application.Services
         private readonly IUserRepository _userRepository;
         private readonly IUnitOfWork _unitOfWork;
         private readonly IFileStorage _fileStorage;
-        private readonly FileApiOptions _fileApiOptions;
+        private readonly FileSettings _fileApiOptions;
+        private readonly IMailService _mailService;
 
-        public UserService(IValidatorFactory validatorFactory, IMapper mapper, IUserRepository userRepository, IUnitOfWork unitOfWork, IFileStorage fileStorage, IOptions<FileApiOptions> options)
+        public UserService(IValidatorFactory validatorFactory, IMapper mapper, IUserRepository userRepository, IUnitOfWork unitOfWork, IFileStorage fileStorage, IOptions<FileSettings> options, IMailService mailService)
         {
             _validatorFactory = validatorFactory;
             _mapper = mapper;
@@ -38,6 +40,7 @@ namespace GameReview.Application.Services
             _unitOfWork = unitOfWork;
             _fileStorage = fileStorage;
             _fileApiOptions = options.Value;
+            _mailService = mailService;
         }
 
         public async Task<UserResponse> RegisterAsync(CreateUserRequest model)
@@ -164,6 +167,27 @@ namespace GameReview.Application.Services
 
             return _fileStorage.GetFile(pathImg);
 
+        }
+
+        public async Task<UserResponse> RecoverPassword(string userName)
+        {
+            var entity = _userRepository.FirstAsyncAsTracking(u => u.UserName == userName).GetAwaiter().GetResult() ?? throw new NotFoundRequestException($"Usuario com username: {userName} não encontrado.");
+
+            var newPassword = Guid.NewGuid().ToString().Substring(0,8);
+            entity.Password = PasswordHasher.Hash(newPassword);
+
+            var emailRequest = new EmailRequest()
+            {
+                ToEmail = entity.Email,
+                Subject = "Recuperação de Senha",
+                Body = $"Data:{DateTime.Now} \n\n Segue abaixo nova senha: \n Login: {entity.UserName} \n Senha: {newPassword}"
+            };
+            
+            await _mailService.SendEmailAsync(emailRequest);
+
+            await _unitOfWork.CommitAsync();
+
+            return _mapper.Map<UserResponse>(entity);
         }
     }
 }
