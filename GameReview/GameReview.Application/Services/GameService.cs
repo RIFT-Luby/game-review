@@ -114,13 +114,13 @@ namespace GameReview.Application.Services
             if (!_fileApiOptions.GameFileTypes.Contains(extesionFile))
                 throw new BadRequestException("Formato de imagem invalido.");
 
-            if (entity.imgPath != null)
-                await _fileStorage.RemoveFile(entity.imgPath);
+            if (entity.ImgPath != null)
+                await _fileStorage.RemoveFile(entity.ImgPath);
 
             await _fileStorage.IfNotExistCreateDirectory(_fileApiOptions.GameImgDirectory);
 
-            entity.imgPath = Path.Combine(_fileApiOptions.GameImgDirectory, Guid.NewGuid().ToString() + extesionFile);
-            await _fileStorage.UploadFile(img, entity.imgPath);
+            entity.ImgPath = Path.Combine(_fileApiOptions.GameImgDirectory, Guid.NewGuid().ToString() + extesionFile);
+            await _fileStorage.UploadFile(img, entity.ImgPath);
             await _unitOfWork.CommitAsync();
 
             return _mapper.Map<GameResponse>(entity);
@@ -129,10 +129,10 @@ namespace GameReview.Application.Services
         public async Task<GameResponse> RemoveImg(int id)
         {
             var entity = await _gameRepository.FirstAsyncAsTracking(u => u.Id == id) ?? throw new NotFoundRequestException($"Game com id: {id} não encontrado.");
-            if (entity.imgPath != null)
+            if (entity.ImgPath != null)
             {
-                await _fileStorage.RemoveFile(entity.imgPath);
-                entity.imgPath = null;
+                await _fileStorage.RemoveFile(entity.ImgPath);
+                entity.ImgPath = null;
             }
             return _mapper.Map<GameResponse>(entity);
         }
@@ -143,8 +143,8 @@ namespace GameReview.Application.Services
 
             var pathImg = _fileApiOptions.DefaultGameImgPath;
 
-            if (entity.imgPath != null)
-                pathImg = entity.imgPath;
+            if (entity.ImgPath != null)
+                pathImg = entity.ImgPath;
 
             if (string.IsNullOrEmpty(pathImg))
                 throw new BadRequestException("Nenhuma imagem encotrada.");

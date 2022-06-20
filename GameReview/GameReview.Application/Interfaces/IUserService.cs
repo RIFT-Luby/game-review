@@ -16,10 +16,12 @@ namespace GameReview.Application.Interfaces
         Task<UserResponse> UpdatePasswordAsync(PasswordRequest model, int id);
         Task<UserResponse> RemoveAsync(int id);
         Task<UserResponse> GetByIdAsync(int id);
+        Task<UserResponse> GetByIdWithReviewsAsync(int id);
+        Task<IEnumerable<UserResponse>> GetAll(int? skip = null, int? take = null);
         Task<UserResponse> UploadImg(int id, IFormFile img);
         Task<UserResponse> RemoveImg(int id);
         FileStream GetImg(int id);
 
-
     }
 }
+ 

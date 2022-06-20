@@ -11,7 +11,8 @@ namespace GameReview.Domain.Models
         public string Password { get; set; }
         public int UserRoleId { get; set; }
         public UserRole UserRole { get; set; }
-        public string? imgPath { get; set;  }
+        public string? ImgPath { get; set;  }
+        public virtual IEnumerable<Review> Reviews { get; set; }
 
     }
 }
