@@ -1,7 +1,7 @@
-
 ﻿using GameReview.Application.Constants;
 using GameReview.Application.Interfaces;
 using GameReview.Application.ViewModels;
+using GameReview.Application.ViewModels.Email;
 using GameReview.Application.ViewModels.UserViews;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -12,13 +12,16 @@ namespace GameReview.API.Controllers
     [ApiController]
     [ApiVersion("1.0")]
     [Route("api/v{version:ApiVersion}/[controller]")]
+    [Authorize]
     public class UserController : ControllerBase
     {
         private readonly IUserService _userService;
+        private readonly IMailService _mailService;
 
-        public UserController(IUserService userService)
+        public UserController(IUserService userService, IMailService mailService)
         {
             _userService = userService;
+            _mailService = mailService;
         }
 
         [HttpPost]

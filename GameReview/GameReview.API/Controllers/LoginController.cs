@@ -5,17 +5,20 @@ using Microsoft.AspNetCore.Mvc;
 namespace GameReview.API.Controllers
 {
     [ApiController]
-    [Route("api/v1/[controller]")]
+    [ApiVersion("1.0")]
+    [Route("api/v{version:ApiVersion}/[controller]")]
     public class LoginController : ControllerBase
     {
         private ILoginService _loginService;
+        private IUserService _userService;
         private ITokenGeneratorService _tokenGeneratorService;
 
         public LoginController(ILoginService loginService,
-                               ITokenGeneratorService tokenGeneratorService)
+                               ITokenGeneratorService tokenGeneratorService, IUserService userService)
         {
             _loginService = loginService;
             _tokenGeneratorService = tokenGeneratorService;
+            _userService = userService;
         }
 
         [HttpPost]
@@ -29,5 +32,14 @@ namespace GameReview.API.Controllers
                 Token = token
             });
         }
+
+        [HttpPost("recoverPassword")]
+        public async Task<IActionResult> SendMail([FromQuery] string userName)
+        {
+            await _userService.RecoverPassword(userName);
+            return Ok();
+
+        }
+
     }
 }
