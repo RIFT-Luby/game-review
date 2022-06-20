@@ -7,7 +7,8 @@ using Microsoft.AspNetCore.Mvc;
 namespace GameReview.API.Controllers
 {
     [ApiController]
-    [Route("/api/v1/[controller]")]
+    [ApiVersion("1.0")]
+    [Route("api/v{version:ApiVersion}/[controller]")]
     [Authorize(Roles = Roles.Admin)]
     public class UserAdminController: ControllerBase
     {

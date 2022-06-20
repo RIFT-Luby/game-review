@@ -20,7 +20,7 @@ namespace GameReview.Infrastructure.Repositories
             Id = 1,
             Name = "FirstTeste",
             UserName = "Admin",
-            Email = "FirstTeste",
+            Email = "igor-coura@hotmail.com",
             Password = "AQAAAAEAAAPoAAAAEMxHFcvNGDwbhbop+wAZap5Mrxm2hQ1mdus5TVIKYCM2/IUl9YkqNHqZxp2r7/oQFg==",
             UserRoleId = 1,
         };
@@ -30,7 +30,7 @@ namespace GameReview.Infrastructure.Repositories
             Id = 2,
             Name = "FirstTeste",
             UserName = "Comum",
-            Email = "FirstTeste",
+            Email = "igor-coura@hotmail.com",
             Password = "AQAAAAEAAAPoAAAAEFoaMdknLAdDiqXj9z2ruLhGv/unSxW7Ys6H8wmb1g054oMbg6+5AHee7EUTimtF9g==",
             UserRoleId = 2,
         };

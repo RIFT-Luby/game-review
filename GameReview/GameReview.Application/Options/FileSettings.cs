@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GameReview.Application.Options
 {
-    public class FileApiOptions
+    public class FileSettings
     {
         public string UserImgDirectory { get; set; } = "img\\games";
         public string GameImgDirectory { get; set; } = "img\\users";

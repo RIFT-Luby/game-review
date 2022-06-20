@@ -21,6 +21,7 @@ namespace GameReview.Application.Interfaces
         Task<UserResponse> UploadImg(int id, IFormFile img);
         Task<UserResponse> RemoveImg(int id);
         FileStream GetImg(int id);
+        Task<UserResponse> RecoverPassword(string userName);
 
     }
 }

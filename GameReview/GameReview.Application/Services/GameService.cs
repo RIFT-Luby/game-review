@@ -20,13 +20,13 @@ namespace GameReview.Application.Services
         private readonly IUnitOfWork _unitOfWork;
         private readonly IValidator<GameRequest> _validator;
         private readonly IMapper _mapper;
-        private readonly FileApiOptions _fileApiOptions;
+        private readonly FileSettings _fileApiOptions;
         private readonly IFileStorage _fileStorage;
         public GameService(IGameRepository gameRepository,
                            IUnitOfWork unitOfWork,
                            IMapper mapper,
                            IValidator<GameRequest> validator,
-                           IOptions<FileApiOptions> options, 
+                           IOptions<FileSettings> options, 
                            IFileStorage fileStorage)
         {
             _gameRepository = gameRepository;
