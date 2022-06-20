@@ -25,7 +25,7 @@ namespace GameReview.API.Configuration
             service.AddScoped<IReviewRepository, TempReviewRepository>();
 
             //options
-            service.Configure<Application.Options.FileApiOptions>(configuration.GetSection("FileApiOptions"));
+            service.Configure<Application.Options.FileApiOptions>(configuration.GetSection("FileSettings"));
 
             //services
             service.AddScoped<IUserService, UserService>();
