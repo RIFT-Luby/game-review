@@ -1,3 +1,4 @@
+
 ﻿using GameReview.Application.Constants;
 using GameReview.Application.Interfaces;
 using GameReview.Application.ViewModels;
@@ -9,9 +10,9 @@ using System.Security.Claims;
 namespace GameReview.API.Controllers
 {
     [ApiController]
-    [Route("/api/v1/[controller]")]
-    [Authorize]
-    public class UserController: ControllerBase
+    [ApiVersion("1.0")]
+    [Route("api/v{version:ApiVersion}/[controller]")]
+    public class UserController : ControllerBase
     {
         private readonly IUserService _userService;
 
