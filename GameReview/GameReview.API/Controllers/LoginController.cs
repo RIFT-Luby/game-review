@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace GameReview.API.Controllers
 {
     [ApiController]
-    [Route("api/v1/login")]
+    [Route("api/v1/[controller]")]
     public class LoginController : ControllerBase
     {
         private ILoginService _loginService;

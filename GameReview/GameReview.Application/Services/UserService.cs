@@ -11,6 +11,7 @@ using GameReview.Domain.Interfaces.Storage;
 using GameReview.Domain.Models;
 using GameReview.Infrastructure.Utils;
 using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
@@ -46,7 +47,6 @@ namespace GameReview.Application.Services
                 throw new BadRequestException(validation);
 
             var entity = _mapper.Map<User>(model);
-            entity.Password = PasswordHasher.Hash(model.Password);
             var result = await _userRepository.RegisterAsync(entity);
             await _unitOfWork.CommitAsync();
             return _mapper.Map<UserResponse>(result);
@@ -103,6 +103,18 @@ namespace GameReview.Application.Services
             return _mapper.Map<UserResponse>(result);
         }
 
+        public async Task<UserResponse> GetByIdWithReviewsAsync(int id)
+        {
+            var result = await _userRepository.FirstAsync(filter: c => c.Id == id, include: p => p.Include(x => x.Reviews)) ?? throw new NotFoundRequestException($"Usuario com id: {id} não encontrado.");
+            return _mapper.Map<UserResponse>(result);
+        }
+
+        public async Task<IEnumerable<UserResponse>> GetAll(int? skip = null, int? take = null)
+        {
+            var result = await _userRepository.GetDataAsync(skip: skip, take: take);
+            return _mapper.Map<IEnumerable<UserResponse>>(result);
+        }
+
         public async Task<UserResponse> UploadImg(int id, IFormFile img)
         {
             var entity = await _userRepository.FirstAsyncAsTracking(u => u.Id == id) ?? throw new NotFoundRequestException($"Usuario com id: {id} não encontrado.");
@@ -115,13 +127,13 @@ namespace GameReview.Application.Services
             if (!_fileApiOptions.GameFileTypes.Contains(extesionFile))
                 throw new BadRequestException("Formato de imagem invalido.");
 
-            if (entity.imgPath != null)
-                await _fileStorage.RemoveFile(entity.imgPath);
+            if (entity.ImgPath != null)
+                await _fileStorage.RemoveFile(entity.ImgPath);
 
             await _fileStorage.IfNotExistCreateDirectory(_fileApiOptions.GameImgDirectory);
 
-            entity.imgPath = Path.Combine(_fileApiOptions.GameImgDirectory, Guid.NewGuid().ToString() + extesionFile);          
-            await _fileStorage.UploadFile(img, entity.imgPath);
+            entity.ImgPath = Path.Combine(_fileApiOptions.GameImgDirectory, Guid.NewGuid().ToString() + extesionFile);          
+            await _fileStorage.UploadFile(img, entity.ImgPath);
             await _unitOfWork.CommitAsync();
 
             return _mapper.Map<UserResponse>(entity);
@@ -130,10 +142,10 @@ namespace GameReview.Application.Services
         public async Task<UserResponse> RemoveImg(int id)
         {
             var entity = await _userRepository.FirstAsyncAsTracking(u => u.Id == id) ?? throw new NotFoundRequestException($"Usuario com id: {id} não encontrado.");
-            if(entity.imgPath != null)
+            if(entity.ImgPath != null)
             {
-                await _fileStorage.RemoveFile(entity.imgPath);
-                entity.imgPath = null;
+                await _fileStorage.RemoveFile(entity.ImgPath);
+                entity.ImgPath = null;
             }
             return _mapper.Map<UserResponse>(entity);
         }
@@ -142,10 +154,10 @@ namespace GameReview.Application.Services
         {
             var entity = _userRepository.FirstAsync(u => u.Id == id).GetAwaiter().GetResult()  ?? throw new NotFoundRequestException($"Usuario com id: {id} não encontrado.");
 
-            var pathImg = _fileApiOptions.DefaultGameImgPath;
+            var pathImg = _fileApiOptions.DefaultUserImgPath;
 
-            if (entity.imgPath != null)
-                pathImg = entity.imgPath;
+            if (entity.ImgPath != null)
+                pathImg = entity.ImgPath;
 
             if (string.IsNullOrEmpty(pathImg))
                 throw new BadRequestException("Nenhuma imagem encotrada.");

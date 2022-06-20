@@ -6,6 +6,8 @@ using GameReview.Domain.Interfaces.Repositories;
 using GameReview.Infrastructure.Repositories;
 using GameReview.Domain.Interfaces.Commom;
 using GameReview.Infrastructure.UnitOfWork;
+using Swashbuckle.AspNetCore.SwaggerGen;
+using Microsoft.Extensions.Options;
 using GameReview.Domain.Interfaces.Storage;
 using GameReview.Infrastructure.Storage;
 using GameReview.Application.Options;
@@ -25,7 +27,7 @@ namespace GameReview.API.Configuration
             service.AddScoped<IReviewRepository, ReviewRepository>();
 
             //options
-            service.Configure<Application.Options.FileApiOptions>(configuration.GetSection("FileApiOptions"));
+            service.Configure<Application.Options.FileApiOptions>(configuration.GetSection("FileSettings"));
 
             //services
             service.AddScoped<IUserService, UserService>();
@@ -43,6 +45,8 @@ namespace GameReview.API.Configuration
                 fv.AutomaticValidationEnabled = false;
                 fv.RegisterValidatorsFromAssemblyContaining<UserRequestValidator>();
             });
+
+            service.AddTransient<IConfigureOptions<SwaggerGenOptions>, ConfigureSwaggerOptions>();
 
             return service;
         }

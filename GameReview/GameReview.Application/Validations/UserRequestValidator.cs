@@ -29,6 +29,16 @@ namespace GameReview.Application.Validations
                 .MustAsync(( model, email, context, cancelToken) => VerifyHasAny(x => x.Email == email, context))
                 .WithMessage("{PropertyName} Já existe um usuário com e-mail informado.");
 
+
+            RuleFor(x => x.UserName)
+                .MinimumLength(3)
+                .MaximumLength(50)
+                .NotEmpty();
+
+            RuleFor(x => x.UserName)
+                .MustAsync(async (user, userName, context, cancellationToken) => await VerifyHasAny(u => u.UserName == userName, context))
+                .WithMessage("UserName Já existe um usuário com username informado.");
+
             RuleFor(x => x.Name)
                 .MinimumLength(3)
                 .MaximumLength(200)
