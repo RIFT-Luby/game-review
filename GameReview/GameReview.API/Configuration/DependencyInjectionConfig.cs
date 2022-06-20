@@ -21,7 +21,7 @@ namespace GameReview.API.Configuration
 
             //repositories
             service.AddScoped<IUserRepository, TempUserRepository>();
-            service.AddScoped<IGameRepository, TempGameRepository>();
+            service.AddScoped<IGameRepository, GameRepository>();
             service.AddScoped<IReviewRepository, TempReviewRepository>();
 
             //options

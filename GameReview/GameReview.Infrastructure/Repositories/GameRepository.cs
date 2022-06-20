@@ -19,7 +19,7 @@ namespace GameReview.Infrastructure.Repositories
             Summary = "Summary",
             Developer = "Develop",
             GameGender = null,
-            IdGenderType = 1,
+            GameGenderId = 1,
             Score = 5,
             Console = "PS4"
 
