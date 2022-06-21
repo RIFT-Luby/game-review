@@ -2517,19 +2517,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\rafis\\.nuget\\packages\\": {}
+    "C:\\Users\\IGOR-NOT\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\rafis\\OneDrive\\Documentos\\Luby\\game-review\\GameReview\\GameReview.Application\\GameReview.Application.csproj",
+      "projectUniqueName": "D:\\AreaDoCodigo\\Codigos\\2-Estágio\\game-review\\GameReview\\GameReview.Application\\GameReview.Application.csproj",
       "projectName": "GameReview.Application",
-      "projectPath": "C:\\Users\\rafis\\OneDrive\\Documentos\\Luby\\game-review\\GameReview\\GameReview.Application\\GameReview.Application.csproj",
-      "packagesPath": "C:\\Users\\rafis\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\rafis\\OneDrive\\Documentos\\Luby\\game-review\\GameReview\\GameReview.Application\\obj\\",
+      "projectPath": "D:\\AreaDoCodigo\\Codigos\\2-Estágio\\game-review\\GameReview\\GameReview.Application\\GameReview.Application.csproj",
+      "packagesPath": "C:\\Users\\IGOR-NOT\\.nuget\\packages\\",
+      "outputPath": "D:\\AreaDoCodigo\\Codigos\\2-Estágio\\game-review\\GameReview\\GameReview.Application\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "C:\\Users\\rafis\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\IGOR-NOT\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -2543,11 +2548,11 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "C:\\Users\\rafis\\OneDrive\\Documentos\\Luby\\game-review\\GameReview\\GameReview.Domain\\GameReview.Domain.csproj": {
-              "projectPath": "C:\\Users\\rafis\\OneDrive\\Documentos\\Luby\\game-review\\GameReview\\GameReview.Domain\\GameReview.Domain.csproj"
+            "D:\\AreaDoCodigo\\Codigos\\2-Estágio\\game-review\\GameReview\\GameReview.Domain\\GameReview.Domain.csproj": {
+              "projectPath": "D:\\AreaDoCodigo\\Codigos\\2-Estágio\\game-review\\GameReview\\GameReview.Domain\\GameReview.Domain.csproj"
             },
-            "C:\\Users\\rafis\\OneDrive\\Documentos\\Luby\\game-review\\GameReview\\GameReview.Infrastructure\\GameReview.Infrastructure.csproj": {
-              "projectPath": "C:\\Users\\rafis\\OneDrive\\Documentos\\Luby\\game-review\\GameReview\\GameReview.Infrastructure\\GameReview.Infrastructure.csproj"
+            "D:\\AreaDoCodigo\\Codigos\\2-Estágio\\game-review\\GameReview\\GameReview.Infrastructure\\GameReview.Infrastructure.csproj": {
+              "projectPath": "D:\\AreaDoCodigo\\Codigos\\2-Estágio\\game-review\\GameReview\\GameReview.Infrastructure\\GameReview.Infrastructure.csproj"
             }
           }
         }
@@ -2598,7 +2603,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.301\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.203\\RuntimeIdentifierGraph.json"
       }
     }
   }

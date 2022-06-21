@@ -50,6 +50,7 @@ namespace GameReview.Application.Services
                 throw new BadRequestException(validation);
 
             var entity = _mapper.Map<User>(model);
+            entity.Password = PasswordHasher.Hash(model.Password);
             var result = await _userRepository.RegisterAsync(entity);
             await _unitOfWork.CommitAsync();
             return _mapper.Map<UserResponse>(result);
@@ -61,7 +62,7 @@ namespace GameReview.Application.Services
             var entity = await _userRepository.FirstAsync(e => e.Id == id) ?? throw new NotFoundRequestException($"Usuario com id: {id} não encontrado.");
             var contextValidation = new ValidationContext<UserRequest>(model);
             contextValidation.RootContextData["userId"] = id;
-            var validation = await _validatorFactory.GetValidator<UserRequest>().ValidateAsync(model);
+            var validation = await _validatorFactory.GetValidator<UserRequest>().ValidateAsync(contextValidation);
             if (!validation.IsValid)
                 throw new BadRequestException(validation);
 
@@ -79,7 +80,7 @@ namespace GameReview.Application.Services
             
             var contextValidation = new ValidationContext<PasswordRequest>(model);
             contextValidation.RootContextData["userId"] = id;
-            var validation = await _validatorFactory.GetValidator<PasswordRequest>().ValidateAsync(model);
+            var validation = await _validatorFactory.GetValidator<PasswordRequest>().ValidateAsync(contextValidation);
             if (!validation.IsValid)
                 throw new BadRequestException(validation);
 
@@ -102,19 +103,19 @@ namespace GameReview.Application.Services
 
         public async Task<UserResponse> GetByIdAsync(int id)
         {
-            var result = await _userRepository.FirstAsync(filter: c => c.Id == id) ?? throw new NotFoundRequestException($"Usuario com id: {id} não encontrado.");
+            var result = await _userRepository.FirstAsync(filter: c => c.Id == id, include: i => i.Include(r => r.UserRole)) ?? throw new NotFoundRequestException($"Usuario com id: {id} não encontrado.");
             return _mapper.Map<UserResponse>(result);
         }
 
         public async Task<UserResponse> GetByIdWithReviewsAsync(int id)
         {
-            var result = await _userRepository.FirstAsync(filter: c => c.Id == id, include: p => p.Include(x => x.Reviews)) ?? throw new NotFoundRequestException($"Usuario com id: {id} não encontrado.");
+            var result = await _userRepository.FirstAsync(filter: c => c.Id == id, include: p => p.Include(x => x.Reviews).Include(r => r.UserRole)) ?? throw new NotFoundRequestException($"Usuario com id: {id} não encontrado.");
             return _mapper.Map<UserResponse>(result);
         }
 
         public async Task<IEnumerable<UserResponse>> GetAll(int? skip = null, int? take = null)
         {
-            var result = await _userRepository.GetDataAsync(skip: skip, take: take);
+            var result = await _userRepository.GetDataAsync(skip: skip, take: take, include: i => i.Include(r => r.UserRole));
             return _mapper.Map<IEnumerable<UserResponse>>(result);
         }
 
@@ -127,15 +128,15 @@ namespace GameReview.Application.Services
 
             var extesionFile = Path.GetExtension(img.FileName);
 
-            if (!_fileApiOptions.GameFileTypes.Contains(extesionFile))
+            if (!_fileApiOptions.UserFileTypes.Contains(extesionFile))
                 throw new BadRequestException("Formato de imagem invalido.");
 
             if (entity.ImgPath != null)
                 await _fileStorage.RemoveFile(entity.ImgPath);
 
-            await _fileStorage.IfNotExistCreateDirectory(_fileApiOptions.GameImgDirectory);
+            await _fileStorage.IfNotExistCreateDirectory(_fileApiOptions.UserImgDirectory);
 
-            entity.ImgPath = Path.Combine(_fileApiOptions.GameImgDirectory, Guid.NewGuid().ToString() + extesionFile);          
+            entity.ImgPath = Path.Combine(_fileApiOptions.UserImgDirectory, Guid.NewGuid().ToString() + extesionFile);          
             await _fileStorage.UploadFile(img, entity.ImgPath);
             await _unitOfWork.CommitAsync();
 
@@ -149,8 +150,10 @@ namespace GameReview.Application.Services
             {
                 await _fileStorage.RemoveFile(entity.ImgPath);
                 entity.ImgPath = null;
+                await _unitOfWork.CommitAsync();
+                return _mapper.Map<UserResponse>(entity);
             }
-            return _mapper.Map<UserResponse>(entity);
+            throw new BadRequestException($"Não existe nenhuma imagem no usuario com id: {id}");
         }
 
         public FileStream GetImg(int id)

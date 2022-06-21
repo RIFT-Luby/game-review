@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using GameReview.Application.ViewModels;
+using GameReview.Application.ViewModels.Game;
 using GameReview.Application.ViewModels.Review;
 using GameReview.Application.ViewModels.UserViews;
 using GameReview.Domain.Models;
@@ -18,6 +19,7 @@ namespace GameReview.Application.Mappers
             CreateMap<UserRequest, User>();
             CreateMap<CreateUserRequest, User>();
             CreateMap<ReviewRequest, Review>();
+            CreateMap<GameRequest, Game>();
         }
     }
 }

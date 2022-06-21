@@ -45,6 +45,7 @@ namespace GameReview.API.Controllers
         public async Task<ActionResult> Put([FromBody] UserRequest model)
         {
             var id = GetUserId();
+            model.UserRoleId = 2;
             var result = await _userService.UpdateAsync(model, id);
             return Ok(result);
         }

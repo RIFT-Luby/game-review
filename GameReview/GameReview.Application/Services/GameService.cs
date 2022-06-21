@@ -133,8 +133,10 @@ namespace GameReview.Application.Services
             {
                 await _fileStorage.RemoveFile(entity.ImgPath);
                 entity.ImgPath = null;
+                await _unitOfWork.CommitAsync();
+                return _mapper.Map<GameResponse>(entity);
             }
-            return _mapper.Map<GameResponse>(entity);
+            throw new BadRequestException($"Não existe nenhuma imagem no game com id: {id}");
         }
 
         public FileStream GetImg(int id)
