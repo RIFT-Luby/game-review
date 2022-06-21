@@ -9,7 +9,7 @@ namespace GameReview.Application.Validations
         public ReviewValidation(IUserRepository userRepository, IGameRepository gameRepository)
         {
 
-            RuleFor(x => x.ReviewUser)
+            RuleFor(x => x.UserReview)
                 .NotEmpty().WithMessage("{PropertyName} não pode ser vazia")
                 .MaximumLength(255);
 
