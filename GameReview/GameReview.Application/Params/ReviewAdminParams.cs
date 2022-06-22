@@ -37,7 +37,14 @@ namespace GameReview.Application.Params
             if (!string.IsNullOrEmpty(DataCriacaoMenorQue))
                 predicate = predicate.And(x => x.CreatedAt <= DateTime.Parse(DataCriacaoMenorQue));
 
-            return predicate;
+            if (predicate.IsStarted)
+            {
+                return predicate;
+            }
+            else
+            {
+                return null;
+            }
         }
     }
 }
