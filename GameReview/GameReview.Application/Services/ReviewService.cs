@@ -6,6 +6,8 @@ using GameReview.Application.ViewModels.Review;
 using GameReview.Domain.Interfaces.Commom;
 using GameReview.Domain.Interfaces.Repositories;
 using GameReview.Domain.Models;
+using Microsoft.EntityFrameworkCore;
+using System.Linq.Expressions;
 
 namespace GameReview.Application.Services
 {
@@ -16,14 +18,16 @@ namespace GameReview.Application.Services
         private readonly IReviewRepository _reviewRepository;
         private readonly IUnitOfWork _unitOfWork;
         private readonly IGameRepository _gameRepository;
+        private readonly IAuthService _authService;
 
-        public ReviewService(IMapper mapper, IValidator<ReviewRequest> validator, IReviewRepository reviewRepository, IUnitOfWork unitOfWork, IGameRepository gameRepository)
+        public ReviewService(IMapper mapper, IValidator<ReviewRequest> validator, IReviewRepository reviewRepository, IUnitOfWork unitOfWork, IGameRepository gameRepository, IAuthService authService)
         {
             _mapper = mapper;
             _validator = validator;
             _reviewRepository = reviewRepository;
             _unitOfWork = unitOfWork;
             _gameRepository = gameRepository;
+            _authService = authService;
         }
 
         public async Task<ReviewResponse> CreateAsync(ReviewRequest model)
@@ -33,7 +37,10 @@ namespace GameReview.Application.Services
                 throw new BadRequestException(validation);
 
             var result = _mapper.Map<Review>(model);
+            result.UserId = _authService.Id;
+
             await updateGameScore(result.Score, result);
+
             var created = await _reviewRepository.RegisterAsync(result);
             await _unitOfWork.CommitAsync();
 
@@ -43,6 +50,9 @@ namespace GameReview.Application.Services
         public async Task<ReviewResponse> UpdateAsync(ReviewRequest model, int id)
         {
             var reviewExist = await _reviewRepository.FirstAsync(x => x.Id == id) ?? throw new NotFoundRequestException($"Review com id: {id} não encontrado.");
+
+            if (reviewExist.UserId != _authService.Id)
+                throw new NotAuthorizedException();
 
             var validation = await _validator.ValidateAsync(model);
             if (!validation.IsValid)
@@ -61,6 +71,9 @@ namespace GameReview.Application.Services
         {
             var reviewExist = await _reviewRepository.FirstAsync(x => x.Id == id) ?? throw new NotFoundRequestException($"Review com id: {id} não encontrado.");
 
+            if (reviewExist.UserId != _authService.Id)
+                throw new NotAuthorizedException();
+
             await updateGameScore(0, reviewExist, removeReview: true);
 
             await _reviewRepository.DeleteAsync(reviewExist);
@@ -69,14 +82,14 @@ namespace GameReview.Application.Services
             return _mapper.Map<ReviewResponse>(reviewExist);
         }
 
-        public async Task<IEnumerable<ReviewResponse>> GetAllAsync()
+        public async Task<IEnumerable<ReviewResponse>> GetAllAsync(Expression<Func<Review, bool>> expression = null, int? skip = null, int? take = null)
         {
-            return _mapper.Map<IEnumerable<ReviewResponse>>(await _reviewRepository.GetDataAsync());
+            return _mapper.Map<IEnumerable<ReviewResponse>>(await _reviewRepository.GetDataAsync(x => x.UserId == _authService.Id, skip: skip, take: take));
         }
 
         public async Task<ReviewResponse> GetByIdAsync(int id)
         {
-            var reviewExist = await _reviewRepository.FirstAsync(x => x.Id == id) ?? throw new NotFoundRequestException($"Review com id: {id} não encontrado.");
+            var reviewExist = await _reviewRepository.FirstAsync(x => x.Id == id && x.UserId == _authService.Id) ?? throw new NotFoundRequestException($"Review com id: {id} não encontrado.");
 
             return _mapper.Map<ReviewResponse>(reviewExist);
         }
@@ -93,12 +106,12 @@ namespace GameReview.Application.Services
         public async Task updateGameScore(int newScore, Review review , bool removeReview = false)
         {
             var game = await _gameRepository.FirstAsyncAsTracking(filter: c => c.Id == review.GameId) ?? throw new NotFoundRequestException($"Jogo com id: {review.GameId} não encontrado.");
-            decimal countReview = (decimal)_reviewRepository.QueryData<int>( q =>  q.Count(r => r.GameId == review.GameId));
+            decimal countReview = (decimal)_reviewRepository.QueryData<int>(q => q.Count(r => r.GameId == review.GameId));
             decimal sumScore = 0;
-            if(review.Id == 0)
+            if (review.Id == 0)
             {
                 sumScore = game.Score * countReview;
-                countReview++;  
+                countReview++;
             }
             else
             {
@@ -108,9 +121,16 @@ namespace GameReview.Application.Services
                     countReview--;
                     newScore = 0;
                 }
-                    
+
             }
-            game.Score = (sumScore + (decimal)newScore) / countReview;
+            if (countReview == 0)
+            {
+                game.Score = 0;
+            }
+            else
+            {
+                game.Score = (sumScore + (decimal)newScore) / countReview;
+            }
         }
     }
 }

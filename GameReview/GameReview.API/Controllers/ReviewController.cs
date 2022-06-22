@@ -1,5 +1,7 @@
-﻿using GameReview.Application.Interfaces;
+﻿using GameReview.Application.Constants;
+using GameReview.Application.Interfaces;
 using GameReview.Application.ViewModels.Review;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GameReview.API.Controllers
@@ -7,6 +9,7 @@ namespace GameReview.API.Controllers
     [ApiVersion("1.0")]
     [Route("api/v{version:ApiVersion}/[controller]")]
     [ApiController]
+    [Authorize(Roles = Roles.Common)]
     public class ReviewController : ControllerBase
     {
         private readonly IReviewService _reviewService;
@@ -38,9 +41,9 @@ namespace GameReview.API.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAllAsync()
+        public async Task<IActionResult> GetAllAsync([FromQuery] int? skip, [FromQuery] int? take)
         {
-            var reviews = await _reviewService.GetAllAsync();
+            var reviews = await _reviewService.GetAllAsync(skip: skip, take: take);
             return Ok(reviews);
         }
 

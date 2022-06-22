@@ -31,6 +31,8 @@ builder.Services.AddDbContext<ApplicationContext>(options =>
 
 });
 
+builder.Services.AddHttpContextAccessor();
+
 builder.Services.ResolveDependencies(builder.Configuration);
 
 builder.Services.AddAuthConfig(builder.Configuration);
