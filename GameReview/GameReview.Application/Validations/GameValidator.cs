@@ -9,7 +9,7 @@ namespace GameReview.Application.Validations
     public class GameValidator : AbstractValidator<GameRequest>
     {
         
-        public GameValidator(IGameRepository gameRepository)
+        public GameValidator()
         {
             RuleFor(g => g.Name)
                 .Length(3, 100)
