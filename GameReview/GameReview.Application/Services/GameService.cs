@@ -11,6 +11,7 @@ using GameReview.Domain.Interfaces.Repositories;
 using GameReview.Domain.Interfaces.Storage;
 using GameReview.Domain.Models;
 using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 
 namespace GameReview.Application.Services
@@ -40,13 +41,13 @@ namespace GameReview.Application.Services
 
         public async Task<IEnumerable<GameResponse>> GetAll(GameParams query)
         {
-            var results = await _gameRepository.GetDataAsync(query.Filter(), skip: query.skip, take: query.take);
+            var results = await _gameRepository.GetDataAsync(query.Filter(), skip: query.skip, take: query.take, include: i => i.Include(r => r.GameGender));
             return _mapper.Map<IEnumerable<GameResponse>>(results);
         }
 
         public async Task<GameResponse> GetById(int id)
         {
-            var result = await _gameRepository.FirstAsync(filter: c => c.Id == id) 
+            var result = await _gameRepository.FirstAsync(filter: c => c.Id == id, include: i => i.Include(r => r.GameGender)) 
                 ?? throw new NotFoundRequestException($"Jogo com id: {id} não encontrado.");
 
             return _mapper.Map<GameResponse>(result);

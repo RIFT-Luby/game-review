@@ -11,7 +11,7 @@ namespace GameReview.Application.Params
     {
         public string? Name { get; set; }
         public string? Developer { get; set; }
-        public int? skip {get; set;} 
+        public int? skip { get; set; }
         public int? take { get; set; }
         public int? ScoreMaiorQue { get; set; }
         public int? ScoreMenorQue { get; set; }
@@ -36,7 +36,14 @@ namespace GameReview.Application.Params
             if (!string.IsNullOrEmpty(Console))
                 predicate = predicate.And(n => EF.Functions.Like(n.Console, $"%{Console}%"));
 
-            return predicate;
-        } 
+            if (predicate.IsStarted)
+            {
+                return predicate;
+            }
+            else
+            {
+                return null;
+            }
+        }
     }
 }
