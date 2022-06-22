@@ -1,4 +1,5 @@
-﻿using GameReview.Application.ViewModels.Game;
+﻿using GameReview.Application.Params;
+using GameReview.Application.ViewModels.Game;
 using GameReview.Application.ViewModels.GameGender;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore.Query;
@@ -12,7 +13,7 @@ namespace GameReview.Application.Interfaces
         Task<GameResponse> UpdateAsync(GameRequest gameResquest, int id);
         Task<GameResponse> DeleteAsync(int id);
         Task<GameResponse> GetById(int id);
-        Task<IEnumerable<GameResponse>> GetAll();
+        Task<IEnumerable<GameResponse>> GetAll(GameParams query);
         Task<IEnumerable<GameGenderResponse>> GetAllGender();
         Task<GameResponse> UploadImg(int id, IFormFile img);
         Task<GameResponse> RemoveImg(int id);

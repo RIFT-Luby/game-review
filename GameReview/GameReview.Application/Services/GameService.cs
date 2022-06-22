@@ -3,6 +3,7 @@ using FluentValidation;
 using GameReview.Application.Exceptions;
 using GameReview.Application.Interfaces;
 using GameReview.Application.Options;
+using GameReview.Application.Params;
 using GameReview.Application.ViewModels.Game;
 using GameReview.Application.ViewModels.GameGender;
 using GameReview.Domain.Interfaces.Commom;
@@ -10,6 +11,7 @@ using GameReview.Domain.Interfaces.Repositories;
 using GameReview.Domain.Interfaces.Storage;
 using GameReview.Domain.Models;
 using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 
 namespace GameReview.Application.Services
@@ -37,15 +39,15 @@ namespace GameReview.Application.Services
             _fileStorage = fileStorage;
         }
 
-        public async Task<IEnumerable<GameResponse>> GetAll()
+        public async Task<IEnumerable<GameResponse>> GetAll(GameParams query)
         {
-            var results = await _gameRepository.GetDataAsync();
+            var results = await _gameRepository.GetDataAsync(query.Filter(), skip: query.skip, take: query.take, include: i => i.Include(r => r.GameGender));
             return _mapper.Map<IEnumerable<GameResponse>>(results);
         }
 
         public async Task<GameResponse> GetById(int id)
         {
-            var result = await _gameRepository.FirstAsync(filter: c => c.Id == id) 
+            var result = await _gameRepository.FirstAsync(filter: c => c.Id == id, include: i => i.Include(r => r.GameGender)) 
                 ?? throw new NotFoundRequestException($"Jogo com id: {id} não encontrado.");
 
             return _mapper.Map<GameResponse>(result);

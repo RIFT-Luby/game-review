@@ -9,8 +9,8 @@ namespace GameReview.Application.ViewModels.Game
         public string Name { get; set; }
         public string Summary { get; set; }
         public string Developer { get; set; }
-        public GameGenderResponse GameGenderResponse { get; set; }
-        public int IdGenderType { get; set; }
+        public int GameGenderId { get; set; }
+        public GameGenderResponse GameGender { get; set; }
         public int Score { get; private set; }
         public string Console { get; set; }
     }

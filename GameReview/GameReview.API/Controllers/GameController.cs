@@ -1,11 +1,15 @@
-﻿using GameReview.Application.Interfaces;
+﻿using GameReview.Application.Constants;
+using GameReview.Application.Interfaces;
+using GameReview.Application.Params;
 using GameReview.Application.ViewModels.Game;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GameReview.API.Controllers
 {
     [ApiController]
     [ApiVersion("1.0")]
+    [Authorize(Roles = Roles.Admin)]
     [Route("api/v{version:ApiVersion}/[controller]")]
     public class GameController : ControllerBase
     {
@@ -17,9 +21,9 @@ namespace GameReview.API.Controllers
         }
         
         [HttpGet]
-        public async Task<ActionResult> GetAllGames()
+        public async Task<ActionResult> GetAllGames([FromQuery] GameParams query)
         {
-            var result = await _gameService.GetAll();
+            var result = await _gameService.GetAll(query);
             return Ok(result);
         }
 

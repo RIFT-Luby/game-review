@@ -1,15 +1,11 @@
 ﻿using AutoMapper;
 using GameReview.Application.ViewModels;
 using GameReview.Application.ViewModels.Game;
+using GameReview.Application.ViewModels.GameGender;
 using GameReview.Application.ViewModels.Review;
 using GameReview.Application.ViewModels.UserViews;
 using GameReview.Domain.Models;
 using GameReview.Domain.Models.Enumerations;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GameReview.Application.Mappers
 {
@@ -21,6 +17,7 @@ namespace GameReview.Application.Mappers
             CreateMap<Review, ReviewResponse>();
             CreateMap<UserRole, UserRoleResponse>();
             CreateMap<Game, GameResponse>();
+            CreateMap<GameGender, GameGenderResponse>();
         }
     }
 }
