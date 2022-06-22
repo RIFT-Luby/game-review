@@ -34,6 +34,7 @@ namespace GameReview.API.Controllers
         }
 
         [HttpGet("{id:int}")]
+        [AllowAnonymous]
         public async Task<IActionResult> GetByIdAsync(int id)
         {
             var review = await _reviewAdminService.GetByIdAsync(id);
@@ -41,6 +42,7 @@ namespace GameReview.API.Controllers
         }
 
         [HttpGet("Filtros")]
+        [AllowAnonymous]
         public async Task<IActionResult> GetParamsAsync([FromQuery] ReviewAdminParams reviewAdminParams)
         {
             var reviews = await _reviewAdminService.GetParamsAsync(reviewAdminParams);

@@ -24,6 +24,7 @@ namespace GameReview.Application.Services
         private readonly IMapper _mapper;
         private readonly FileSettings _fileApiOptions;
         private readonly IFileStorage _fileStorage;
+        private readonly IReviewRepository _reviewRepository;
         public GameService(IGameRepository gameRepository,
                            IUnitOfWork unitOfWork,
                            IMapper mapper,
@@ -155,6 +156,35 @@ namespace GameReview.Application.Services
 
             return _fileStorage.GetFile(pathImg);
 
+        }
+        public async Task UpdateGameScore(int newScore, Review review, bool removeReview = false)
+        {
+            var game = await _gameRepository.FirstAsyncAsTracking(filter: c => c.Id == review.GameId) ?? throw new NotFoundRequestException($"Jogo com id: {review.GameId} não encontrado.");
+            decimal countReview = (decimal)_reviewRepository.QueryData<int>(q => q.Count(r => r.GameId == review.GameId));
+            decimal sumScore = 0;
+            if (review.Id == 0)
+            {
+                sumScore = game.Score * countReview;
+                countReview++;
+            }
+            else
+            {
+                sumScore = game.Score * countReview - review.Score;
+                if (removeReview)
+                {
+                    countReview--;
+                    newScore = 0;
+                }
+
+            }
+            if (countReview == 0)
+            {
+                game.Score = 0;
+            }
+            else
+            {
+                game.Score = (sumScore + (decimal)newScore) / countReview;
+            }
         }
     }
 }

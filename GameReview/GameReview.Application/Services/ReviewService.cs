@@ -17,17 +17,17 @@ namespace GameReview.Application.Services
         private readonly IValidator<ReviewRequest> _validator;
         private readonly IReviewRepository _reviewRepository;
         private readonly IUnitOfWork _unitOfWork;
-        private readonly IGameRepository _gameRepository;
         private readonly IAuthService _authService;
+        private readonly IGameService _gameService;
 
-        public ReviewService(IMapper mapper, IValidator<ReviewRequest> validator, IReviewRepository reviewRepository, IUnitOfWork unitOfWork, IGameRepository gameRepository, IAuthService authService)
+        public ReviewService(IMapper mapper, IValidator<ReviewRequest> validator, IReviewRepository reviewRepository, IUnitOfWork unitOfWork, IAuthService authService, IGameService gameService)
         {
             _mapper = mapper;
             _validator = validator;
             _reviewRepository = reviewRepository;
             _unitOfWork = unitOfWork;
-            _gameRepository = gameRepository;
             _authService = authService;
+            _gameService = gameService;
         }
 
         public async Task<ReviewResponse> CreateAsync(ReviewRequest model)
@@ -39,7 +39,7 @@ namespace GameReview.Application.Services
             var result = _mapper.Map<Review>(model);
             result.UserId = _authService.Id;
 
-            await updateGameScore(result.Score, result);
+            await _gameService.UpdateGameScore(result.Score, result);
 
             var created = await _reviewRepository.RegisterAsync(result);
             await _unitOfWork.CommitAsync();
@@ -58,7 +58,7 @@ namespace GameReview.Application.Services
             if (!validation.IsValid)
                 throw new BadRequestException(validation);
 
-            await updateGameScore(model.Score, reviewExist);
+            await _gameService.UpdateGameScore(model.Score, reviewExist);
 
             var result = _mapper.Map(model, reviewExist);
             var updated = await _reviewRepository.UpdateAsync(result);
@@ -74,7 +74,7 @@ namespace GameReview.Application.Services
             if (reviewExist.UserId != _authService.Id)
                 throw new NotAuthorizedException();
 
-            await updateGameScore(0, reviewExist, removeReview: true);
+            await _gameService.UpdateGameScore(0, reviewExist, removeReview: true);
 
             await _reviewRepository.DeleteAsync(reviewExist);
             await _unitOfWork.CommitAsync();
@@ -103,34 +103,6 @@ namespace GameReview.Application.Services
             return _mapper.Map<IEnumerable<ReviewResponse>>(result);
         }
 
-        public async Task updateGameScore(int newScore, Review review , bool removeReview = false)
-        {
-            var game = await _gameRepository.FirstAsyncAsTracking(filter: c => c.Id == review.GameId) ?? throw new NotFoundRequestException($"Jogo com id: {review.GameId} não encontrado.");
-            decimal countReview = (decimal)_reviewRepository.QueryData<int>(q => q.Count(r => r.GameId == review.GameId));
-            decimal sumScore = 0;
-            if (review.Id == 0)
-            {
-                sumScore = game.Score * countReview;
-                countReview++;
-            }
-            else
-            {
-                sumScore = game.Score * countReview - review.Score;
-                if (removeReview)
-                {
-                    countReview--;
-                    newScore = 0;
-                }
-
-            }
-            if (countReview == 0)
-            {
-                game.Score = 0;
-            }
-            else
-            {
-                game.Score = (sumScore + (decimal)newScore) / countReview;
-            }
-        }
+        
     }
 }

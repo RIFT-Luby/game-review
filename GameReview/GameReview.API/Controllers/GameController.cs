@@ -21,6 +21,7 @@ namespace GameReview.API.Controllers
         }
         
         [HttpGet]
+        [AllowAnonymous]
         public async Task<ActionResult> GetAllGames([FromQuery] GameParams query)
         {
             var result = await _gameService.GetAll(query);
@@ -28,6 +29,7 @@ namespace GameReview.API.Controllers
         }
 
         [HttpGet("{id:int}")]
+        [AllowAnonymous]
         public async Task<ActionResult> GetGame([FromRoute] int id)
         {
             var result = await _gameService.GetById(id);
@@ -64,6 +66,7 @@ namespace GameReview.API.Controllers
         }
 
         [HttpGet("img/{id:int}")]
+        [AllowAnonymous]
         public ActionResult GetImg([FromRoute] int id)
         {
             var result = _gameService.GetImg(id);
