@@ -11,7 +11,7 @@ namespace GameReview.Application.ViewModels.Game
         public string Developer { get; set; }
         public int GameGenderId { get; set; }
         public GameGenderResponse GameGender { get; set; }
-        public int Score { get; private set; }
+        public decimal Score { get; private set; }
         public string Console { get; set; }
     }
 }
