@@ -16,12 +16,10 @@ namespace GameReview.API.Controllers
     public class UserController : ControllerBase
     {
         private readonly IUserService _userService;
-        private readonly IMailService _mailService;
 
-        public UserController(IUserService userService, IMailService mailService)
+        public UserController(IUserService userService)
         {
             _userService = userService;
-            _mailService = mailService;
         }
 
         [HttpPost]
