@@ -88,6 +88,19 @@
           "lib/net6.0/Microsoft.AspNetCore.Cryptography.KeyDerivation.dll": {}
         }
       },
+      "Microsoft.AspNetCore.Http.Abstractions/2.2.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.AspNetCore.Http.Features": "2.2.0",
+          "System.Text.Encodings.Web": "4.5.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/Microsoft.AspNetCore.Http.Abstractions.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.AspNetCore.Http.Abstractions.dll": {}
+        }
+      },
       "Microsoft.AspNetCore.Http.Features/5.0.17": {
         "type": "package",
         "dependencies": {
@@ -777,6 +790,15 @@
           }
         }
       },
+      "System.Text.Encodings.Web/4.5.0": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/System.Text.Encodings.Web.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/System.Text.Encodings.Web.dll": {}
+        }
+      },
       "System.Windows.Extensions/4.7.0": {
         "type": "package",
         "dependencies": {
@@ -997,6 +1019,19 @@
         "lib/netstandard2.0/Microsoft.AspNetCore.Cryptography.KeyDerivation.xml",
         "microsoft.aspnetcore.cryptography.keyderivation.6.0.5.nupkg.sha512",
         "microsoft.aspnetcore.cryptography.keyderivation.nuspec"
+      ]
+    },
+    "Microsoft.AspNetCore.Http.Abstractions/2.2.0": {
+      "sha512": "Nxs7Z1q3f1STfLYKJSVXCs1iBl+Ya6E8o4Oy1bCxJ/rNI44E/0f6tbsrVqAWfB7jlnJfyaAtIalBVxPKUPQb4Q==",
+      "type": "package",
+      "path": "microsoft.aspnetcore.http.abstractions/2.2.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/netstandard2.0/Microsoft.AspNetCore.Http.Abstractions.dll",
+        "lib/netstandard2.0/Microsoft.AspNetCore.Http.Abstractions.xml",
+        "microsoft.aspnetcore.http.abstractions.2.2.0.nupkg.sha512",
+        "microsoft.aspnetcore.http.abstractions.nuspec"
       ]
     },
     "Microsoft.AspNetCore.Http.Features/5.0.17": {
@@ -2473,6 +2508,25 @@
         "version.txt"
       ]
     },
+    "System.Text.Encodings.Web/4.5.0": {
+      "sha512": "Xg4G4Indi4dqP1iuAiMSwpiWS54ZghzR644OtsRCm/m/lBMG8dUBhLVN7hLm8NNrNTR+iGbshCPTwrvxZPlm4g==",
+      "type": "package",
+      "path": "system.text.encodings.web/4.5.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE.TXT",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/netstandard1.0/System.Text.Encodings.Web.dll",
+        "lib/netstandard1.0/System.Text.Encodings.Web.xml",
+        "lib/netstandard2.0/System.Text.Encodings.Web.dll",
+        "lib/netstandard2.0/System.Text.Encodings.Web.xml",
+        "system.text.encodings.web.4.5.0.nupkg.sha512",
+        "system.text.encodings.web.nuspec",
+        "useSharedDesignerContext.txt",
+        "version.txt"
+      ]
+    },
     "System.Windows.Extensions/4.7.0": {
       "sha512": "CeWTdRNfRaSh0pm2gDTJFwVaXfTq6Xwv/sA887iwPTneW7oMtMlpvDIO+U60+3GWTB7Aom6oQwv5VZVUhQRdPQ==",
       "type": "package",
@@ -2512,30 +2566,36 @@
       "GameReview.Domain >= 1.0.0",
       "GameReview.Infrastructure >= 1.0.0",
       "LinqKit >= 1.2.2",
+      "Microsoft.AspNetCore.Http.Abstractions >= 2.2.0",
       "Microsoft.AspNetCore.Http.Features >= 5.0.17",
       "System.IdentityModel.Tokens.Jwt >= 6.19.0"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\IGOR-NOT\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\Tiago Vazzoller\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {},
+    "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\": {},
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\AreaDoCodigo\\Codigos\\2-Estágio\\game-review\\GameReview\\GameReview.Application\\GameReview.Application.csproj",
+      "projectUniqueName": "C:\\Users\\Tiago Vazzoller\\Documents\\GitHub\\GameReview\\Testes\\game-review\\GameReview\\GameReview.Application\\GameReview.Application.csproj",
       "projectName": "GameReview.Application",
-      "projectPath": "D:\\AreaDoCodigo\\Codigos\\2-Estágio\\game-review\\GameReview\\GameReview.Application\\GameReview.Application.csproj",
-      "packagesPath": "C:\\Users\\IGOR-NOT\\.nuget\\packages\\",
-      "outputPath": "D:\\AreaDoCodigo\\Codigos\\2-Estágio\\game-review\\GameReview\\GameReview.Application\\obj\\",
+      "projectPath": "C:\\Users\\Tiago Vazzoller\\Documents\\GitHub\\GameReview\\Testes\\game-review\\GameReview\\GameReview.Application\\GameReview.Application.csproj",
+      "packagesPath": "C:\\Users\\Tiago Vazzoller\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Tiago Vazzoller\\Documents\\GitHub\\GameReview\\Testes\\game-review\\GameReview\\GameReview.Application\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+        "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\",
+        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\IGOR-NOT\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Tiago Vazzoller\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net6.0"
@@ -2548,11 +2608,11 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "D:\\AreaDoCodigo\\Codigos\\2-Estágio\\game-review\\GameReview\\GameReview.Domain\\GameReview.Domain.csproj": {
-              "projectPath": "D:\\AreaDoCodigo\\Codigos\\2-Estágio\\game-review\\GameReview\\GameReview.Domain\\GameReview.Domain.csproj"
+            "C:\\Users\\Tiago Vazzoller\\Documents\\GitHub\\GameReview\\Testes\\game-review\\GameReview\\GameReview.Domain\\GameReview.Domain.csproj": {
+              "projectPath": "C:\\Users\\Tiago Vazzoller\\Documents\\GitHub\\GameReview\\Testes\\game-review\\GameReview\\GameReview.Domain\\GameReview.Domain.csproj"
             },
-            "D:\\AreaDoCodigo\\Codigos\\2-Estágio\\game-review\\GameReview\\GameReview.Infrastructure\\GameReview.Infrastructure.csproj": {
-              "projectPath": "D:\\AreaDoCodigo\\Codigos\\2-Estágio\\game-review\\GameReview\\GameReview.Infrastructure\\GameReview.Infrastructure.csproj"
+            "C:\\Users\\Tiago Vazzoller\\Documents\\GitHub\\GameReview\\Testes\\game-review\\GameReview\\GameReview.Infrastructure\\GameReview.Infrastructure.csproj": {
+              "projectPath": "C:\\Users\\Tiago Vazzoller\\Documents\\GitHub\\GameReview\\Testes\\game-review\\GameReview\\GameReview.Infrastructure\\GameReview.Infrastructure.csproj"
             }
           }
         }
@@ -2579,6 +2639,10 @@
             "target": "Package",
             "version": "[1.2.2, )"
           },
+          "Microsoft.AspNetCore.Http.Abstractions": {
+            "target": "Package",
+            "version": "[2.2.0, )"
+          },
           "Microsoft.AspNetCore.Http.Features": {
             "target": "Package",
             "version": "[5.0.17, )"
@@ -2603,7 +2667,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.203\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.202\\RuntimeIdentifierGraph.json"
       }
     }
   }

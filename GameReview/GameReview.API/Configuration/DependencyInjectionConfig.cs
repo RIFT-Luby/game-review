@@ -21,6 +21,8 @@ namespace GameReview.API.Configuration
             //storage
             service.AddSingleton<IFileStorage, FileStorage>();
 
+            service.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
             //repositories
             service.AddScoped<IUserRepository, UserRepository>();
             service.AddScoped<IGameRepository, GameRepository>();
@@ -34,9 +36,11 @@ namespace GameReview.API.Configuration
             service.AddScoped<IUserService, UserService>();
             service.AddScoped<IGameService, GameService>();
             service.AddScoped<IReviewService, ReviewService>();
+            service.AddScoped<IReviewAdminService, ReviewAdminService>();
             service.AddScoped<ILoginService, LoginService>();
             service.AddScoped<ITokenGeneratorService, TokenGeneratorService>();
             service.AddScoped<IMailService, MailService>();
+            service.AddScoped<IAuthService, AuthService>();
 
             //uow
             service.AddScoped<IUnitOfWork, UnitOfWork>();
