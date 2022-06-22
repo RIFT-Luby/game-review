@@ -41,9 +41,9 @@ namespace GameReview.API.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAllAsync()
+        public async Task<IActionResult> GetAllAsync([FromQuery] int? skip, [FromQuery] int? take)
         {
-            var reviews = await _reviewService.GetAllAsync();
+            var reviews = await _reviewService.GetAllAsync(skip: skip, take: take);
             return Ok(reviews);
         }
 

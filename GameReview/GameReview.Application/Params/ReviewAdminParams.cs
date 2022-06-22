@@ -12,6 +12,8 @@ namespace GameReview.Application.Params
         public int? ScoreMenorQue { get; set; }
         public string? DataCriacaoMaiorQue { get; set; }
         public string? DataCriacaoMenorQue { get; set; }
+        public int? skip { get; set; }
+        public int? take { get; set; }
 
         public override Expression<Func<Review, bool>> Filter()
         {

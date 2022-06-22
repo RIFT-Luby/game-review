@@ -49,9 +49,9 @@ namespace GameReview.Application.Services
             return _mapper.Map<ReviewResponse>(reviewExist);
         }
 
-        public async Task<IEnumerable<ReviewResponse>> GetParamsAsync(ReviewAdminParams reviewAdminParams)
+        public async Task<IEnumerable<ReviewResponse>> GetParamsAsync(ReviewAdminParams query)
         {
-            return _mapper.Map<IEnumerable<ReviewResponse>>(await _reviewRepository.GetDataAsync(reviewAdminParams.Filter()));
+            return _mapper.Map<IEnumerable<ReviewResponse>>(await _reviewRepository.GetDataAsync(query.Filter(), skip: query.skip, take: query.take));
         }
 
         public async Task updateGameScore(int newScore, Review review , bool removeReview = false)
