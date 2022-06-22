@@ -40,7 +40,7 @@ namespace GameReview.Application.Services
 
         public async Task<IEnumerable<GameResponse>> GetAll(GameParams query)
         {
-            var results = await _gameRepository.GetDataAsync(filter: query.Filter());
+            var results = await _gameRepository.GetDataAsync(query.Filter(), skip: query.skip, take: query.take);
             return _mapper.Map<IEnumerable<GameResponse>>(results);
         }
 
