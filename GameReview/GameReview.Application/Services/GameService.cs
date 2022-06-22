@@ -3,6 +3,7 @@ using FluentValidation;
 using GameReview.Application.Exceptions;
 using GameReview.Application.Interfaces;
 using GameReview.Application.Options;
+using GameReview.Application.Params;
 using GameReview.Application.ViewModels.Game;
 using GameReview.Application.ViewModels.GameGender;
 using GameReview.Domain.Interfaces.Commom;
@@ -37,9 +38,9 @@ namespace GameReview.Application.Services
             _fileStorage = fileStorage;
         }
 
-        public async Task<IEnumerable<GameResponse>> GetAll()
+        public async Task<IEnumerable<GameResponse>> GetAll(GameParams query)
         {
-            var results = await _gameRepository.GetDataAsync();
+            var results = await _gameRepository.GetDataAsync(filter: query.Filter());
             return _mapper.Map<IEnumerable<GameResponse>>(results);
         }
 
