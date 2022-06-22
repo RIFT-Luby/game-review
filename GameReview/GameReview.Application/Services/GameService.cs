@@ -29,8 +29,8 @@ namespace GameReview.Application.Services
                            IUnitOfWork unitOfWork,
                            IMapper mapper,
                            IValidator<GameRequest> validator,
-                           IOptions<FileSettings> options, 
-                           IFileStorage fileStorage)
+                           IOptions<FileSettings> options,
+                           IFileStorage fileStorage, IReviewRepository reviewRepository)
         {
             _gameRepository = gameRepository;
             _unitOfWork = unitOfWork;
@@ -38,6 +38,7 @@ namespace GameReview.Application.Services
             _validator = validator;
             _fileApiOptions = options.Value;
             _fileStorage = fileStorage;
+            _reviewRepository = reviewRepository;
         }
 
         public async Task<IEnumerable<GameResponse>> GetAll(GameParams query)

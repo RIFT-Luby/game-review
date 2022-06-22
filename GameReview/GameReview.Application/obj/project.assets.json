@@ -2572,25 +2572,30 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\IGOR-NOT\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\Tiago Vazzoller\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {},
+    "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\": {},
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\AreaDoCodigo\\Codigos\\2-Estágio\\Nova pasta\\game-review\\GameReview\\GameReview.Application\\GameReview.Application.csproj",
+      "projectUniqueName": "C:\\Users\\Tiago Vazzoller\\Documents\\GitHub\\GameReview\\TestesAll\\game-review\\GameReview\\GameReview.Application\\GameReview.Application.csproj",
       "projectName": "GameReview.Application",
-      "projectPath": "D:\\AreaDoCodigo\\Codigos\\2-Estágio\\Nova pasta\\game-review\\GameReview\\GameReview.Application\\GameReview.Application.csproj",
-      "packagesPath": "C:\\Users\\IGOR-NOT\\.nuget\\packages\\",
-      "outputPath": "D:\\AreaDoCodigo\\Codigos\\2-Estágio\\Nova pasta\\game-review\\GameReview\\GameReview.Application\\obj\\",
+      "projectPath": "C:\\Users\\Tiago Vazzoller\\Documents\\GitHub\\GameReview\\TestesAll\\game-review\\GameReview\\GameReview.Application\\GameReview.Application.csproj",
+      "packagesPath": "C:\\Users\\Tiago Vazzoller\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Tiago Vazzoller\\Documents\\GitHub\\GameReview\\TestesAll\\game-review\\GameReview\\GameReview.Application\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+        "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\",
+        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\IGOR-NOT\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Tiago Vazzoller\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net6.0"
@@ -2603,11 +2608,11 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "D:\\AreaDoCodigo\\Codigos\\2-Estágio\\Nova pasta\\game-review\\GameReview\\GameReview.Domain\\GameReview.Domain.csproj": {
-              "projectPath": "D:\\AreaDoCodigo\\Codigos\\2-Estágio\\Nova pasta\\game-review\\GameReview\\GameReview.Domain\\GameReview.Domain.csproj"
+            "C:\\Users\\Tiago Vazzoller\\Documents\\GitHub\\GameReview\\TestesAll\\game-review\\GameReview\\GameReview.Domain\\GameReview.Domain.csproj": {
+              "projectPath": "C:\\Users\\Tiago Vazzoller\\Documents\\GitHub\\GameReview\\TestesAll\\game-review\\GameReview\\GameReview.Domain\\GameReview.Domain.csproj"
             },
-            "D:\\AreaDoCodigo\\Codigos\\2-Estágio\\Nova pasta\\game-review\\GameReview\\GameReview.Infrastructure\\GameReview.Infrastructure.csproj": {
-              "projectPath": "D:\\AreaDoCodigo\\Codigos\\2-Estágio\\Nova pasta\\game-review\\GameReview\\GameReview.Infrastructure\\GameReview.Infrastructure.csproj"
+            "C:\\Users\\Tiago Vazzoller\\Documents\\GitHub\\GameReview\\TestesAll\\game-review\\GameReview\\GameReview.Infrastructure\\GameReview.Infrastructure.csproj": {
+              "projectPath": "C:\\Users\\Tiago Vazzoller\\Documents\\GitHub\\GameReview\\TestesAll\\game-review\\GameReview\\GameReview.Infrastructure\\GameReview.Infrastructure.csproj"
             }
           }
         }
@@ -2662,7 +2667,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.203\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.202\\RuntimeIdentifierGraph.json"
       }
     }
   }
