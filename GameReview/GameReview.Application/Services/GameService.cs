@@ -29,8 +29,9 @@ namespace GameReview.Application.Services
                            IUnitOfWork unitOfWork,
                            IMapper mapper,
                            IValidator<GameRequest> validator,
-                           IOptions<FileSettings> options, 
-                           IFileStorage fileStorage)
+                           IOptions<FileSettings> options,
+                           IFileStorage fileStorage, 
+                           IReviewRepository reviewRepository)
         {
             _gameRepository = gameRepository;
             _unitOfWork = unitOfWork;
@@ -38,6 +39,7 @@ namespace GameReview.Application.Services
             _validator = validator;
             _fileApiOptions = options.Value;
             _fileStorage = fileStorage;
+            _reviewRepository = reviewRepository;
         }
 
         public async Task<IEnumerable<GameResponse>> GetAll(GameParams query)
@@ -77,14 +79,14 @@ namespace GameReview.Application.Services
 
         public async Task<GameResponse> UpdateAsync(GameRequest gameResquest, int id)
         {
+            var entity = await _gameRepository.FirstAsync(x => x.Id == id) 
+                ?? throw new NotFoundRequestException($"Jogo com id: {id} não encontrado.");           
 
             var validationResult = await _validator.ValidateAsync(gameResquest);
 
             if (!validationResult.IsValid)
                 throw new BadRequestException(validationResult);
 
-            var entity = await _gameRepository.FirstAsync(x => x.Id == id) 
-                ?? throw new NotFoundRequestException($"Jogo com id: {id} não encontrado.");           
 
             _mapper.Map(gameResquest, entity);
             var result = await _gameRepository.UpdateAsync(entity);
