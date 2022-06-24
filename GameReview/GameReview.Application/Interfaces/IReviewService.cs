@@ -11,5 +11,6 @@ namespace GameReview.Application.Interfaces
         Task<ReviewResponse> RemoveAsync(int id);
         Task<IEnumerable<ReviewResponse>> GetAllAsync(Expression<Func<Review, bool>> expression = null, int? skip = null, int? take = null);
         Task<ReviewResponse> GetByIdAsync(int id);
+        Task<IEnumerable<ReviewResponse>> GetMyReviewsAsync(Expression<Func<Review, bool>> expression = null, int? skip = null, int? take = null);
     }
 }
