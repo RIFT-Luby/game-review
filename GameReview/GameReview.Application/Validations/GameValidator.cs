@@ -9,15 +9,11 @@ namespace GameReview.Application.Validations
     public class GameValidator : AbstractValidator<GameRequest>
     {
         
-        public GameValidator(IGameRepository gameRepository)
+        public GameValidator()
         {
             RuleFor(g => g.Name)
                 .Length(3, 100)
                 .NotEmpty();
-
-            RuleFor(g => g.Name)
-                .MustAsync((Name, cancellationtoken) => gameRepository.HasAnyAsync(n => n.Name != Name))
-                .WithMessage("{PropertyName} já existe na base de dados");
 
             RuleFor(g => g.Summary)
                 .Length(10, 200)
