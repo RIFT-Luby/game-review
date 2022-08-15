@@ -54,6 +54,9 @@ namespace GameReview.Application.Services
             return _mapper.Map<IEnumerable<ReviewResponse>>(await _reviewRepository.GetDataAsync(query.Filter(), skip: query.skip, take: query.take));
         }
 
-        
+        public Task<int> CountAll(Expression<Func<ReviewRequest, bool>> filter = null)
+        {
+            return _reviewRepository.CountAll();
+        }
     }
 }

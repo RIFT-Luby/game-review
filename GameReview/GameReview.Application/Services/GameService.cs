@@ -13,6 +13,7 @@ using GameReview.Domain.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
+using System.Linq.Expressions;
 
 namespace GameReview.Application.Services
 {
@@ -44,7 +45,8 @@ namespace GameReview.Application.Services
 
         public async Task<IEnumerable<GameResponse>> GetAll(GameParams query)
         {
-            var results = await _gameRepository.GetDataAsync(query.Filter(), skip: query.skip, take: query.take, include: i => i.Include(r => r.GameGender));
+            var results = await _gameRepository
+                .GetDataAsync(query.Filter(), skip: query.skip, take: query.take, include: i => i.Include(r => r.GameGender));
             return _mapper.Map<IEnumerable<GameResponse>>(results);
         }
 
@@ -187,6 +189,11 @@ namespace GameReview.Application.Services
             {
                 game.Score = (sumScore + (decimal)newScore) / countReview;
             }
+        }
+
+        public Task<int> CountAll(Expression<Func<GameRequest, bool>> filter = null)
+        {
+            return _gameRepository.CountAll();
         }
     }
 }

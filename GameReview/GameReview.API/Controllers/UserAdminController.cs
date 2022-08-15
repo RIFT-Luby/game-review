@@ -1,4 +1,5 @@
-﻿using GameReview.Application.Constants;
+﻿using Agenda.Application.ViewModels.Pagination;
+using GameReview.Application.Constants;
 using GameReview.Application.Interfaces;
 using GameReview.Application.ViewModels.UserViews;
 using Microsoft.AspNetCore.Authorization;
@@ -76,10 +77,15 @@ namespace GameReview.API.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult> GetAll([FromQuery] int? skip, [FromQuery] int? take)
+        public async Task<PaginationResponse<UserResponse>> GetAll([FromQuery] int? skip, int? take)
         {
-            var result = await _userService.GetAll(skip, take);
-            return Ok(result);
+            return new PaginationResponse<UserResponse>
+            {
+                Info = await _userService.GetAll(skip: skip, take: take),
+                TotalPages = await _userService.CountAll(),
+                Skip = skip,
+                Take = take,
+            };
         }
 
         [HttpGet("img/{id:int}")]

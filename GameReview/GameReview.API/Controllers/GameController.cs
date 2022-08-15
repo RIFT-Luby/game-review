@@ -1,4 +1,5 @@
-﻿using GameReview.Application.Constants;
+﻿using Agenda.Application.ViewModels.Pagination;
+using GameReview.Application.Constants;
 using GameReview.Application.Interfaces;
 using GameReview.Application.Params;
 using GameReview.Application.ViewModels.Game;
@@ -19,13 +20,18 @@ namespace GameReview.API.Controllers
         {
             _gameService = gameService;
         }
-        
+
+
         [HttpGet]
-        [AllowAnonymous]
-        public async Task<ActionResult> GetAllGames([FromQuery] GameParams query)
+        public async Task<PaginationResponse<GameResponse>> GetAllGames([FromQuery] GameParams query)
         {
-            var result = await _gameService.GetAll(query);
-            return Ok(result);
+            return new PaginationResponse<GameResponse>
+            {
+                Info = await _gameService.GetAll(query),
+                TotalPages = await _gameService.CountAll(),
+                Skip = query.skip,
+                Take = query.take,
+            };
         }
 
         [HttpGet("{id:int}")]

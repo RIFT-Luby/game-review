@@ -103,6 +103,9 @@ namespace GameReview.Application.Services
             return _mapper.Map<IEnumerable<ReviewResponse>>(result);
         }
 
-        
+        public Task<int> CountAll(Expression<Func<Review, bool>> filter = null)
+        {
+            return _reviewRepository.CountAll(filter: r => r.UserId == _authService.Id);
+        }
     }
 }

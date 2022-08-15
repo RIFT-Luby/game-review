@@ -17,6 +17,7 @@ using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -191,6 +192,11 @@ namespace GameReview.Application.Services
             await _unitOfWork.CommitAsync();
 
             return _mapper.Map<UserResponse>(entity);
+        }
+
+        public Task<int> CountAll(Expression<Func<UserRequest, bool>> filter = null)
+        {
+            return _userRepository.CountAll();
         }
     }
 }

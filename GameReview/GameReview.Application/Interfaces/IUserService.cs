@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -22,6 +23,7 @@ namespace GameReview.Application.Interfaces
         Task<UserResponse> RemoveImg(int id);
         FileStream GetImg(int id);
         Task<UserResponse> RecoverPassword(string userName);
+        Task<int> CountAll(Expression<Func<UserRequest, bool>>? filter = null);
 
     }
 }
