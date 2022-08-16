@@ -49,7 +49,8 @@ namespace GameReview.Application.Services
 
         public async Task<ReviewResponse> UpdateAsync(ReviewRequest model, int id)
         {
-            var reviewExist = await _reviewRepository.FirstAsync(x => x.Id == id) ?? throw new NotFoundRequestException($"Review com id: {id} não encontrado.");
+            var reviewExist = await _reviewRepository.FirstAsync(x => x.Id == id)
+                ?? throw new BadRequestException(nameof(id), $"Review com {id} não encontrado.");
 
             if (reviewExist.UserId != _authService.Id)
                 throw new NotAuthorizedException();
@@ -69,7 +70,8 @@ namespace GameReview.Application.Services
 
         public async Task<ReviewResponse> RemoveAsync(int id)
         {
-            var reviewExist = await _reviewRepository.FirstAsync(x => x.Id == id) ?? throw new NotFoundRequestException($"Review com id: {id} não encontrado.");
+            var reviewExist = await _reviewRepository.FirstAsync(x => x.Id == id)
+                ?? throw new BadRequestException(nameof(id), $"Review com {id} não encontrado.");
 
             if (reviewExist.UserId != _authService.Id)
                 throw new NotAuthorizedException();
@@ -89,7 +91,8 @@ namespace GameReview.Application.Services
 
         public async Task<ReviewResponse> GetByIdAsync(int id)
         {
-            var reviewExist = await _reviewRepository.FirstAsync(x => x.Id == id && x.UserId == _authService.Id) ?? throw new NotFoundRequestException($"Review com id: {id} não encontrado.");
+            var reviewExist = await _reviewRepository.FirstAsync(x => x.Id == id && x.UserId == _authService.Id)
+                ?? throw new BadRequestException(nameof(id), $"Review com {id} não encontrado.");
 
             return _mapper.Map<ReviewResponse>(reviewExist);
         }

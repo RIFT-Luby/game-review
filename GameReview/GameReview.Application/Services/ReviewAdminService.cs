@@ -27,7 +27,8 @@ namespace GameReview.Application.Services
 
         public async Task<ReviewResponse> RemoveAsync(int id)
         {
-            var reviewExist = await _reviewRepository.FirstAsync(x => x.Id == id) ?? throw new NotFoundRequestException($"Review com id: {id} não encontrado.");
+            var reviewExist = await _reviewRepository.FirstAsync(x => x.Id == id)
+                ?? throw new BadRequestException(nameof(id), $"Review com {id} não encontrado.");
 
             await _gameService.UpdateGameScore(0, reviewExist, removeReview: true);
 
@@ -44,7 +45,8 @@ namespace GameReview.Application.Services
 
         public async Task<ReviewResponse> GetByIdAsync(int id)
         {
-            var reviewExist = await _reviewRepository.FirstAsync(x => x.Id == id) ?? throw new NotFoundRequestException($"Review com id: {id} não encontrado.");
+            var reviewExist = await _reviewRepository.FirstAsync(x => x.Id == id)
+                ?? throw new BadRequestException(nameof(id), $"Review {id} não encontrado.");
 
             return _mapper.Map<ReviewResponse>(reviewExist);
         }

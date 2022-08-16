@@ -58,12 +58,16 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseSwaggerConfig(apiVersionDescriptionProvider);
-
 app.UseHttpsRedirection();
-
+app.UseRouting();
+app.UseCors(x => x
+    .AllowAnyOrigin()
+    .AllowAnyMethod()
+    .AllowAnyHeader());
 app.UseAuthentication();
 app.UseAuthorization();
+
+app.UseSwaggerConfig(apiVersionDescriptionProvider);
 
 app.MapControllers();
 

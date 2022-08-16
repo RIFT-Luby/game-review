@@ -33,7 +33,7 @@ namespace GameReview.API.Controllers
         {
             return new PaginationResponse<ReviewResponse>
             {
-                Info = await _reviewAdminService.GetAllAsync(skip: query.skip, take: query.take),
+                Info = await _reviewAdminService.GetAllAsync(query.Filter(), skip: query.skip, take: query.take),
                 TotalPages = await _reviewAdminService.CountAll(),
                 Skip = query.skip,
                 Take = query.take,

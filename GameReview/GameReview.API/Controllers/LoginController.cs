@@ -6,7 +6,7 @@ namespace GameReview.API.Controllers
 {
     [ApiController]
     [ApiVersion("1.0")]
-    [Route("api/v{version:ApiVersion}/[controller]")]
+    [Route("api/v{version:ApiVersion}/auth")]
     public class LoginController : ControllerBase
     {
         private ILoginService _loginService;
