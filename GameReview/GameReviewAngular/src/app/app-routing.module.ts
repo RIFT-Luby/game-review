@@ -1,16 +1,26 @@
+import { ReviewAdminComponent } from './pages/review-admin/review-admin.component';
+import { ReviewFormComponent } from './pages/review/review-form/review-form.component';
 import { ReviewComponent } from './pages/review/review.component';
-
-import { AuthGuard } from './../../src - Copia/app/shared/guards/auth.guard';
 import { LoginComponent } from './pages/login/login.component';
 import { ApiHttpInterceptor } from './shared/interceptors/api-http.intercerptor';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './shared/components/home/home.component';
+import { AuthGuard } from './shared/guards/auth.guard';
+import { AdminAuth } from './shared/guards/admin-auth.guard';
 
 const routes: Routes = [
   {path: 'home', component: HomeComponent, canActivate: [AuthGuard], children: [
-    {path: 'reviews', component: ReviewComponent, canActivate: [AuthGuard]}
+    {path: 'reviews', component: ReviewComponent, canActivate: [AuthGuard]},
+    {path: 'reviews/create-review', component: ReviewFormComponent, canActivate: [AuthGuard]},
+    {path: 'reviews/create-review/:id', component: ReviewFormComponent, canActivate: [AuthGuard]},
+    {path: 'admin',
+      canActivate: [AdminAuth],
+      children: [
+        {path: 'reviews', component: ReviewAdminComponent},
+        ],
+      },
     ],
   },
   {path: '**', component: LoginComponent},

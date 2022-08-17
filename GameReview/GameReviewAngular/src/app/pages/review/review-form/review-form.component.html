@@ -1,1 +1,56 @@
-<p>review-form works!</p>
+<p *ngIf="this.id && !review"><em>Loading...</em></p>
+
+<div class="form" [formGroup]="form">
+  <h1>{{ title }}</h1>
+  <div class="user-container" fxLayout="column" fxLayoutGap="10px">
+    <mat-form-field>
+      <input matInput type="text" id="name"
+             formControlName="gameId" required
+             placeholder="gameId..."
+             class="form-control" />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Review</mat-label>
+      <textarea matInput
+                type="text" id="userReview"
+                formControlName="userReview" required
+                placeholder="Insert your review here..."
+                class="form-control"
+                cdkTextareaAutosize
+                #autosize="cdkTextareaAutosize"
+                cdkAutosizeMinRows="1"
+                cdkAutosizeMaxRows="5"></textarea>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput
+             type="text" id="score"
+             formControlName="score" required
+             placeholder="Score..."
+             class="form-control" />
+    </mat-form-field>
+
+    <div class="form-group commands button-footer" fxLayout="row" fxLayoutGap="5px">
+      <button mat-raised-button color="primary"
+             *ngIf="id" type="submit"
+              (click)="createAsync()"
+              [disabled]="form.invalid">
+        Save
+      </button>
+      <button mat-raised-button color="primary"
+              *ngIf="!id" type="submit"
+              (click)="createAsync()"
+              [disabled]="form.invalid">
+        Create
+      </button>
+      <button mat-raised-button color="primary"
+              type="submit"
+              [routerLink]="['/home/reviews']"
+              class="btn">
+        Cancel
+      </button>
+    </div>
+</div>
+
+

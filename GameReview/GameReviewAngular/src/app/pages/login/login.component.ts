@@ -1,12 +1,12 @@
-import { ApiBaseError } from './../../../../src - Copia/app/shared/classes/api/api-base-error';
-import { AuthUser } from './../../../../src - Copia/app/shared/entities/auth-user.entity';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { AuthService } from './../../../../src - Copia/app/shared/services/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { take, lastValueFrom } from 'rxjs';
 import { apiErrorHandler } from 'src/app/shared/utils/api-error-handler';
+import { AuthUser } from 'src/app/shared/entities/auth-user.entity';
+import { AuthService } from 'src/app/shared/services/auth.service';
+import { ApiBaseError } from 'src/app/shared/classes/api/api-base-error';
 
 @Component({
   selector: 'app-login',

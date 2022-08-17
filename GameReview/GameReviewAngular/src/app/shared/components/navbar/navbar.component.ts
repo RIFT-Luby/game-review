@@ -1,8 +1,8 @@
-import { Roles } from './../../../../../src - Copia/app/shared/enums/roles';
 import { Router } from '@angular/router';
-import { AuthService } from './../../../../../src - Copia/app/shared/services/auth.service';
 import { NavItem } from './classes/nav-item';
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../../services/auth.service';
+import { Roles } from '../../enums/roles';
 
 @Component({
   selector: 'app-navbar',
@@ -28,6 +28,7 @@ export class NavbarComponent implements OnInit {
     ];
     if(this.authService.getRole() == Roles.ADMIN){
       this.items.push(
+        { name: 'ReviewsAdm', url: '/home/admin/reviews'}
       )
     }
   }
