@@ -11,8 +11,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { UserAdminModule } from './pages/user-admin/user-admin.module';
-import { HttpClientModule } from '@angular/common/http';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { HomeModule } from './shared/components/home/home.module';
 
@@ -31,9 +29,7 @@ import { HomeModule } from './shared/components/home/home.module';
     ConfirmModalModule,
     MatSnackBarModule,
     AppRoutingModule,
-    BrowserAnimationsModule,
-    HttpClientModule,
-    UserAdminModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
