@@ -1,0 +1,18 @@
+<mat-card fxLayoutAlign="center center">
+  <div class="login-container">
+    <div [formGroup]="form"  fxLayout="column" fxLayoutGap="10px">
+      <h4 fxLayoutAlign="center center">-- GameReview --</h4>
+      <mat-form-field flex>
+        <input matInput formControlName="username" type="text" placeholder="Username...">
+      </mat-form-field>
+      <mat-form-field flex>
+        <input matInput formControlName="password" type="password" placeholder="Password...">
+      </mat-form-field>
+
+      <button flex mat-raised-button color="primary" type="submit" name="action"
+        (click)="loginAsync()">
+        Login
+      </button>
+    </div>
+  </div>
+</mat-card>

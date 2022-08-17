@@ -1,0 +1,72 @@
+<p *ngIf="!data"><em>Loading...</em></p>
+
+<div class="commands text-right button-header" *ngIf="data">
+  <button mat-raised-button color="primary"
+          type="submit"
+          (click)="refresh()">
+    Refresh
+  </button>
+</div>
+
+<div class="form-group search-input" [formGroup]="search">
+  <div class="form-group">
+    <label for="params"></label>
+    <select #options (change)="loadParam(options.value, '')" class="form-control">
+        <option disabled>Select Param</option>
+        <option *ngFor="let param of params">{{param}}</option>
+    </select>
+    <input type="text"
+      (keyup)="loadParam(options.value, $event.target)"
+      formControlName="value"
+      placeholder="..."
+      class="form-control"/>
+  </div>
+</div>
+
+<table mat-table [dataSource]="data.info"
+       class="table-striped mat-elevation-z8"
+       [hidden]="!data.info">
+
+  <ng-container matColumnDef="id">
+    <th mat-header-cell *matHeaderCellDef>ID</th>
+    <td mat-cell *matCellDef="let review">
+      {{ review.id }}
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="gameId">
+    <th mat-header-cell *matHeaderCellDef>Game ID</th>
+    <td mat-cell *matCellDef="let review">{{ review.gameId }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="userReview">
+    <th mat-header-cell *matHeaderCellDef>Review</th>
+    <td mat-cell *matCellDef="let review">{{ review.userReview }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="score">
+    <th mat-header-cell *matHeaderCellDef>Score</th>
+    <td mat-cell *matCellDef="let review">{{ review.score }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="delete">
+    <th mat-header-cell *matHeaderCellDef>Delete</th>
+    <td mat-cell *matCellDef="let review" (click)="onDelete(review.id)">
+      <mat-icon>delete</mat-icon>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="columns"></tr>
+  <tr mat-row *matRowDef="let row; columns: columns;"></tr>
+
+</table>
+
+<div class="container">
+  <mat-paginator [length]="20"
+              (page)="changePage($event)"
+              [length]="totalPages"
+              [pageSize]="5"
+              [pageSizeOptions]="[2, 5, 10]"
+              aria-label="Select page">
+  </mat-paginator>
+</div>

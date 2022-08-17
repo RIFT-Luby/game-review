@@ -53,7 +53,7 @@ namespace GameReview.Application.Services
         public async Task<GameResponse> GetById(int id)
         {
             var result = await _gameRepository.FirstAsync(filter: c => c.Id == id, include: i => i.Include(r => r.GameGender)) 
-                ?? throw new NotFoundRequestException($"Jogo com id: {id} não encontrado.");
+                ?? throw new BadRequestException(nameof(id), $"{id} não encontrado.");
 
             return _mapper.Map<GameResponse>(result);
         }
@@ -81,8 +81,8 @@ namespace GameReview.Application.Services
 
         public async Task<GameResponse> UpdateAsync(GameRequest gameResquest, int id)
         {
-            var entity = await _gameRepository.FirstAsync(x => x.Id == id) 
-                ?? throw new NotFoundRequestException($"Jogo com id: {id} não encontrado.");           
+            var entity = await _gameRepository.FirstAsync(x => x.Id == id)
+                    ?? throw new BadRequestException(nameof(id), $"{id} não encontrado.");
 
             var validationResult = await _validator.ValidateAsync(gameResquest);
 
@@ -100,8 +100,8 @@ namespace GameReview.Application.Services
 
         public async Task<GameResponse> DeleteAsync(int id)
         {
-            var result = await _gameRepository.FirstAsync(u => u.Id == id) 
-                ?? throw new NotFoundRequestException($"Jogo com id: {id} não encontrado.");
+            var result = await _gameRepository.FirstAsync(u => u.Id == id)
+                ?? throw new BadRequestException(nameof(id), $" Jogo com {id} não encontrado.");
 
             await _gameRepository.DeleteAsync(new Game { Id = id });
             await _unitOfWork.CommitAsync();
@@ -111,7 +111,8 @@ namespace GameReview.Application.Services
 
         public async Task<GameResponse> UploadImg(int id, IFormFile img)
         {
-            var entity = await _gameRepository.FirstAsyncAsTracking(u => u.Id == id) ?? throw new NotFoundRequestException($"Game com id: {id} não encontrado.");
+            var entity = await _gameRepository.FirstAsyncAsTracking(u => u.Id == id)
+                ?? throw new BadRequestException(nameof(id), $"Jogo com {id} não encontrado.");
 
             if (img == null || img.Length == 0)
                 throw new BadRequestException("Nenhuma imagem foi fornecida.");
@@ -135,7 +136,9 @@ namespace GameReview.Application.Services
 
         public async Task<GameResponse> RemoveImg(int id)
         {
-            var entity = await _gameRepository.FirstAsyncAsTracking(u => u.Id == id) ?? throw new NotFoundRequestException($"Game com id: {id} não encontrado.");
+            var entity = await _gameRepository.FirstAsyncAsTracking(u => u.Id == id)
+                ?? throw new BadRequestException(nameof(id), $"Jogo com {id} não encontrado.");
+
             if (entity.ImgPath != null)
             {
                 await _fileStorage.RemoveFile(entity.ImgPath);
@@ -148,7 +151,8 @@ namespace GameReview.Application.Services
 
         public FileStream GetImg(int id)
         {
-            var entity = _gameRepository.FirstAsync(u => u.Id == id).GetAwaiter().GetResult() ?? throw new NotFoundRequestException($"Game com id: {id} não encontrado.");
+            var entity = _gameRepository.FirstAsync(u => u.Id == id).GetAwaiter().GetResult()
+                ?? throw new BadRequestException(nameof(id), $"Jogo com {id} não encontrado.");
 
             var pathImg = _fileApiOptions.DefaultGameImgPath;
 
@@ -163,7 +167,9 @@ namespace GameReview.Application.Services
         }
         public async Task UpdateGameScore(int newScore, Review review, bool removeReview = false)
         {
-            var game = await _gameRepository.FirstAsyncAsTracking(filter: c => c.Id == review.GameId) ?? throw new NotFoundRequestException($"Jogo com id: {review.GameId} não encontrado.");
+            var game = await _gameRepository.FirstAsyncAsTracking(filter: c => c.Id == review.GameId)
+                    ?? throw new BadRequestException(nameof(review.GameId), $"Jogo com {review.GameId} não encontrado.");
+
             decimal countReview = (decimal)_reviewRepository.QueryData<int>(q => q.Count(r => r.GameId == review.GameId));
             decimal sumScore = 0;
             if (review.Id == 0)
