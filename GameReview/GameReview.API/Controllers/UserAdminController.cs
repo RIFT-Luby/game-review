@@ -10,7 +10,7 @@ namespace GameReview.API.Controllers
     [ApiController]
     [ApiVersion("1.0")]
     [Route("api/v{version:ApiVersion}/[controller]")]
-    [Authorize(Roles = Roles.Admin)]
+    //[Authorize(Roles = Roles.Admin)]
     public class UserAdminController: ControllerBase
     {
         private readonly IUserService _userService;
