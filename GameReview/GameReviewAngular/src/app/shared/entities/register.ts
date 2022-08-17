@@ -1,5 +1,5 @@
 export class Register {
   id!: number;
-  cretedAt!: Date;
+  createdAt!: Date;
   updatedAt?: Date;
 }

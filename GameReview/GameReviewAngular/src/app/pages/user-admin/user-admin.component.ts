@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { lastValueFrom, Observable } from 'rxjs';
 import { ApiPaginationResponse } from 'src/app/shared/classes/api-pagination-response/api-pagination-response';
 import { BaseParams } from 'src/app/shared/classes/params/base-params';
@@ -15,7 +16,8 @@ export class UserAdminComponent implements OnInit{
   data: ApiPaginationResponse<User> = new ApiPaginationResponse<User>;
 
   constructor(
-    private userAdminService: UserAdminService
+    private userAdminService: UserAdminService,
+    private router: Router,
   ) {
   }
 
@@ -25,5 +27,18 @@ export class UserAdminComponent implements OnInit{
 
   async getDataAsync(params = new BaseParams()): Promise<void> {
     this.data = await lastValueFrom(this.userAdminService.getAllParams(params));
+  }
+
+  onAdd() {
+    this.router.navigate(['/userAdmin/form/0']);
+  }
+
+  onEdit(id: number) {
+    this.router.navigate(['/userAdmin/form/', id]);
+  }
+
+  async deleteUserAsync(id: number): Promise<void> {
+    //TODO confirm exclusion
+    await lastValueFrom(this.userAdminService.delete(id));
   }
 }

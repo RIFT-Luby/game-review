@@ -7,4 +7,6 @@ export class User extends Register{
   userName!: string;
   userRole!: Enumeration;
   userRoleId?: number;
+  password?: string;
+  confirmPasswood?: string;
 }

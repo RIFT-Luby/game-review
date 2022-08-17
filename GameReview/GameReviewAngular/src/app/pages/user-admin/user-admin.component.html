@@ -1,4 +1,47 @@
-<div *ngFor="let item of data.info">
-  <p>{{item.name}}</p>
-  <p>{{item.email}}</p>
+<div class="container">
+  <button class="action-btn add-btn" mat-raised-button color="primary" (click)="onAdd()">
+    <mat-icon>add</mat-icon>
+    <span>New contact</span>
+  </button>
+  <button class="action-btn" mat-raised-button color="accent">
+    <mat-icon>refresh</mat-icon>
+    <span>Refresh</span>
+  </button>
+  <mat-accordion class="container">
+    <mat-expansion-panel *ngFor="let item of data.info">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          {{item.userName}}
+        </mat-panel-title>
+        <mat-panel-description>
+          created at: {{item.createdAt}} | updated at: {{item.updatedAt}}
+        </mat-panel-description>
+        <button mat-icon-button (click)="onEdit(item.id)">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-icon-button (click)="deleteUserAsync(item.id)">
+          <mat-icon class="delete-icon">delete</mat-icon>
+        </button>
+      </mat-expansion-panel-header>
+
+      <div class="panel-body">
+        <div class="table">
+          <div class="table-header">
+            <div class="header-label">id</div>
+            <div class="header-label">name</div>
+            <div class="header-label">username</div>
+            <div class="header-label">email</div>
+            <div class="header-label">role</div>
+          </div>
+          <div class="table-body">
+            <div class="body-label">{{item.id}}</div>
+            <div class="body-label">{{item.name}}</div>
+            <div class="body-label">{{item.userName}}</div>
+            <div class="body-label">{{item.email}}</div>
+            <div class="body-label">{{item.userRole.name}}</div>
+          </div>
+        </div>
+      </div>
+    </mat-expansion-panel>
+  </mat-accordion>
 </div>

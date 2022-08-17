@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { UserAdminModule } from './pages/user-admin/user-admin.module';
 import { HttpClientModule } from '@angular/common/http';
+import { UserFormComponent } from './shared/components/user-form/user-form.component';
 
 @NgModule({
   declarations: [
