@@ -12,7 +12,7 @@ import jwtDecode from 'jwt-decode';
 })
 export class AuthService {
 
-  private readonly env = `${environment.API}Login`;
+  private readonly env = `${environment.API}auth`;
 
   constructor(private http: HttpClient) { }
 
