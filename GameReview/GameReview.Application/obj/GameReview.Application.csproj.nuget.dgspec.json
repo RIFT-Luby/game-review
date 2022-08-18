@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "c:\\Users\\wesle\\Luby\\game-review\\GameReview\\GameReview.Application\\GameReview.Application.csproj": {}
+    "C:\\Users\\wesle\\Luby\\game-review\\GameReview\\GameReview.Application\\GameReview.Application.csproj": {}
   },
   "projects": {
-    "c:\\Users\\wesle\\Luby\\game-review\\GameReview\\GameReview.Application\\GameReview.Application.csproj": {
+    "C:\\Users\\wesle\\Luby\\game-review\\GameReview\\GameReview.Application\\GameReview.Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\wesle\\Luby\\game-review\\GameReview\\GameReview.Application\\GameReview.Application.csproj",
+        "projectUniqueName": "C:\\Users\\wesle\\Luby\\game-review\\GameReview\\GameReview.Application\\GameReview.Application.csproj",
         "projectName": "GameReview.Application",
-        "projectPath": "c:\\Users\\wesle\\Luby\\game-review\\GameReview\\GameReview.Application\\GameReview.Application.csproj",
+        "projectPath": "C:\\Users\\wesle\\Luby\\game-review\\GameReview\\GameReview.Application\\GameReview.Application.csproj",
         "packagesPath": "C:\\Users\\wesle\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\wesle\\Luby\\game-review\\GameReview\\GameReview.Application\\obj\\",
+        "outputPath": "C:\\Users\\wesle\\Luby\\game-review\\GameReview\\GameReview.Application\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -32,11 +32,11 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "c:\\Users\\wesle\\Luby\\game-review\\GameReview\\GameReview.Domain\\GameReview.Domain.csproj": {
-                "projectPath": "c:\\Users\\wesle\\Luby\\game-review\\GameReview\\GameReview.Domain\\GameReview.Domain.csproj"
+              "C:\\Users\\wesle\\Luby\\game-review\\GameReview\\GameReview.Domain\\GameReview.Domain.csproj": {
+                "projectPath": "C:\\Users\\wesle\\Luby\\game-review\\GameReview\\GameReview.Domain\\GameReview.Domain.csproj"
               },
-              "c:\\Users\\wesle\\Luby\\game-review\\GameReview\\GameReview.Infrastructure\\GameReview.Infrastructure.csproj": {
-                "projectPath": "c:\\Users\\wesle\\Luby\\game-review\\GameReview\\GameReview.Infrastructure\\GameReview.Infrastructure.csproj"
+              "C:\\Users\\wesle\\Luby\\game-review\\GameReview\\GameReview.Infrastructure\\GameReview.Infrastructure.csproj": {
+                "projectPath": "C:\\Users\\wesle\\Luby\\game-review\\GameReview\\GameReview.Infrastructure\\GameReview.Infrastructure.csproj"
               }
             }
           }
@@ -95,14 +95,14 @@
         }
       }
     },
-    "c:\\Users\\wesle\\Luby\\game-review\\GameReview\\GameReview.Domain\\GameReview.Domain.csproj": {
+    "C:\\Users\\wesle\\Luby\\game-review\\GameReview\\GameReview.Domain\\GameReview.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\wesle\\Luby\\game-review\\GameReview\\GameReview.Domain\\GameReview.Domain.csproj",
+        "projectUniqueName": "C:\\Users\\wesle\\Luby\\game-review\\GameReview\\GameReview.Domain\\GameReview.Domain.csproj",
         "projectName": "GameReview.Domain",
-        "projectPath": "c:\\Users\\wesle\\Luby\\game-review\\GameReview\\GameReview.Domain\\GameReview.Domain.csproj",
+        "projectPath": "C:\\Users\\wesle\\Luby\\game-review\\GameReview\\GameReview.Domain\\GameReview.Domain.csproj",
         "packagesPath": "C:\\Users\\wesle\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\wesle\\Luby\\game-review\\GameReview\\GameReview.Domain\\obj\\",
+        "outputPath": "C:\\Users\\wesle\\Luby\\game-review\\GameReview\\GameReview.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -163,14 +163,14 @@
         }
       }
     },
-    "c:\\Users\\wesle\\Luby\\game-review\\GameReview\\GameReview.Infrastructure\\GameReview.Infrastructure.csproj": {
+    "C:\\Users\\wesle\\Luby\\game-review\\GameReview\\GameReview.Infrastructure\\GameReview.Infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\wesle\\Luby\\game-review\\GameReview\\GameReview.Infrastructure\\GameReview.Infrastructure.csproj",
+        "projectUniqueName": "C:\\Users\\wesle\\Luby\\game-review\\GameReview\\GameReview.Infrastructure\\GameReview.Infrastructure.csproj",
         "projectName": "GameReview.Infrastructure",
-        "projectPath": "c:\\Users\\wesle\\Luby\\game-review\\GameReview\\GameReview.Infrastructure\\GameReview.Infrastructure.csproj",
+        "projectPath": "C:\\Users\\wesle\\Luby\\game-review\\GameReview\\GameReview.Infrastructure\\GameReview.Infrastructure.csproj",
         "packagesPath": "C:\\Users\\wesle\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\wesle\\Luby\\game-review\\GameReview\\GameReview.Infrastructure\\obj\\",
+        "outputPath": "C:\\Users\\wesle\\Luby\\game-review\\GameReview\\GameReview.Infrastructure\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -191,8 +191,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "c:\\Users\\wesle\\Luby\\game-review\\GameReview\\GameReview.Domain\\GameReview.Domain.csproj": {
-                "projectPath": "c:\\Users\\wesle\\Luby\\game-review\\GameReview\\GameReview.Domain\\GameReview.Domain.csproj"
+              "C:\\Users\\wesle\\Luby\\game-review\\GameReview\\GameReview.Domain\\GameReview.Domain.csproj": {
+                "projectPath": "C:\\Users\\wesle\\Luby\\game-review\\GameReview\\GameReview.Domain\\GameReview.Domain.csproj"
               }
             }
           }

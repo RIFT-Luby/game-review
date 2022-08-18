@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { lastValueFrom, Observable } from 'rxjs';
 import { ApiPaginationResponse } from 'src/app/shared/classes/api-pagination-response/api-pagination-response';
 import { BaseParams } from 'src/app/shared/classes/params/base-params';
+import { ConfirmModalService } from 'src/app/shared/components/confirm-modal/services/confirm-modal.service';
 import { User } from 'src/app/shared/entities/user';
 import { UserAdminService } from 'src/app/shared/services/user-admin.service';
 
@@ -18,6 +19,7 @@ export class UserAdminComponent implements OnInit{
   constructor(
     private userAdminService: UserAdminService,
     private router: Router,
+    private confirmModalService: ConfirmModalService
   ) {
   }
 
@@ -29,16 +31,26 @@ export class UserAdminComponent implements OnInit{
     this.data = await lastValueFrom(this.userAdminService.getAllParams(params));
   }
 
+  async refreshTableAsync(): Promise<void> {
+    await this.getDataAsync();
+    //this.cdRef.detectChanges();
+  }
+
   onAdd() {
-    this.router.navigate(['/userAdmin/form/0']);
+    this.router.navigate(['/home/admin/users/form/0']);
   }
 
   onEdit(id: number) {
-    this.router.navigate(['/userAdmin/form/', id]);
+    this.router.navigate(['/home/admin/users/form/', id]);
   }
 
   async deleteUserAsync(id: number): Promise<void> {
-    //TODO confirm exclusion
-    await lastValueFrom(this.userAdminService.delete(id));
+    this.confirmModalService.open();
+    this.confirmModalService.closed.subscribe(async (result) => {
+      if(result) {
+        await lastValueFrom(this.userAdminService.delete(id));
+        await this.refreshTableAsync();
+      }
+    });
   }
 }

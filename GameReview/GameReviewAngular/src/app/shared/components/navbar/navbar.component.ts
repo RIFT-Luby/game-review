@@ -24,11 +24,12 @@ export class NavbarComponent implements OnInit {
   setItems(): void{
     this.items = [
       { name: 'Home', url: '/home'},
-      { name: 'Reviews', url: '/home/reviews'}
+      { name: 'Reviews', url: '/home/reviews'},
     ];
     if(this.authService.getRole() == Roles.ADMIN){
       this.items.push(
-        { name: 'ReviewsAdm', url: '/home/admin/reviews'}
+        { name: 'ReviewsAdm', url: '/home/admin/reviews'},
+        { name: 'UsersAdmin', url: '/home/admin/users'}
       )
     }
   }

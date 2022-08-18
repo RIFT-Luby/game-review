@@ -21,7 +21,7 @@ const routes: Routes = [
       canActivate: [AdminAuth],
       children: [
         {path: 'reviews', component: ReviewAdminComponent},
-        {path: 'user', children: [
+        {path: 'users', children: [
           {path: '', component: UserAdminComponent},
           {path: 'form/:id', component: UserFormComponent}
         ]}

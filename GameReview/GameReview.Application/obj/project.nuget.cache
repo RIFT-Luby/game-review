@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "PGJE1aXh9UGA49PtVzW26oLLuoWHZRpXYxD7/EcxyT6Ku3rJ0qztUBMUPf5kAA17HPE9QS/sPJ0SNfVbA6sf3g==",
+  "dgSpecHash": "kx7eK/WBPNNFAfMLhVrhRUTRWEvkN5yrGcffLlExG/Vjqb2MJOanvhx88CnweLA+b3LljcDg0YNtGto104EDDg==",
   "success": true,
-  "projectFilePath": "c:\\Users\\wesle\\Luby\\game-review\\GameReview\\GameReview.Application\\GameReview.Application.csproj",
+  "projectFilePath": "C:\\Users\\wesle\\Luby\\game-review\\GameReview\\GameReview.Application\\GameReview.Application.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\wesle\\.nuget\\packages\\automapper\\11.0.1\\automapper.11.0.1.nupkg.sha512",
     "C:\\Users\\wesle\\.nuget\\packages\\entityframework\\6.3.0\\entityframework.6.3.0.nupkg.sha512",

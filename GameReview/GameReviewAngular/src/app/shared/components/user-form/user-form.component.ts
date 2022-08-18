@@ -56,6 +56,12 @@ export class UserFormComponent implements OnInit {
           await lastValueFrom(this.userAdminService.update(data, data.id)) :
           await lastValueFrom(this.userAdminService.create(data))
         this.snackBar.open('User saved!', undefined, { duration: 3000 });
+        //if(this.isAdmin) {
+          this.router.navigate(['/home/admin/users/']);
+        //}
+        //else {
+          //this.router.navigate(['/dashboard/agenda/']);
+        //}
       }
     }
     catch({error}) {

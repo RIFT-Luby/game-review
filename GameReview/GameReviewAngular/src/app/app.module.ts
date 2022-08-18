@@ -15,6 +15,7 @@ import { UserAdminModule } from './pages/user-admin/user-admin.module';
 import { HttpClientModule } from '@angular/common/http';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { HomeModule } from './shared/components/home/home.module';
+import { LoadingModalModule } from './shared/components/loading-modal/loading-modal.module';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { HomeModule } from './shared/components/home/home.module';
     BrowserAnimationsModule,
     HttpClientModule,
     UserAdminModule,
+    LoadingModalModule
   ],
   providers: [],
   bootstrap: [AppComponent]

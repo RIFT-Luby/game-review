@@ -8,6 +8,8 @@ import { CommonModule } from '@angular/common';
 import { LoginComponent } from './login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { LoadingModalModule } from 'src/app/shared/components/loading-modal/loading-modal.module';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -17,12 +19,17 @@ import { HttpClientModule } from '@angular/common/http';
     CommonModule,
     HttpClientModule,
     FormsModule,
+    RouterModule,
     ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
     MatCardModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    LoadingModalModule
+  ],
+  exports: [
+    LoginComponent
   ]
 })
 export class LoginModule { }
