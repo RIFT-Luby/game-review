@@ -44,7 +44,7 @@ export class UserPasswordFormComponent implements OnInit {
         await lastValueFrom(this.userAdminService.updatePassword(data, this.id));
         this.snackBar.open('Password saved!', undefined, { duration: 3000 });
         //if(this.isAdmin) {
-          this.router.navigate(['/home/admin/users/']);
+          this.router.navigate(['/home/admin/users/form/', this.id]);
         //}
         //else {
           //this.router.navigate(['/dashboard/agenda/']);

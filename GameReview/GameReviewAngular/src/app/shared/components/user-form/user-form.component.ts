@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { lastValueFrom, Observable } from 'rxjs';
@@ -18,6 +18,7 @@ export class UserFormComponent implements OnInit {
   roles!: Enumeration[];
   id!: any;
   changePassword = false;
+  isEditMode!: boolean;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -37,6 +38,16 @@ export class UserFormComponent implements OnInit {
     })
     //TODO criar um endpoint getUserRoles na api
     this.roles = [{'id': 1, 'name': 'Admin'}, {'id': 2, 'name': 'Common'}];
+    this.verifyIfIsEditMode();
+
+  }
+
+  addPasswordForm(): void {
+    this.form = this.formBuilder.group({
+      ...this.form.controls,
+      password: [null, Validators.required],
+      confirmPassword: [null, Validators.required],
+   });
   }
 
   async ngOnInit(): Promise<void> {
@@ -45,6 +56,7 @@ export class UserFormComponent implements OnInit {
     });
 
     await this.fillForm();
+    this.verifyIfIsEditMode();
   }
 
   async saveUserAsync(): Promise<void> {
@@ -65,6 +77,15 @@ export class UserFormComponent implements OnInit {
     }
     catch({error}) {
       console.log(error);
+    }
+  }
+
+  verifyIfIsEditMode(): void {
+    if(this.id != 0) {
+      this.isEditMode = true;
+    }else {
+      this.isEditMode = false;
+      this.addPasswordForm();
     }
   }
 

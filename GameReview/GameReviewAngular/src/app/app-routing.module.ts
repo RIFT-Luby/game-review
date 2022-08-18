@@ -11,6 +11,7 @@ import { UserFormComponent } from './shared/components/user-form/user-form.compo
 import { HomeComponent } from './shared/components/home/home.component';
 import { AuthGuard } from './shared/guards/auth.guard';
 import { AdminAuth } from './shared/guards/admin-auth.guard';
+import { UserComponent } from './pages/user/user.component';
 
 const routes: Routes = [
   {path: 'home', component: HomeComponent, canActivate: [AuthGuard], children: [
@@ -26,8 +27,15 @@ const routes: Routes = [
           {path: 'form/:id', component: UserFormComponent}
         ]}
         ],
-      },
-    ],
+    },
+    {path: 'user',
+      canActivate: [AuthGuard],
+      children: [
+        {path: '', component: UserComponent},
+        {path: 'form', component: UserFormComponent}
+      ]
+    }
+    ]
   },
   {path: '**', component: LoginComponent},
   {path: 'login', component: LoginComponent}
