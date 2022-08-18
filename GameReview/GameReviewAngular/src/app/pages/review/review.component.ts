@@ -15,7 +15,7 @@ import { PageEvent } from '@angular/material/paginator';
 })
 export class ReviewComponent implements OnInit {
 
-  public columns: string[] = ["id","gameId", "userReview", "score", "edit", "delete"];
+  public columns: string[] = ["id","gameName", "userReview", "score", "edit", "delete"];
   data!: ApiPaginationResponse<Review>;
   totalPages!: number;
 
@@ -30,8 +30,8 @@ export class ReviewComponent implements OnInit {
   }
 
 
-  ngOnInit(): void {
-    this.loadData();
+  async ngOnInit(): Promise<void> {
+    await this.loadData();
   }
 
   async refresh(): Promise<void>{

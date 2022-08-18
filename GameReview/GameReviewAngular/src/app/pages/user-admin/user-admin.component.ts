@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { lastValueFrom, Observable } from 'rxjs';
-import { ApiPaginationResponse } from 'src/app/shared/classes/api-pagination-response/api-pagination-response';
+import { lastValueFrom,} from 'rxjs';
+import { ApiPaginationResponse } from 'src/app/shared/classes/api/api-pagination-response';
 import { BaseParams } from 'src/app/shared/classes/params/base-params';
 import { User } from 'src/app/shared/entities/user';
 import { UserAdminService } from 'src/app/shared/services/user-admin.service';
@@ -30,11 +30,11 @@ export class UserAdminComponent implements OnInit{
   }
 
   onAdd() {
-    this.router.navigate(['/userAdmin/form/0']);
+    this.router.navigate(['/home/admin/users/form/0']);
   }
 
   onEdit(id: number) {
-    this.router.navigate(['/userAdmin/form/', id]);
+    this.router.navigate(['/home/admin/users/form/', id]);
   }
 
   async deleteUserAsync(id: number): Promise<void> {

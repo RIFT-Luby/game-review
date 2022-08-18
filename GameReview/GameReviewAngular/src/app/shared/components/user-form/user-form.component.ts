@@ -1,3 +1,4 @@
+import { ApiBaseError } from 'src/app/shared/classes/api/api-base-error';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -7,6 +8,7 @@ import { lastValueFrom, Observable } from 'rxjs';
 import { Enumeration } from '../../entities/enumeration';
 import { User } from '../../entities/user';
 import { UserAdminService } from '../../services/user-admin.service';
+import { apiErrorHandler } from '../../utils/api-error-handler';
 
 @Component({
   selector: 'app-user-form',
@@ -55,11 +57,12 @@ export class UserFormComponent implements OnInit {
         data.id ?
           await lastValueFrom(this.userAdminService.update(data, data.id)) :
           await lastValueFrom(this.userAdminService.create(data))
-        this.snackBar.open('User saved!', undefined, { duration: 3000 });
+        this.snackBar.open('User saved!', undefined, { duration: 5000 });
+        this.router.navigate(['/home/admin/users']);
       }
     }
     catch({error}) {
-      console.log(error);
+      apiErrorHandler(this.snackBar, error as ApiBaseError);
     }
   }
 
@@ -74,7 +77,7 @@ export class UserFormComponent implements OnInit {
       })
     }
     catch({error}) {
-      console.log(error);
+      apiErrorHandler(this.snackBar, error as ApiBaseError);
     }
   }
 

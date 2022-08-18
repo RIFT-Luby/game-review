@@ -6,6 +6,7 @@ using GameReview.Application.ViewModels.Review;
 using GameReview.Domain.Interfaces.Commom;
 using GameReview.Domain.Interfaces.Repositories;
 using GameReview.Domain.Models;
+using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 
 namespace GameReview.Application.Services
@@ -40,7 +41,10 @@ namespace GameReview.Application.Services
 
         public async Task<IEnumerable<ReviewResponse>> GetAllAsync(Expression<Func<Review, bool>> expression = null, int? skip = null, int? take = null)
         {
-            return _mapper.Map<IEnumerable<ReviewResponse>>(await _reviewRepository.GetDataAsync(filter: expression, skip: skip, take: take));
+            return _mapper.Map<IEnumerable<ReviewResponse>>(
+                await _reviewRepository
+                .GetDataAsync(filter: expression, skip: skip, take: take, 
+                include: i => i.Include(g => g.Game).ThenInclude(gg => gg.GameGender).Include(u => u.User).ThenInclude(u => u.UserRole)));
         }
 
         public async Task<ReviewResponse> GetByIdAsync(int id)

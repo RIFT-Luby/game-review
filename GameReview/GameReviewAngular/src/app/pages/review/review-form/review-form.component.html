@@ -3,14 +3,14 @@
 <div class="form" [formGroup]="form">
   <h1>{{ title }}</h1>
   <div class="user-container" fxLayout="column" fxLayoutGap="10px">
-    <mat-form-field>
+    <mat-form-field appearance="outline">
       <input matInput type="text" id="name"
              formControlName="gameId" required
              placeholder="gameId..."
              class="form-control" />
     </mat-form-field>
 
-    <mat-form-field appearance="fill">
+    <mat-form-field appearance="outline">
       <mat-label>Review</mat-label>
       <textarea matInput
                 type="text" id="userReview"
@@ -23,7 +23,7 @@
                 cdkAutosizeMaxRows="5"></textarea>
     </mat-form-field>
 
-    <mat-form-field>
+    <mat-form-field appearance="outline">
       <input matInput
              type="text" id="score"
              formControlName="score" required

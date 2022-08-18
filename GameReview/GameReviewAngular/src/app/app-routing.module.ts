@@ -9,6 +9,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './shared/components/home/home.component';
 import { AuthGuard } from './shared/guards/auth.guard';
 import { AdminAuth } from './shared/guards/admin-auth.guard';
+import { UserAdminComponent } from './pages/user-admin/user-admin.component';
+import { UserFormComponent } from './shared/components/user-form/user-form.component';
 
 const routes: Routes = [
   {path: 'home', component: HomeComponent, canActivate: [AuthGuard], children: [
@@ -19,6 +21,10 @@ const routes: Routes = [
       canActivate: [AdminAuth],
       children: [
         {path: 'reviews', component: ReviewAdminComponent},
+        {path: 'users', children: [
+          {path: '', component: UserAdminComponent},
+          {path: 'form/:id', component: UserFormComponent}
+        ]}
         ],
       },
     ],

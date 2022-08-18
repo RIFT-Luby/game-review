@@ -28,7 +28,8 @@ export class NavbarComponent implements OnInit {
     ];
     if(this.authService.getRole() == Roles.ADMIN){
       this.items.push(
-        { name: 'ReviewsAdm', url: '/home/admin/reviews'}
+        { name: 'ReviewsAdm', url: '/home/admin/reviews'},
+        { name: 'UsersAdm', url: '/home/admin/users'}
       )
     }
   }

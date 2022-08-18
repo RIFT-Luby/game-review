@@ -13,7 +13,7 @@ namespace GameReview.Application.Params
         public string? DataCriacaoMaiorQue { get; set; }
         public string? DataCriacaoMenorQue { get; set; }
         public int? skip { get; set; }
-        public int? take { get; set; }
+        public int? take { get; set; } = 5;
 
         public override Expression<Func<Review, bool>> Filter()
         {
@@ -37,14 +37,7 @@ namespace GameReview.Application.Params
             if (!string.IsNullOrEmpty(DataCriacaoMenorQue))
                 predicate = predicate.And(x => x.CreatedAt <= DateTime.Parse(DataCriacaoMenorQue));
 
-            if (predicate.IsStarted)
-            {
-                return predicate;
-            }
-            else
-            {
-                return null;
-            }
+            return (predicate.IsStarted) ? predicate : null;
         }
     }
 }

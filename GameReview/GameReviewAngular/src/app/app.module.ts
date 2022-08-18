@@ -1,3 +1,5 @@
+import { UserFormModule } from 'src/app/shared/components/user-form/user-form.module';
+import { UserAdminModule } from './pages/user-admin/user-admin.module';
 import { ConfirmModalModule } from './shared/components/confirm-modal/confirm-modal.module';
 import { ReviewAdminModule } from './pages/review-admin/review-admin.module';
 import { ReviewFormModule } from './pages/review/review-form/review-form.module';
@@ -26,6 +28,8 @@ import { HomeModule } from './shared/components/home/home.module';
     ReviewModule,
     ReviewFormModule,
     ReviewAdminModule,
+    UserAdminModule,
+    UserFormModule,
     ConfirmModalModule,
     MatSnackBarModule,
     AppRoutingModule,

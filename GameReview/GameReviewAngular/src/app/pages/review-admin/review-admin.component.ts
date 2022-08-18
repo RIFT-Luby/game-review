@@ -16,7 +16,7 @@ import { BaseParams } from 'src/app/shared/classes/params/base-params';
 })
 export class ReviewAdminComponent implements OnInit {
 
-  public columns: string[] = ["id","gameId", "userReview", "score", "delete"];
+  public columns: string[] = ["id","gameName", "userReview", "score", "delete", "userName"];
   data!: ApiPaginationResponse<Review>;
   search!: FormGroup;
   params: any = ["UserId", "GameId", "ScoreMaiorQue", "ScoreMenorQue"];
@@ -35,7 +35,7 @@ export class ReviewAdminComponent implements OnInit {
       });
     }
 
-  ngOnInit(): void {
+  ngOnInit(): void{
     this.loadData();
   }
 
