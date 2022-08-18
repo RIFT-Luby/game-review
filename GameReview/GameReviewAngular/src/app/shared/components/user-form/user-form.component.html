@@ -17,16 +17,6 @@
       </mat-form-field>
 
       <mat-form-field appearance="outline">
-        <mat-label>Password</mat-label>
-        <input matInput type="password" formControlName="password">
-      </mat-form-field>
-
-      <mat-form-field appearance="outline">
-        <mat-label>Confirm password</mat-label>
-        <input matInput type="password" formControlName="confirmPassword">
-      </mat-form-field>
-
-      <mat-form-field appearance="outline">
         <mat-label>Role</mat-label>
         <mat-select formControlName="userRoleId">
           <mat-option *ngFor="let item of roles" [value]="item.id">{{item.name}}</mat-option>
@@ -37,5 +27,12 @@
     <div fxLayoutGap="1em">
       <button mat-raised-button [disabled]="form.invalid" color="primary" (click)="saveUserAsync()">Save</button>
     </div>
+
+    <p *ngIf="!changePassword" class="change-password" (click)="changePassword = true">Change password?</p>
+
+  </div>
+
+  <div *ngIf="changePassword" class="password-formGroup">
+    <app-user-password-form></app-user-password-form>
   </div>
 </div>

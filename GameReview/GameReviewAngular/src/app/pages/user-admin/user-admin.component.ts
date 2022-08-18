@@ -33,7 +33,6 @@ export class UserAdminComponent implements OnInit{
 
   async refreshTableAsync(): Promise<void> {
     await this.getDataAsync();
-    //this.cdRef.detectChanges();
   }
 
   onAdd() {
