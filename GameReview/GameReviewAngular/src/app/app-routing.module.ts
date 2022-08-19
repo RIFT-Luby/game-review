@@ -32,7 +32,7 @@ const routes: Routes = [
       canActivate: [AuthGuard],
       children: [
         {path: '', component: UserComponent},
-        {path: 'form', component: UserFormComponent}
+        {path: 'form/:id', component: UserFormComponent}
       ]
     }
     ]

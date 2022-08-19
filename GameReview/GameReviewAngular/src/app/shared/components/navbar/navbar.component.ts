@@ -25,6 +25,7 @@ export class NavbarComponent implements OnInit {
     this.items = [
       { name: 'Home', url: '/home'},
       { name: 'Reviews', url: '/home/reviews'},
+      { name: 'Profile', url: '/home/user'},
     ];
     if(this.authService.getRole() == Roles.ADMIN){
       this.items.push(

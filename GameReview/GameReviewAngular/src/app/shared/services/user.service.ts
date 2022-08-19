@@ -15,7 +15,11 @@ export class UserService extends ApiBaseService<User>{
     super("User", http)
    }
 
-   updatePassword(user: User, id: number){
+  updatePassword(user: User, id: number){
     return this.http.put<User>(`${this.env}${this.route}/password`, user).pipe(take(1));
+  }
+
+  getUser() {
+    return this.http.get<User>(`${this.env}${this.route}`).pipe(take(1));
   }
 }
