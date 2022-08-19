@@ -5,8 +5,8 @@ import { Review } from 'src/app/shared/entities/review.entity';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Component, NgZone, OnInit, ViewChild } from '@angular/core';
 import { ReviewService } from 'src/app/shared/services/review.service';
-import { apiErrorHandler } from 'src/app/shared/utils/api-error-handler';
-import { ApiBaseError } from 'src/app/shared/classes/api/api-base-error';
+//import { apiErrorHandler } from 'src/app/shared/utils/api-error-handler';
+//import { ApiBaseError } from 'src/app/shared/classes/api/api-base-error';
 import { CdkTextareaAutosize } from '@angular/cdk/text-field';
 
 @Component({
@@ -76,7 +76,7 @@ export class ReviewFormComponent implements OnInit {
         }
       }
       catch({error}){
-        apiErrorHandler(this.snackBar, error as ApiBaseError);
+        //apiErrorHandler(this.snackBar, error as ApiBaseError);
       }
     }
 

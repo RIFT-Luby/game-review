@@ -1,12 +1,12 @@
-import { ConfirmModalService } from './../../shared/components/confirm-modal/services/confirm-modal.service';
 import { PageEvent } from '@angular/material/paginator';
 import { ChangeDetectionStrategy, Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { lastValueFrom,} from 'rxjs';
-import { ApiPaginationResponse } from 'src/app/shared/classes/api/api-pagination-response';
 import { BaseParams } from 'src/app/shared/classes/params/base-params';
+import { ConfirmModalService } from 'src/app/shared/components/confirm-modal/services/confirm-modal.service';
 import { User } from 'src/app/shared/entities/user';
 import { UserAdminService } from 'src/app/shared/services/user-admin.service';
+import { ApiPaginationResponse } from 'src/app/shared/classes/api-pagination-response/api-pagination-response';
 
 @Component({
   selector: 'app-user-admin',
@@ -21,9 +21,9 @@ export class UserAdminComponent implements OnInit{
 
   constructor(
     private userAdminService: UserAdminService,
-    private confirmModal: ConfirmModalService,
     private changeRef: ChangeDetectorRef,
     private router: Router,
+    private confirmModalService: ConfirmModalService
   ) {
   }
 
@@ -50,9 +50,9 @@ export class UserAdminComponent implements OnInit{
   }
 
   async deleteUserAsync(id: number): Promise<void> {
-    this.confirmModal.open();
-    this.confirmModal.closed.subscribe(async (result) => {
-      if (result) {
+    this.confirmModalService.open();
+    this.confirmModalService.closed.subscribe(async (result) => {
+      if(result) {
         await lastValueFrom(this.userAdminService.delete(id));
         await this.refresh();
       }
@@ -66,7 +66,6 @@ export class UserAdminComponent implements OnInit{
     } as BaseParams;
     await this.getDataAsync(params);
   }
-
 }
 
 

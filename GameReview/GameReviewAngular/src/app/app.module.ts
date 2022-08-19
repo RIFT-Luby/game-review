@@ -15,6 +15,10 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { HomeModule } from './shared/components/home/home.module';
+import { LoadingModalModule } from './shared/components/loading-modal/loading-modal.module';
+import { UserModule } from './pages/user/user.module';
+import { RegisterModule } from './pages/register/register.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -25,6 +29,7 @@ import { HomeModule } from './shared/components/home/home.module';
     HomeModule,
     NavbarModule,
     LoginModule,
+    RegisterModule,
     ReviewModule,
     ReviewFormModule,
     ReviewAdminModule,
@@ -33,6 +38,11 @@ import { HomeModule } from './shared/components/home/home.module';
     ConfirmModalModule,
     MatSnackBarModule,
     AppRoutingModule,
+    BrowserAnimationsModule,
+    HttpClientModule,
+    UserAdminModule,
+    UserModule,
+    LoadingModalModule,
     BrowserAnimationsModule
   ],
   providers: [],

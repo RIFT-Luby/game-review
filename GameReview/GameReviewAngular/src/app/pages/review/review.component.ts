@@ -2,10 +2,11 @@ import { ConfirmModalService } from './../../shared/components/confirm-modal/ser
 import { lastValueFrom } from 'rxjs';
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Review } from 'src/app/shared/entities/review.entity';
-import { ApiPaginationResponse } from 'src/app/shared/classes/api/api-pagination-response';
+//import { ApiPaginationResponse } from 'src/app/shared/classes/api/api-pagination-response';
 import { BaseParams } from 'src/app/shared/classes/params/base-params';
 import { ReviewService } from 'src/app/shared/services/review.service';
 import { PageEvent } from '@angular/material/paginator';
+import { ApiPaginationResponse } from 'src/app/shared/classes/api-pagination-response/api-pagination-response';
 
 @Component({
   selector: 'app-review',

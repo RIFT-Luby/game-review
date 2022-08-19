@@ -4,9 +4,10 @@ import { PageEvent } from '@angular/material/paginator';
 import { lastValueFrom } from 'rxjs';
 import { Review } from 'src/app/shared/entities/review.entity';
 import { Component, OnInit, ChangeDetectorRef, ChangeDetectionStrategy } from '@angular/core';
-import { ApiPaginationResponse } from 'src/app/shared/classes/api/api-pagination-response';
+//import { ApiPaginationResponse } from 'src/app/shared/classes/api/api-pagination-response';
 import { ReviewAdminService } from 'src/app/shared/services/review-admin.service';
 import { BaseParams } from 'src/app/shared/classes/params/base-params';
+import { ApiPaginationResponse } from 'src/app/shared/classes/api-pagination-response/api-pagination-response';
 
 @Component({
   selector: 'app-review-admin',

@@ -77,7 +77,7 @@ namespace GameReview.API.Controllers
         }
 
         [HttpGet]
-        public async Task<PaginationResponse<UserResponse>> GetAll([FromQuery] int? skip, int? take)
+        public async Task<PaginationResponse<UserResponse>> GetAll([FromQuery] int? skip, int? take = 5)
         {
             return new PaginationResponse<UserResponse>
             {
@@ -89,10 +89,10 @@ namespace GameReview.API.Controllers
         }
 
         [HttpGet("img/{id:int}")]
-        public ActionResult GetImgById(int id)
+        public FileStream GetImgById(int id)
         {
             var result = _userService.GetImg(id);
-            return Ok(result);
+            return result;
         }
     }
 }
