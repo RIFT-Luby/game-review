@@ -86,7 +86,10 @@ namespace GameReview.Application.Services
 
         public async Task<IEnumerable<ReviewResponse>> GetAllAsync(Expression<Func<Review, bool>> expression = null, int? skip = null, int? take = null)
         {
-            return _mapper.Map<IEnumerable<ReviewResponse>>(await _reviewRepository.GetDataAsync(x => x.UserId == _authService.Id, skip: skip, take: take));
+            return _mapper.Map<IEnumerable<ReviewResponse>>(
+                await _reviewRepository
+                .GetDataAsync(x => x.UserId == _authService.Id, skip: skip, take: take, 
+                include: i => i.Include(g => g.Game).ThenInclude(gg => gg.GameGender).Include(u => u.User)));
         }
 
         public async Task<ReviewResponse> GetByIdAsync(int id)

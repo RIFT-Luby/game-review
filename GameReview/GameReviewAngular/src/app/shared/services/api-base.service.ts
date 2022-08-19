@@ -18,7 +18,7 @@ export class ApiBaseService<T> {
   ) { }
 
   getAllParams(params = new BaseParams()): Observable<ApiPaginationResponse<T>>{
-    return this.http.get<ApiPaginationResponse<T>>(`${this.env}${this.route}`, {params});
+    return this.http.get<ApiPaginationResponse<T>>(`${this.env}${this.route}`, {params}).pipe(take(1));
   }
 
   getById(id: number){

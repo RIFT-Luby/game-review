@@ -4,9 +4,11 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { lastValueFrom } from 'rxjs';
+import { ApiBaseError } from '../../classes/api/api-base-error';
 import { User } from '../../entities/user';
 import { UserAdminService } from '../../services/user-admin.service';
 import { UserService } from '../../services/user.service';
+import { apiErrorHandler } from '../../utils/api-error-handler';
 
 @Component({
   selector: 'app-user-password-form',
@@ -65,7 +67,7 @@ export class UserPasswordFormComponent implements OnInit {
       }
     }
     catch({error}) {
-      console.log(error);
+      apiErrorHandler(this.snackBar, error as ApiBaseError);
     }
   }
 
@@ -74,8 +76,6 @@ export class UserPasswordFormComponent implements OnInit {
     if (!isValid) {
       this.form.markAllAsTouched();
       this.snackBar.open('There are invalid fields in the form!', undefined, { duration: 3000 });
-    }else {
-      //implementar erro
     }
     return isValid;
   }

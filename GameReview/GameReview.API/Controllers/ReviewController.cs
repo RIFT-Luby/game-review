@@ -43,7 +43,7 @@ namespace GameReview.API.Controllers
 
 
         [HttpGet]
-        public async Task<PaginationResponse<ReviewResponse>> GetAllAsync([FromQuery] int? skip, int? take)
+        public async Task<PaginationResponse<ReviewResponse>> GetAllAsync([FromQuery] int? skip, int? take = 5)
         {
             return new PaginationResponse<ReviewResponse>
             {

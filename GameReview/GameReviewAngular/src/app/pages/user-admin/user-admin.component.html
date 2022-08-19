@@ -3,10 +3,12 @@
     <mat-icon>add</mat-icon>
     <span>New user</span>
   </button>
-  <button class="action-btn" mat-raised-button color="accent" (click)="refreshTableAsync()">
+
+  <button class="action-btn" mat-raised-button color="accent" (click)="refresh()">
     <mat-icon>refresh</mat-icon>
     <span>Refresh</span>
   </button>
+  <mat-card>
   <mat-accordion class="container">
     <mat-expansion-panel *ngFor="let item of data.info">
       <mat-expansion-panel-header>
@@ -44,4 +46,15 @@
       </div>
     </mat-expansion-panel>
   </mat-accordion>
+</mat-card>
+</div>
+
+<div class="container">
+  <mat-paginator [length]="20"
+              (page)="changePage($event)"
+              [length]="totalPages"
+              [pageSize]="5"
+              [pageSizeOptions]="[2, 5, 10]"
+              aria-label="Select page">
+  </mat-paginator>
 </div>

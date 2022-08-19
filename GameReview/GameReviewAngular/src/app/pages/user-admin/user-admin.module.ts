@@ -1,3 +1,5 @@
+import { MatCardModule } from '@angular/material/card';
+import { MatPaginatorModule } from '@angular/material/paginator';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { UserAdminComponent } from './user-admin.component';
@@ -14,6 +16,8 @@ import { RouterModule } from '@angular/router';
     MatExpansionModule,
     MatIconModule,
     MatButtonModule,
+    MatPaginatorModule,
+    MatCardModule,
     UserFormModule,
     HttpClientModule,
     RouterModule,

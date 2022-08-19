@@ -6,13 +6,13 @@ import { ApiHttpInterceptor } from './shared/interceptors/api-http.intercerptor'
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { UserAdminComponent } from './pages/user-admin/user-admin.component';
-import { UserFormComponent } from './shared/components/user-form/user-form.component';
 import { HomeComponent } from './shared/components/home/home.component';
 import { AuthGuard } from './shared/guards/auth.guard';
 import { AdminAuth } from './shared/guards/admin-auth.guard';
 import { UserComponent } from './pages/user/user.component';
 import { RegisterComponent } from './pages/register/register.component';
+import { UserAdminComponent } from './pages/user-admin/user-admin.component';
+import { UserFormComponent } from './shared/components/user-form/user-form.component';
 
 const routes: Routes = [
   {path: 'home', component: HomeComponent, canActivate: [AuthGuard], children: [

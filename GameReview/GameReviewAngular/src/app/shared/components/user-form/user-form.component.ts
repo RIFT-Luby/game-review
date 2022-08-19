@@ -4,11 +4,14 @@ import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { lastValueFrom, Observable } from 'rxjs';
+import { ApiBaseError } from '../../classes/api/api-base-error';
 import { Enumeration } from '../../entities/enumeration';
 import { User } from '../../entities/user';
 import { ApiBaseService } from '../../services/api-base.service';
+
 import { UserAdminService } from '../../services/user-admin.service';
 import { UserService } from '../../services/user.service';
+import { apiErrorHandler } from '../../utils/api-error-handler';
 
 @Component({
   selector: 'app-user-form',
@@ -24,6 +27,7 @@ export class UserFormComponent implements OnInit {
   service!: ApiBaseService<any>;
   user!: User;
   isAdmin = false;
+  //id!: number;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -42,7 +46,6 @@ export class UserFormComponent implements OnInit {
       userRoleId: [null, [Validators.required]],
       userRole: [null],
     })
-    //TODO criar um endpoint getUserRoles na api
     this.roles = [{'id': 1, 'name': 'Admin'}, {'id': 2, 'name': 'Common'}];
     this.verifyIfIsEditMode();
 
@@ -72,7 +75,7 @@ export class UserFormComponent implements OnInit {
 
   async ngOnInit(): Promise<void> {
     this.activatedroute.paramMap.subscribe(params => {
-      this.id = params.get('id');
+      this.id = this.activatedroute.snapshot.params['id'];
     });
 
     await this.getUserAsync();
@@ -93,7 +96,7 @@ export class UserFormComponent implements OnInit {
       }
     }
     catch({error}) {
-      console.log(error);
+      apiErrorHandler(this.snackBar, error as ApiBaseError);
     }
   }
 
@@ -107,7 +110,7 @@ export class UserFormComponent implements OnInit {
       }
     }
     catch({error}) {
-      console.log(error);
+      apiErrorHandler(this.snackBar, error as ApiBaseError);
     }
   }
 
@@ -129,7 +132,7 @@ export class UserFormComponent implements OnInit {
       this.form.get('userRoleId')?.setValue(this.user.userRoleId);
     }
     catch({error}) {
-      console.log(error);
+      apiErrorHandler(this.snackBar, error as ApiBaseError);
     }
   }
 
@@ -138,8 +141,6 @@ export class UserFormComponent implements OnInit {
     if (!isValid) {
       this.form.markAllAsTouched();
       this.snackBar.open('There are invalid fields in the form!', undefined, { duration: 3000 });
-    }else {
-      //implementar erro
     }
     return isValid;
   }

@@ -3,8 +3,10 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { lastValueFrom } from 'rxjs';
+import { ApiBaseError } from 'src/app/shared/classes/api/api-base-error';
 import { User } from 'src/app/shared/entities/user';
 import { UserService } from 'src/app/shared/services/user.service';
+import { apiErrorHandler } from 'src/app/shared/utils/api-error-handler';
 
 @Component({
   selector: 'app-register',
@@ -40,8 +42,7 @@ export class RegisterComponent {
         this.router.navigate(['/login']);
       }
     } catch ({ error }) {
-      console.log(error);
-      //implementar erro
+      apiErrorHandler(this.snackBar, error as ApiBaseError);
     } finally {
     }
   }

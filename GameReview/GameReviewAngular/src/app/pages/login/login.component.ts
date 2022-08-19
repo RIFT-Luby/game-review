@@ -7,6 +7,8 @@ import { take, lastValueFrom } from 'rxjs';
 import { AuthUser } from 'src/app/shared/entities/auth-user.entity';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { LoadingModalService } from 'src/app/shared/components/loading-modal/services/loading-modal.service';
+import { ApiBaseError } from 'src/app/shared/classes/api/api-base-error';
+import { apiErrorHandler } from 'src/app/shared/utils/api-error-handler';
 //import { ApiBaseError } from 'src/app/shared/classes/api/api-base-error';
 
 @Component({
@@ -51,8 +53,7 @@ export class LoginComponent implements OnInit {
       }
     }
     catch({error}){
-      console.log(error)
-      //apiErrorHandler(this.snackBar, error as ApiBaseError);
+      apiErrorHandler(this.snackBar, error as ApiBaseError);
     }finally {
       this.isLoading = false;
       this.runLoadingModal();
