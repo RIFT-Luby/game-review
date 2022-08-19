@@ -1,8 +1,14 @@
 {
   "version": 2,
+<<<<<<< HEAD
+  "dgSpecHash": "kx7eK/WBPNNFAfMLhVrhRUTRWEvkN5yrGcffLlExG/Vjqb2MJOanvhx88CnweLA+b3LljcDg0YNtGto104EDDg==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\wesle\\Luby\\game-review\\GameReview\\GameReview.Application\\GameReview.Application.csproj",
+=======
   "dgSpecHash": "phZ/8Znf92TXYzAhqJh3F8Mv27GpHwvHgUaNmqoZ1gB4qS4ab7ddWFuZeWxGzQfOr6AR7Sv2colUYnfQQ3w88g==",
   "success": true,
   "projectFilePath": "C:\\Users\\Fabio\\Documents\\Linguagens de Programação\\C#.NET\\HacktonLuby\\game-review\\GameReview\\GameReview.Application\\GameReview.Application.csproj",
+>>>>>>> develop
   "expectedPackageFiles": [
     "C:\\Users\\Fabio\\.nuget\\packages\\automapper\\11.0.1\\automapper.11.0.1.nupkg.sha512",
     "C:\\Users\\Fabio\\.nuget\\packages\\entityframework\\6.3.0\\entityframework.6.3.0.nupkg.sha512",

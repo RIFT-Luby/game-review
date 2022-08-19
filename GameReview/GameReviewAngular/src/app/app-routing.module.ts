@@ -9,6 +9,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './shared/components/home/home.component';
 import { AuthGuard } from './shared/guards/auth.guard';
 import { AdminAuth } from './shared/guards/admin-auth.guard';
+import { UserComponent } from './pages/user/user.component';
+import { RegisterComponent } from './pages/register/register.component';
 import { UserAdminComponent } from './pages/user-admin/user-admin.component';
 import { UserFormComponent } from './shared/components/user-form/user-form.component';
 
@@ -26,11 +28,19 @@ const routes: Routes = [
           {path: 'form/:id', component: UserFormComponent}
         ]}
         ],
-      },
-    ],
+    },
+    {path: 'user',
+      canActivate: [AuthGuard],
+      children: [
+        {path: '', component: UserComponent},
+        {path: 'form/:id', component: UserFormComponent}
+      ]
+    }
+    ]
   },
+  {path: 'login', component: LoginComponent},
+  {path: 'register', component: RegisterComponent},
   {path: '**', component: LoginComponent},
-  {path: 'login', component: LoginComponent}
 ];
 
 @NgModule({

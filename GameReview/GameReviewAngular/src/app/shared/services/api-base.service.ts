@@ -1,9 +1,9 @@
 import { environment } from './../../../environments/environment';
-import { ApiPaginationResponse } from './../classes/api/api-pagination-response';
 import { BaseParams } from './../classes/params/base-params';
 import { Inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, take } from 'rxjs';
+import { ApiPaginationResponse } from '../classes/api-pagination-response/api-pagination-response';
 
 @Injectable({
   providedIn: 'root'
