@@ -36,7 +36,7 @@ namespace GameReview.Application.Params
             if (!string.IsNullOrEmpty(Console))
                 predicate = predicate.And(n => EF.Functions.Like(n.Console, $"%{Console}%"));
 
-            return (predicate.IsStarted) ? predicate : null;
+            return predicate.IsStarted ? predicate : null;
         }
     }
 }
