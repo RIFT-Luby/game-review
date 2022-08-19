@@ -6,6 +6,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { lastValueFrom } from 'rxjs';
 import { User } from '../../entities/user';
 import { UserAdminService } from '../../services/user-admin.service';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-user-password-form',
@@ -16,10 +17,12 @@ export class UserPasswordFormComponent implements OnInit {
 
   form!: FormGroup;
   id!: any;
+  isAdmin = false;
 
   constructor(
     private formBuilder: FormBuilder,
     private userAdminService: UserAdminService,
+    private userService: UserService,
     private router: Router,
     protected http: HttpClient,
     private snackBar: MatSnackBar,
@@ -29,6 +32,15 @@ export class UserPasswordFormComponent implements OnInit {
       password: [null, [Validators.required]],
       confirmPassword: [null, [Validators.required]],
     })
+  }
+
+  async IsAdminAsync(): Promise<void> {
+    const data = await lastValueFrom(this.userAdminService.getById(this.id));
+    if(data.userRoleId == 1) {
+      this.isAdmin = true;
+    }else {
+      this.isAdmin = false;
+    }
   }
 
   async ngOnInit(): Promise<void> {
@@ -41,14 +53,15 @@ export class UserPasswordFormComponent implements OnInit {
     try {
       if(this.isFormValid()) {
         const data = this.form.value as User;
-        await lastValueFrom(this.userAdminService.updatePassword(data, this.id));
-        this.snackBar.open('Password saved!', undefined, { duration: 3000 });
-        //if(this.isAdmin) {
+        if(this.isAdmin) {
+          await lastValueFrom(this.userAdminService.updatePassword(data, this.id));
+          this.snackBar.open('Password saved!', undefined, { duration: 3000 });
           this.router.navigate(['/home/admin/users/form/', this.id]);
-        //}
-        //else {
-          //this.router.navigate(['/dashboard/agenda/']);
-        //}
+        }else {
+          await lastValueFrom(this.userService.updatePassword(data, this.id));
+          this.snackBar.open('Password saved!', undefined, { duration: 3000 });
+          this.router.navigate(['/home/user/form/', this.id]);
+        }
       }
     }
     catch({error}) {

@@ -37,9 +37,8 @@ export class UserComponent implements OnInit {
     this.confirmModalService.open();
     this.confirmModalService.closed.subscribe(async (result) => {
       if(result) {
-        await lastValueFrom(this.userService.delete(this.user.id));
+        await lastValueFrom(this.userService.deleteUser());
         this.logout();
-        //await this.refreshTableAsync();
       }
     });
   }

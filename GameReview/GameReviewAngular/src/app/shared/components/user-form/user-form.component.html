@@ -38,7 +38,7 @@
     </ng-container>
 
     <div fxLayoutGap="1em">
-      <button mat-raised-button [disabled]="form.invalid" color="primary" (click)="saveUserAsync()">Save</button>
+      <button mat-raised-button [disabled]="form.invalid" color="primary" (click)="saveAsync()">Save</button>
     </div>
 
     <p *ngIf="!changePassword && isEditMode" class="change-password" (click)="changePassword = true">Change password?</p>
