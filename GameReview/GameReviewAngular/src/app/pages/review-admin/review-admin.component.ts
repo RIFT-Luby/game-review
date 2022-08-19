@@ -16,10 +16,10 @@ import { BaseParams } from 'src/app/shared/classes/params/base-params';
 })
 export class ReviewAdminComponent implements OnInit {
 
-  public columns: string[] = ["id","gameName", "userReview", "score", "delete", "userName"];
+  public columns: string[] = ["id", "gameName", "userReview", "score", "delete", "userName"];
   data!: ApiPaginationResponse<Review>;
   search!: FormGroup;
-  params: any = ["UserId", "GameId", "ScoreMaiorQue", "ScoreMenorQue"];
+  params = ["UserName", "GameName", "ScoreMaiorQue", "ScoreMenorQue"];
   value!: string;
   totalPages!: number;
 
@@ -51,7 +51,7 @@ export class ReviewAdminComponent implements OnInit {
 
   async loadParam(field: string, target: any): Promise<void> {
     if(target instanceof EventTarget) {
-      var elemento = target as HTMLInputElement;
+      let elemento = target as HTMLInputElement;
       this.value = elemento.value as string;
     }
     const params = {

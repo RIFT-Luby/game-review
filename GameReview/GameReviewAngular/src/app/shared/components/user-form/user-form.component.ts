@@ -18,7 +18,7 @@ import { apiErrorHandler } from '../../utils/api-error-handler';
 export class UserFormComponent implements OnInit {
   form!: FormGroup;
   roles!: Enumeration[];
-  id!: any;
+  id!: number;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -44,7 +44,7 @@ export class UserFormComponent implements OnInit {
 
   async ngOnInit(): Promise<void> {
     this.activatedroute.paramMap.subscribe(params => {
-      this.id = params.get('id');
+      this.id = this.activatedroute.snapshot.params['id'];
     });
 
     await this.fillForm();

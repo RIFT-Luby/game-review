@@ -9,4 +9,5 @@ export class User extends Register{
   userRoleId?: number;
   password?: string;
   confirmPasswood?: string;
+  image!: {url: string};
 }
