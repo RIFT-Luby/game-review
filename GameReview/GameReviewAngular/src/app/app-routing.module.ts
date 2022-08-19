@@ -12,6 +12,7 @@ import { HomeComponent } from './shared/components/home/home.component';
 import { AuthGuard } from './shared/guards/auth.guard';
 import { AdminAuth } from './shared/guards/admin-auth.guard';
 import { UserComponent } from './pages/user/user.component';
+import { RegisterComponent } from './pages/register/register.component';
 
 const routes: Routes = [
   {path: 'home', component: HomeComponent, canActivate: [AuthGuard], children: [
@@ -37,8 +38,9 @@ const routes: Routes = [
     }
     ]
   },
+  {path: 'login', component: LoginComponent},
+  {path: 'register', component: RegisterComponent},
   {path: '**', component: LoginComponent},
-  {path: 'login', component: LoginComponent}
 ];
 
 @NgModule({
