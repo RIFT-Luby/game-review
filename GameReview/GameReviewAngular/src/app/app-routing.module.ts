@@ -13,6 +13,7 @@ import { UserComponent } from './pages/user/user.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { UserAdminComponent } from './pages/user-admin/user-admin.component';
 import { UserFormComponent } from './shared/components/user-form/user-form.component';
+import { GameAdminComponent } from './pages/game-admin/game-admin.component';
 
 const routes: Routes = [
   {path: 'home', component: HomeComponent, canActivate: [AuthGuard], children: [
@@ -26,6 +27,9 @@ const routes: Routes = [
         {path: 'users', children: [
           {path: '', component: UserAdminComponent},
           {path: 'form/:id', component: UserFormComponent}
+        ]},
+        {path:'games',children:[
+          {path:'',component: GameAdminComponent}
         ]}
         ],
     },

@@ -31,6 +31,7 @@ export class NavbarComponent implements OnInit {
       this.items.push(
         { name: 'ReviewsAdm', url: '/home/admin/reviews'},
         { name: 'UsersAdmin', url: '/home/admin/users'},
+        {name:'GamesAdmin',url:'/home/admin/games'}
       )
     }
   }
