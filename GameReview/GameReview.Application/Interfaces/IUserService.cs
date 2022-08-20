@@ -24,6 +24,7 @@ namespace GameReview.Application.Interfaces
         FileStream GetImg(int id);
         Task<UserResponse> RecoverPassword(string userName);
         Task<int> CountAll(Expression<Func<UserRequest, bool>>? filter = null);
+        IEnumerable<UserRoleResponse> GetUserRoles();
 
     }
 }

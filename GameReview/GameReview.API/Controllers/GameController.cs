@@ -3,6 +3,7 @@ using GameReview.Application.Constants;
 using GameReview.Application.Interfaces;
 using GameReview.Application.Params;
 using GameReview.Application.ViewModels.Game;
+using GameReview.Application.ViewModels.GameGender;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -87,7 +88,11 @@ namespace GameReview.API.Controllers
             return Ok(result);
         }
         
-
+        [HttpGet("game-genders")]
+        public IEnumerable<GameGenderResponse> GetAllGameGender()
+        {
+            return _gameService.GetGameTypes();
+        }
 
     }
 }
