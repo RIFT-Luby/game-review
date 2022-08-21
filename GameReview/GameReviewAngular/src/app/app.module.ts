@@ -19,6 +19,8 @@ import { LoadingModalModule } from './shared/components/loading-modal/loading-mo
 import { UserModule } from './pages/user/user.module';
 import { RegisterModule } from './pages/register/register.module';
 import { HttpClientModule } from '@angular/common/http';
+import { MatTableModule } from '@angular/material/table';
+import { GameAdminModule } from './pages/game-admin/game-admin.module';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,9 @@ import { HttpClientModule } from '@angular/common/http';
   imports: [
     BrowserModule,
     HomeModule,
+    MatTableModule,
     NavbarModule,
+    GameAdminModule,
     LoginModule,
     RegisterModule,
     ReviewModule,

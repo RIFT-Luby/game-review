@@ -1,3 +1,47 @@
-<p>
-  game-admin works!
-</p>
+<table mat-table [dataSource]="data.info"
+       class="table-striped mat-elevation-z8"
+       [hidden]="!data.info">
+
+  <ng-container matColumnDef="id">
+    <th mat-header-cell *matHeaderCellDef>ID</th>
+    <td mat-cell *matCellDef="let game"> {{ game.id }} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="Summary">
+    <th mat-header-cell *matHeaderCellDef>Game</th>
+    <td mat-cell *matCellDef="let game">{{ game.Summary }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="Developer">
+    <th mat-header-cell *matHeaderCellDef>Developer</th>
+    <td mat-cell *matCellDef="let game">{{ game.Developer }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="GameGender">
+    <th mat-header-cell *matHeaderCellDef>GameGender</th>
+    <td mat-cell *matCellDef="let game">{{ game.gameGender.name }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="Score">
+    <th mat-header-cell *matHeaderCellDef>Score</th>
+    <td mat-cell *matCellDef="let game">{{ game.Score }}</td>
+  </ng-container>
+
+  <!-- <ng-container matColumnDef="edit">
+    <th mat-header-cell *matHeaderCellDef>Edit</th>
+    <td mat-cell *matCellDef="let review" [routerLink]="['create-review', review.id]">
+      <mat-icon>edit</mat-icon>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="delete">
+    <th mat-header-cell *matHeaderCellDef>Delete</th>
+    <td mat-cell *matCellDef="let review" (click)="onDelete(review.id)">
+      <mat-icon class="delete-icon">delete</mat-icon>
+    </td>
+  </ng-container> -->
+
+  <tr mat-header-row *matHeaderRowDef="columns"></tr>
+  <tr mat-row *matRowDef="let row; columns: columns;"></tr>
+
+</table>
