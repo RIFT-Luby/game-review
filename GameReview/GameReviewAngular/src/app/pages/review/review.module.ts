@@ -31,7 +31,6 @@ import { ReviewComponent } from './review.component';
     MatButtonModule,
     MatIconModule,
     MatSnackBarModule,
-
   ]
 })
 export class ReviewModule { }

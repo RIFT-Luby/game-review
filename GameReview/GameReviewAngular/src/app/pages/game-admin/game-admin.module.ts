@@ -11,10 +11,12 @@ import { MatInputModule } from '@angular/material/input';
 import { MatOptionModule } from '@angular/material/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTableModule } from '@angular/material/table';
+import { GameAdminFormModule } from './game-admin-form/game-admin-form.module';
 
 @NgModule({
   imports: [
     CommonModule,
+    GameAdminFormModule,
     RouterModule,
     FormsModule,
     MatTableModule,

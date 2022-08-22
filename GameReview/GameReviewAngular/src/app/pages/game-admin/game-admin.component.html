@@ -1,6 +1,13 @@
-<p *ngIf="!data"><em>Loading...</em></p>
 
 <div class="commands text-right button-header" *ngIf="data">
+  
+  <button class="action-btn add-btn" mat-raised-button color="primary"
+          type="submit"
+          [routerLink]="['form']">
+  <mat-icon>add</mat-icon>
+    New Game
+  </button>
+  
   <button class="action-btn" mat-raised-button color="accent"
           type="submit"
           (click)="Refresh()">
@@ -14,36 +21,41 @@
        [hidden]="!data.info">
 
   <ng-container matColumnDef="id">
-    <th mat-header-cell *matHeaderCellDef>ID</th>
+    <th mat-header-cell *matHeaderCellDef>Id</th>
     <td mat-cell *matCellDef="let game"> {{ game.id }} </td>
   </ng-container>
 
-  <ng-container matColumnDef="Summary">
-    <th mat-header-cell *matHeaderCellDef>Game</th>
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef>Name</th>
+    <td mat-cell *matCellDef="let game"> {{ game.name }} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="summary">
+    <th mat-header-cell *matHeaderCellDef>Summary</th>
     <td mat-cell *matCellDef="let game">{{ game.summary }}</td>
   </ng-container>
 
-  <ng-container matColumnDef="Developer">
+  <ng-container matColumnDef="developer">
     <th mat-header-cell *matHeaderCellDef>Developer</th>
     <td mat-cell *matCellDef="let game">{{ game.developer }}</td>
   </ng-container>
 
-  <ng-container matColumnDef="GameGender">
+  <ng-container matColumnDef="gameGender">
     <th mat-header-cell *matHeaderCellDef>GameGender</th>
     <td mat-cell *matCellDef="let game">{{ game.gameGender.name }}</td>
   </ng-container>
 
-  <ng-container matColumnDef="Score">
+  <ng-container matColumnDef="score">
     <th mat-header-cell *matHeaderCellDef>Score</th>
     <td mat-cell *matCellDef="let game">{{ game.score }}</td>
   </ng-container>
 
-  <!-- <ng-container matColumnDef="edit">
+  <ng-container matColumnDef="edit">
     <th mat-header-cell *matHeaderCellDef>Edit</th>
     <td mat-cell *matCellDef="let review" [routerLink]="['create-review', review.id]">
       <mat-icon>edit</mat-icon>
     </td>
-  </ng-container> -->
+  </ng-container> 
 
   <ng-container matColumnDef="delete">
     <th mat-header-cell *matHeaderCellDef>Delete</th>
@@ -57,3 +69,13 @@
 
 </table>
 
+
+<div class="container">
+  <mat-paginator [length]="20"
+              (page)="changePage($event)"
+              [length]="totalPages"
+              [pageSize]="5"
+              [pageSizeOptions]="[2, 5, 10]"
+              aria-label="Select page">
+  </mat-paginator>
+</div>

@@ -1,0 +1,17 @@
+<p *ngIf="id && !game"><em>Loading...</em></p>
+
+<div class="form" [formGroup]="form" >
+   <h1>{{title}}</h1>
+
+   <div class="user-container" fxLayout="column" fxLayoutGap="10px">
+    <mat-form-field appearance="outline">
+      <input matInput
+             type="text" id="score"
+             formControlName="name" required
+             placeholder="Name:"
+             class="form-control" />
+    </mat-form-field>
+
+
+   </div>
+</div>

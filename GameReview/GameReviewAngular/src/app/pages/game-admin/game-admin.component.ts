@@ -1,4 +1,5 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { PageEvent } from '@angular/material/paginator';
 import { lastValueFrom } from 'rxjs';
 import { ApiPaginationResponse } from 'src/app/shared/classes/api-pagination-response/api-pagination-response';
 import { BaseParams } from 'src/app/shared/classes/params/base-params';
@@ -15,7 +16,7 @@ import { GameService } from 'src/app/shared/services/game.service';
 })
 export class GameAdminComponent implements OnInit {
 
-  public columns: string[] = ["id","summary", "developer", "gameGender", "score"];
+  public columns: string[] = ["id" , "name" , "summary" , "developer", "gameGender", "score"];
   data!: ApiPaginationResponse<Game>;
   totalPages!:number
 
@@ -48,7 +49,14 @@ export class GameAdminComponent implements OnInit {
         await this.Refresh();
       }
     });
-  
+  }
+
+  async changePage(event: PageEvent): Promise<void>{
+    const params = {
+      take: event.pageSize,
+      skip: event.pageIndex * event.pageSize,
+    } as BaseParams;
+    await this.LoadData(params);
   }
 
 }
