@@ -10,7 +10,7 @@ namespace GameReview.API.Controllers
     [ApiVersion("1.0")]
     [Route("api/v{version:ApiVersion}/[controller]")]
     [ApiController]
-    [Authorize(Roles = Roles.Common)]
+    [Authorize]
     public class ReviewController : ControllerBase
     {
         private readonly IReviewService _reviewService;

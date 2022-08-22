@@ -96,6 +96,7 @@ namespace GameReview.API.Controllers
         }
 
         [HttpGet("user-roles")]
+        [AllowAnonymous]
         public IEnumerable<UserRoleResponse> GetAllUserRoles()
         {
             return _userService.GetUserRoles();

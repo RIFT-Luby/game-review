@@ -1,7 +1,4 @@
-﻿using GameReview.Application.Constants;
-using GameReview.Application.Interfaces;
-using GameReview.Application.ViewModels;
-using GameReview.Application.ViewModels.Email;
+﻿using GameReview.Application.Interfaces;
 using GameReview.Application.ViewModels.UserViews;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
