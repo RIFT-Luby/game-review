@@ -51,7 +51,6 @@ export class GameAdminFormComponent implements OnInit {
       this.title = "Create new Game";
     }
     this.gameTypeList = await this.gameService.GetGameTypesAsync();
-
   }
 
   CreateForm(){

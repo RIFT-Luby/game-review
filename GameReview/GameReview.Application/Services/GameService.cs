@@ -6,10 +6,12 @@ using GameReview.Application.Options;
 using GameReview.Application.Params;
 using GameReview.Application.ViewModels.Game;
 using GameReview.Application.ViewModels.GameGender;
+using GameReview.Domain.Core;
 using GameReview.Domain.Interfaces.Commom;
 using GameReview.Domain.Interfaces.Repositories;
 using GameReview.Domain.Interfaces.Storage;
 using GameReview.Domain.Models;
+using GameReview.Domain.Models.Enumerations;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
@@ -200,6 +202,11 @@ namespace GameReview.Application.Services
         public Task<int> CountAll(Expression<Func<GameRequest, bool>> filter = null)
         {
             return _gameRepository.CountAll();
+        }
+
+        public IEnumerable<GameGenderResponse> GetGameTypes()
+        {
+            return _mapper.Map<IEnumerable<GameGenderResponse>>(Enumeration.GetAll<GameGender>());
         }
     }
 }

@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -16,7 +16,8 @@ import { apiErrorHandler } from '../../utils/api-error-handler';
 @Component({
   selector: 'app-user-form',
   templateUrl: './user-form.component.html',
-  styleUrls: ['./user-form.component.scss']
+  styleUrls: ['./user-form.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class UserFormComponent implements OnInit {
   form!: FormGroup;
@@ -38,6 +39,7 @@ export class UserFormComponent implements OnInit {
     private snackBar: MatSnackBar,
     private activatedroute:ActivatedRoute,
     private cdRef: ChangeDetectorRef
+
   ) {
     this.form = this.formBuilder.group({
       id: [null],
