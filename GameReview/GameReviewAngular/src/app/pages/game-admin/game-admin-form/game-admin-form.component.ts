@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { ActivatedRoute, Router } from '@angular/router';
+import { lastValueFrom } from 'rxjs';
 import { Game } from 'src/app/shared/entities/game.entity';
 import { GameService } from 'src/app/shared/services/game.service';
 
@@ -12,7 +14,7 @@ import { GameService } from 'src/app/shared/services/game.service';
 export class GameAdminFormComponent implements OnInit {
 
   form! : FormGroup
-  id!: number
+  id?: number
   game!: Game
   title!: string
 
@@ -20,6 +22,8 @@ export class GameAdminFormComponent implements OnInit {
     private route: ActivatedRoute,
     private gameService: GameService,
     private formBuilder: FormBuilder,
+    private snackBar: MatSnackBar,
+    private router: Router
   ) { 
 
   }
@@ -30,8 +34,9 @@ export class GameAdminFormComponent implements OnInit {
   }
 
   async LoadData(): Promise<void>{
-    this.id = this.route.snapshot.params['id'] 
-    if(this.route.snapshot.params['id']){
+    this.id = this.route.snapshot.params['id']
+     
+    if(this.id){
       //Edit Mode
       this.gameService.getById(this.id).subscribe(result => {
         this.game = result as Game;
@@ -58,4 +63,44 @@ export class GameAdminFormComponent implements OnInit {
       });
   }
   
+  async CreateAsync(): Promise<void>{
+    const game = (this.id) ? this.game : <Game>{};
+    game.name = this.form.get("name")?.value;
+    game.summary = this.form.get("summary")?.value;
+    game.developer = this.form.get("developer")?.value;
+    game.gameGenderId= this.form.get("gameGenderId")?.value;
+    game.score= this.form.get("score")?.value;
+    game.console= this.form.get("console")?.value
+
+    try{
+      if(this.isFormValid()){
+        if(this.id){
+          //Edit Mode
+          await lastValueFrom(this.gameService.update(game, this.id));
+          this.router.navigate(['/home/games']);
+        }else{
+          //Add Mode
+          const data = this.form.value as Game;
+          await lastValueFrom(this.gameService.create(data));
+          this.router.navigate(['/home/games']);
+        }
+      }
+    }
+    catch({error}){
+      //apiErrorHandler(this.snackBar, error as ApiBaseError);
+    }
+  }
+
+  isFormValid(): boolean{
+    const isValid = this.form.valid;
+    if(!isValid)
+    {
+      this.form.markAllAsTouched();
+      this.snackBar.open("Campos inválidos no formulário!", undefined, { duration: 5000});
+    }
+
+    return isValid;
+  }
+
+
 }

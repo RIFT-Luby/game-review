@@ -3,15 +3,68 @@
 <div class="form" [formGroup]="form" >
    <h1>{{title}}</h1>
 
-   <div class="user-container" fxLayout="column" fxLayoutGap="10px">
+  <div class="user-container" fxLayout="column" fxLayoutGap="10px">
     <mat-form-field appearance="outline">
       <input matInput
-             type="text" id="score"
+             type="text" id="name"
              formControlName="name" required
              placeholder="Name:"
              class="form-control" />
     </mat-form-field>
+    <mat-form-field appearance="outline">
+      <input matInput
+             type="text" id="summary"
+             formControlName="summary" required
+             placeholder="Summary:"
+             class="form-control" />
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <input matInput
+             type="text" id="developer"
+             formControlName="developer" required
+             placeholder="Developer:"
+             class="form-control" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <input matInput
+             type="text" id="developer"
+             formControlName="developer" required
+             placeholder="Colocar aqui o selectList para gameGenderId"
+             class="form-control" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <input matInput
+             type="text" id="developer"
+             formControlName="score" required
+             placeholder="Score"
+             class="form-control" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <input matInput
+             type="text" id="developer"
+             formControlName="console" required
+             placeholder="Console"
+             class="form-control" />
+    </mat-form-field>
+  </div>
+
+  <div class="form-group commands button-footer" fxLayout="row" fxLayoutGap="5px">
+    <button mat-raised-button color="primary"
+             *ngIf="id" type="submit"
+              (click)="CreateAsync()"
+              [disabled]="form.invalid">
+        Save
+      </button>
+      <button mat-raised-button color="primary"
+              *ngIf="!id" type="submit"
+              (click)="CreateAsync()"
+              [disabled]="form.invalid">
+        Create
+      </button>
+  </div>
 
 
-   </div>
 </div>
