@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -16,7 +16,8 @@ import { apiErrorHandler } from '../../utils/api-error-handler';
 @Component({
   selector: 'app-user-form',
   templateUrl: './user-form.component.html',
-  styleUrls: ['./user-form.component.scss']
+  styleUrls: ['./user-form.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class UserFormComponent implements OnInit {
   form!: FormGroup;
@@ -36,7 +37,8 @@ export class UserFormComponent implements OnInit {
     private router: Router,
     protected http: HttpClient,
     private snackBar: MatSnackBar,
-    private activatedroute:ActivatedRoute
+    private activatedroute:ActivatedRoute,
+    private cdRef: ChangeDetectorRef,
   ) {
     this.form = this.formBuilder.group({
       id: [null],
@@ -125,11 +127,14 @@ export class UserFormComponent implements OnInit {
 
   async fillForm(): Promise<void> {
     try {
-      this.form.get('id')?.setValue(this.user.id);
-      this.form.get('name')?.setValue(this.user.name);
-      this.form.get('userName')?.setValue(this.user.userName);
-      this.form.get('email')?.setValue(this.user.email);
-      this.form.get('userRoleId')?.setValue(this.user.userRoleId);
+      this.service.getById(this.id).subscribe(x => {
+        this.form.get('id')?.setValue(x.id);
+        this.form.get('name')?.setValue(x.name);
+        this.form.get('userName')?.setValue(x.userName);
+        this.form.get('email')?.setValue(x.email);
+        this.form.get('userRoleId')?.setValue(x.userRoleId);
+      })
+      this.cdRef.detectChanges();
     }
     catch({error}) {
       apiErrorHandler(this.snackBar, error as ApiBaseError);
