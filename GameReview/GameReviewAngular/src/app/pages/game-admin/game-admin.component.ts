@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { lastValueFrom } from 'rxjs';
 import { ApiPaginationResponse } from 'src/app/shared/classes/api-pagination-response/api-pagination-response';
 import { BaseParams } from 'src/app/shared/classes/params/base-params';
+import { ConfirmModalService } from 'src/app/shared/components/confirm-modal/services/confirm-modal.service';
 import { Game } from 'src/app/shared/entities/game.entity';
 import { GameService } from 'src/app/shared/services/game.service';
 
@@ -14,13 +15,15 @@ import { GameService } from 'src/app/shared/services/game.service';
 })
 export class GameAdminComponent implements OnInit {
 
-  public columns: string[] = ["Id","Summary", "Developer", "GameGender", "Score"];
+  public columns: string[] = ["id","summary", "developer", "gameGender", "score"];
   data!: ApiPaginationResponse<Game>;
   totalPages!:number
 
 
   constructor(
-    private gameService: GameService
+    private gameService: GameService,
+    private confirmModal: ConfirmModalService,
+    private changeRef: ChangeDetectorRef
   ) { }
 
   async ngOnInit() {
@@ -31,9 +34,21 @@ export class GameAdminComponent implements OnInit {
     this.data = await lastValueFrom(this.gameService.getAllParams())
     this.totalPages = this.data.totalPages
   }
+
+  async Refresh():Promise<void>{
+    await this.LoadData();
+    this.changeRef.detectChanges();
+  }
+
+  async onDelete(id:number):Promise<void>{
+    this.confirmModal.open();
+    this.confirmModal.closed.subscribe(async (result) => {
+      if (result) {
+        await lastValueFrom(this.gameService.delete(id));
+        await this.Refresh();
+      }
+    });
   
-  onDelete(id:number){
-    alert(`Deletar game de id ${id}`)
   }
 
 }
