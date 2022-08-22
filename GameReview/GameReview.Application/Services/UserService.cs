@@ -6,10 +6,12 @@ using GameReview.Application.Options;
 using GameReview.Application.ViewModels;
 using GameReview.Application.ViewModels.Email;
 using GameReview.Application.ViewModels.UserViews;
+using GameReview.Domain.Core;
 using GameReview.Domain.Interfaces.Commom;
 using GameReview.Domain.Interfaces.Repositories;
 using GameReview.Domain.Interfaces.Storage;
 using GameReview.Domain.Models;
+using GameReview.Domain.Models.Enumerations;
 using GameReview.Infrastructure.Utils;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
@@ -208,6 +210,11 @@ namespace GameReview.Application.Services
         public Task<int> CountAll(Expression<Func<UserRequest, bool>> filter = null)
         {
             return _userRepository.CountAll();
+        }
+
+        public IEnumerable<UserRoleResponse> GetUserRoles()
+        {
+            return _mapper.Map<IEnumerable<UserRoleResponse>>(Enumeration.GetAll<UserRole>());
         }
     }
 }

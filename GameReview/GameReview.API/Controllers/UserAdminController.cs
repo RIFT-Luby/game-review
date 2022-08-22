@@ -10,7 +10,7 @@ namespace GameReview.API.Controllers
     [ApiController]
     [ApiVersion("1.0")]
     [Route("api/v{version:ApiVersion}/[controller]")]
-    //[Authorize(Roles = Roles.Admin)]
+    [Authorize(Roles = Roles.Admin)]
     public class UserAdminController: ControllerBase
     {
         private readonly IUserService _userService;
@@ -77,7 +77,7 @@ namespace GameReview.API.Controllers
         }
 
         [HttpGet]
-        public async Task<PaginationResponse<UserResponse>> GetAll([FromQuery] int? skip, int? take)
+        public async Task<PaginationResponse<UserResponse>> GetAll([FromQuery] int? skip, int? take = 5)
         {
             return new PaginationResponse<UserResponse>
             {
@@ -89,10 +89,16 @@ namespace GameReview.API.Controllers
         }
 
         [HttpGet("img/{id:int}")]
-        public ActionResult GetImgById(int id)
+        public IActionResult GetImgById(int id)
         {
             var result = _userService.GetImg(id);
             return Ok(result);
+        }
+
+        [HttpGet("user-roles")]
+        public IEnumerable<UserRoleResponse> GetAllUserRoles()
+        {
+            return _userService.GetUserRoles();
         }
     }
 }
