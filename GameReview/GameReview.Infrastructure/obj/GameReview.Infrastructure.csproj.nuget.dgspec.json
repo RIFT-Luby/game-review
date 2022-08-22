@@ -1,45 +1,25 @@
 {
   "format": 1,
   "restore": {
-<<<<<<< HEAD
-    "C:\\Users\\Fabio\\Documents\\Linguagens de Programação\\C#.NET\\HacktonLuby\\game-review\\GameReview\\GameReview.Infrastructure\\GameReview.Infrastructure.csproj": {}
+    "D:\\Murilo\\LabLuby\\game-review\\GameReview\\GameReview.Infrastructure\\GameReview.Infrastructure.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Fabio\\Documents\\Linguagens de Programação\\C#.NET\\HacktonLuby\\game-review\\GameReview\\GameReview.Domain\\GameReview.Domain.csproj": {
+    "D:\\Murilo\\LabLuby\\game-review\\GameReview\\GameReview.Domain\\GameReview.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Fabio\\Documents\\Linguagens de Programação\\C#.NET\\HacktonLuby\\game-review\\GameReview\\GameReview.Domain\\GameReview.Domain.csproj",
+        "projectUniqueName": "D:\\Murilo\\LabLuby\\game-review\\GameReview\\GameReview.Domain\\GameReview.Domain.csproj",
         "projectName": "GameReview.Domain",
-        "projectPath": "C:\\Users\\Fabio\\Documents\\Linguagens de Programação\\C#.NET\\HacktonLuby\\game-review\\GameReview\\GameReview.Domain\\GameReview.Domain.csproj",
-        "packagesPath": "C:\\Users\\Fabio\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Fabio\\Documents\\Linguagens de Programação\\C#.NET\\HacktonLuby\\game-review\\GameReview\\GameReview.Domain\\obj\\",
-=======
-    "C:\\Users\\wesle\\Luby\\game-review\\GameReview\\GameReview.Infrastructure\\GameReview.Infrastructure.csproj": {}
-  },
-  "projects": {
-    "C:\\Users\\wesle\\Luby\\game-review\\GameReview\\GameReview.Domain\\GameReview.Domain.csproj": {
-      "version": "1.0.0",
-      "restore": {
-        "projectUniqueName": "C:\\Users\\wesle\\Luby\\game-review\\GameReview\\GameReview.Domain\\GameReview.Domain.csproj",
-        "projectName": "GameReview.Domain",
-        "projectPath": "C:\\Users\\wesle\\Luby\\game-review\\GameReview\\GameReview.Domain\\GameReview.Domain.csproj",
-        "packagesPath": "C:\\Users\\wesle\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\wesle\\Luby\\game-review\\GameReview\\GameReview.Domain\\obj\\",
->>>>>>> 240d9f0268a7e713f289d71277e18ba730f887fc
+        "projectPath": "D:\\Murilo\\LabLuby\\game-review\\GameReview\\GameReview.Domain\\GameReview.Domain.csproj",
+        "packagesPath": "C:\\Users\\Guilherme\\.nuget\\packages\\",
+        "outputPath": "D:\\Murilo\\LabLuby\\game-review\\GameReview\\GameReview.Domain\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\Fabio\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\Guilherme\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -82,56 +62,34 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.203\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
         }
       }
     },
-<<<<<<< HEAD
-    "C:\\Users\\Fabio\\Documents\\Linguagens de Programação\\C#.NET\\HacktonLuby\\game-review\\GameReview\\GameReview.Infrastructure\\GameReview.Infrastructure.csproj": {
+    "D:\\Murilo\\LabLuby\\game-review\\GameReview\\GameReview.Infrastructure\\GameReview.Infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Fabio\\Documents\\Linguagens de Programação\\C#.NET\\HacktonLuby\\game-review\\GameReview\\GameReview.Infrastructure\\GameReview.Infrastructure.csproj",
+        "projectUniqueName": "D:\\Murilo\\LabLuby\\game-review\\GameReview\\GameReview.Infrastructure\\GameReview.Infrastructure.csproj",
         "projectName": "GameReview.Infrastructure",
-        "projectPath": "C:\\Users\\Fabio\\Documents\\Linguagens de Programação\\C#.NET\\HacktonLuby\\game-review\\GameReview\\GameReview.Infrastructure\\GameReview.Infrastructure.csproj",
-        "packagesPath": "C:\\Users\\Fabio\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Fabio\\Documents\\Linguagens de Programação\\C#.NET\\HacktonLuby\\game-review\\GameReview\\GameReview.Infrastructure\\obj\\",
-=======
-    "C:\\Users\\wesle\\Luby\\game-review\\GameReview\\GameReview.Infrastructure\\GameReview.Infrastructure.csproj": {
-      "version": "1.0.0",
-      "restore": {
-        "projectUniqueName": "C:\\Users\\wesle\\Luby\\game-review\\GameReview\\GameReview.Infrastructure\\GameReview.Infrastructure.csproj",
-        "projectName": "GameReview.Infrastructure",
-        "projectPath": "C:\\Users\\wesle\\Luby\\game-review\\GameReview\\GameReview.Infrastructure\\GameReview.Infrastructure.csproj",
-        "packagesPath": "C:\\Users\\wesle\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\wesle\\Luby\\game-review\\GameReview\\GameReview.Infrastructure\\obj\\",
->>>>>>> 240d9f0268a7e713f289d71277e18ba730f887fc
+        "projectPath": "D:\\Murilo\\LabLuby\\game-review\\GameReview\\GameReview.Infrastructure\\GameReview.Infrastructure.csproj",
+        "packagesPath": "C:\\Users\\Guilherme\\.nuget\\packages\\",
+        "outputPath": "D:\\Murilo\\LabLuby\\game-review\\GameReview\\GameReview.Infrastructure\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\Fabio\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\Guilherme\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-<<<<<<< HEAD
-              "C:\\Users\\Fabio\\Documents\\Linguagens de Programação\\C#.NET\\HacktonLuby\\game-review\\GameReview\\GameReview.Domain\\GameReview.Domain.csproj": {
-                "projectPath": "C:\\Users\\Fabio\\Documents\\Linguagens de Programação\\C#.NET\\HacktonLuby\\game-review\\GameReview\\GameReview.Domain\\GameReview.Domain.csproj"
-=======
-              "C:\\Users\\wesle\\Luby\\game-review\\GameReview\\GameReview.Domain\\GameReview.Domain.csproj": {
-                "projectPath": "C:\\Users\\wesle\\Luby\\game-review\\GameReview\\GameReview.Domain\\GameReview.Domain.csproj"
->>>>>>> 240d9f0268a7e713f289d71277e18ba730f887fc
+              "D:\\Murilo\\LabLuby\\game-review\\GameReview\\GameReview.Domain\\GameReview.Domain.csproj": {
+                "projectPath": "D:\\Murilo\\LabLuby\\game-review\\GameReview\\GameReview.Domain\\GameReview.Domain.csproj"
               }
             }
           }
@@ -190,7 +148,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.203\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
         }
       }
     }

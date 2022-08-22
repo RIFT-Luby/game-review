@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { lastValueFrom } from 'rxjs';
+import { Enumeration } from 'src/app/shared/entities/enumeration';
 import { Game } from 'src/app/shared/entities/game.entity';
 import { GameService } from 'src/app/shared/services/game.service';
 
@@ -17,6 +18,7 @@ export class GameAdminFormComponent implements OnInit {
   id?: number
   game!: Game
   title!: string
+  gameTypeList!:Enumeration[]
 
   constructor(
     private route: ActivatedRoute,
@@ -42,13 +44,14 @@ export class GameAdminFormComponent implements OnInit {
         this.game = result as Game;
         this.title = "Edit - " + this.game.name;
 
-        //Update the form with the review value
         this.form.patchValue(this.game);
       })
     }else{
       // New Mode
       this.title = "Create new Game";
     }
+    this.gameTypeList = await this.gameService.GetGameTypesAsync();
+
   }
 
   CreateForm(){
