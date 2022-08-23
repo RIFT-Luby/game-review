@@ -1,36 +1,34 @@
-import { RouterModule } from '@angular/router';
-import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { MatSelectModule } from '@angular/material/select';
-import { MatPaginatorModule } from '@angular/material/paginator';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
-import { MatOptionModule } from '@angular/material/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatButtonModule } from '@angular/material/button';
-import { MatTableModule } from '@angular/material/table';
-import { MatIconModule } from '@angular/material/icon';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ReviewComponent } from './review.component';
+import { GameAdminComponent } from './game-admin.component';
+import { RouterModule } from '@angular/router';
+import { MatIconModule } from '@angular/material/icon';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
+import { MatInputModule } from '@angular/material/input';
+import { MatOptionModule } from '@angular/material/core';
+import { MatButtonModule } from '@angular/material/button';
+import { MatTableModule } from '@angular/material/table';
+import { GameAdminFormModule } from './game-admin-form/game-admin-form.module';
 
 @NgModule({
-  declarations: [
-    ReviewComponent
-  ],
   imports: [
     CommonModule,
+    GameAdminFormModule,
     RouterModule,
     FormsModule,
-    ReactiveFormsModule,
     MatTableModule,
+    ReactiveFormsModule,
     MatPaginatorModule,
     MatFormFieldModule,
     MatSelectModule,
     MatInputModule,
     MatOptionModule,
     MatButtonModule,
-    MatIconModule,
-    MatSnackBarModule,
-  ]
+    MatIconModule
+  ],
+  declarations: [GameAdminComponent]
 })
-export class ReviewModule { }
+export class GameAdminModule { }
