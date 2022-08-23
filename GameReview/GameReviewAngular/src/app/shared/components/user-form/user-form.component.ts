@@ -83,7 +83,7 @@ export class UserFormComponent implements OnInit {
 
     await this.getUserAsync();
     await this.IsAdminAsync();
-    await this.fillForm();
+    this.isAdmin ? await this.fillFormAdmin() : this.fillFormCommum();
     this.verifyIfIsEditMode();
   }
 
@@ -126,7 +126,7 @@ export class UserFormComponent implements OnInit {
     }
   }
 
-  async fillForm(): Promise<void> {
+  async fillFormAdmin(): Promise<void> {
     try {
       this.service.getById(this.id).subscribe(x => {
         this.form.get('id')?.setValue(x.id);
@@ -136,6 +136,20 @@ export class UserFormComponent implements OnInit {
         this.form.get('userRoleId')?.setValue(x.userRoleId);
       })
       this.cdRef.detectChanges();
+    }
+    catch({error}) {
+      apiErrorHandler(this.snackBar, error as ApiBaseError);
+    }
+  }
+
+  fillFormCommum(): void {
+    try {
+        this.form.get('id')?.setValue(this.user.id);
+        this.form.get('name')?.setValue(this.user.name);
+        this.form.get('userName')?.setValue(this.user.userName);
+        this.form.get('email')?.setValue(this.user.email);
+        this.form.get('userRoleId')?.setValue(this.user.userRoleId);
+        this.cdRef.detectChanges();
     }
     catch({error}) {
       apiErrorHandler(this.snackBar, error as ApiBaseError);

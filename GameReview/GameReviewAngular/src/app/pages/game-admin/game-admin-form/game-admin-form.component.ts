@@ -28,7 +28,7 @@ export class GameAdminFormComponent implements OnInit {
     private snackBar: MatSnackBar,
     private router: Router,
     private _ngZone: NgZone
-  ) { 
+  ) {
 
   }
 
@@ -39,7 +39,7 @@ export class GameAdminFormComponent implements OnInit {
 
   async LoadData(): Promise<void>{
     this.id = this.route.snapshot.params['id']
-     
+
     if(this.id){
       //Edit Mode
       this.gameService.getById(this.id).subscribe(result => {
@@ -66,15 +66,15 @@ export class GameAdminFormComponent implements OnInit {
           console: [null, [Validators.required]]
       });
   }
-  
+
   async CreateAsync(): Promise<void>{
     const game = (this.id) ? this.game : <Game>{};
     game.name = this.form.get("name")?.value;
     game.summary = this.form.get("summary")?.value;
     game.developer = this.form.get("developer")?.value;
-    game.gameGenderId= this.form.get("gameGenderId")?.value;
-    game.score= this.form.get("score")?.value;
-    game.console= this.form.get("console")?.value
+    game.gameGenderId = this.form.get("gameGenderId")?.value;
+    game.score = this.form.get("score")?.value;
+    game.console = this.form.get("console")?.value
 
     try{
       if(this.isFormValid()){

@@ -1,3 +1,4 @@
+import { ApiPaginationResponse } from 'src/app/shared/classes/api-pagination-response/api-pagination-response';
 import { take, lastValueFrom } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -8,6 +9,10 @@ import { ReviewService } from 'src/app/shared/services/review.service';
 //import { apiErrorHandler } from 'src/app/shared/utils/api-error-handler';
 //import { ApiBaseError } from 'src/app/shared/classes/api/api-base-error';
 import { CdkTextareaAutosize } from '@angular/cdk/text-field';
+import { Game } from 'src/app/shared/entities/game.entity';
+import { GameService } from 'src/app/shared/services/game.service';
+import { apiErrorHandler } from 'src/app/shared/utils/api-error-handler';
+import { ApiBaseError } from 'src/app/shared/classes/api/api-base-error';
 
 @Component({
   selector: 'app-review-form',
@@ -19,10 +24,12 @@ export class ReviewFormComponent implements OnInit {
    title!: string;
    form!: FormGroup;
    review!: Review;
+   data!: ApiPaginationResponse<Game>;
    id?:number;
 
   constructor(
     private reviewService: ReviewService,
+    private gameService: GameService,
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
@@ -31,6 +38,7 @@ export class ReviewFormComponent implements OnInit {
 
     async ngOnInit(): Promise<void> {
       this.createForm();
+      await this.setGames();
       await this.loadData();
 
     }
@@ -42,7 +50,7 @@ export class ReviewFormComponent implements OnInit {
         //Edit Mode
         this.reviewService.getById(this.id).subscribe(result => {
           this.review = result as Review;
-          this.title = "Edit - " + this.review.gameId;
+          this.title = "Edit - " + this.review.game.name;
 
           //Update the form with the review value
           this.form.patchValue(this.review);
@@ -76,7 +84,7 @@ export class ReviewFormComponent implements OnInit {
         }
       }
       catch({error}){
-        //apiErrorHandler(this.snackBar, error as ApiBaseError);
+        apiErrorHandler(this.snackBar, error as ApiBaseError);
       }
     }
 
@@ -98,6 +106,10 @@ export class ReviewFormComponent implements OnInit {
       }
 
       return isValid;
+    }
+
+    async setGames(): Promise<void>{
+      this.data = await lastValueFrom(this.gameService.getAllParams());
     }
 
   @ViewChild('autosize') autosize!: CdkTextareaAutosize;

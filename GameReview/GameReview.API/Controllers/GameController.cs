@@ -24,6 +24,7 @@ namespace GameReview.API.Controllers
 
 
         [HttpGet]
+        [AllowAnonymous]
         public async Task<PaginationResponse<GameResponse>> GetAllGames([FromQuery] GameParams query)
         {
             return new PaginationResponse<GameResponse>

@@ -48,7 +48,7 @@ export class ReviewAdminComponent implements OnInit {
   async loadData(params = new BaseParams()): Promise<void>{
     this.data = await lastValueFrom(this.reviewAdminService.getAllParams(params));
     this.totalPages = this.data.totalPages;
-   }
+  }
 
   async loadParam(field: string, target: any): Promise<void> {
     if(target instanceof EventTarget) {

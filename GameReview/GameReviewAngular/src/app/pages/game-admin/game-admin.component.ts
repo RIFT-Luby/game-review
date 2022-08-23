@@ -1,4 +1,5 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 import { PageEvent } from '@angular/material/paginator';
 import { lastValueFrom } from 'rxjs';
 import { ApiPaginationResponse } from 'src/app/shared/classes/api-pagination-response/api-pagination-response';
@@ -8,7 +9,6 @@ import { Game } from 'src/app/shared/entities/game.entity';
 import { GameService } from 'src/app/shared/services/game.service';
 
 
-
 @Component({
   selector: 'app-game-admin',
   templateUrl: './game-admin.component.html',
@@ -16,10 +16,12 @@ import { GameService } from 'src/app/shared/services/game.service';
 })
 export class GameAdminComponent implements OnInit {
 
-  public columns: string[] = ["id" , "name" , "summary" , "developer", "gameGender", "score","edit", "delete"];
+  public columns: string[] = ["id" , "name" , "summary" , "developer", "gameGender", "console", "score","edit", "delete"];
   data: ApiPaginationResponse<Game> = new ApiPaginationResponse<Game>();
-  totalPages!:number
-
+  params = ["Name", "Developer", "ScoreMaiorQue", "ScoreMenorQue", "Console"];
+  search!: FormGroup;
+  totalPages!: number;
+  value!: string;
 
   constructor(
     private gameService: GameService,
@@ -27,18 +29,29 @@ export class GameAdminComponent implements OnInit {
     private changeRef: ChangeDetectorRef
   ) { }
 
-  async ngOnInit() {
-    await this.LoadData();
+  ngOnInit(): void{
+    this.loadData();
   }
 
-  async LoadData(queryParams= new BaseParams() ){
-    this.data = await lastValueFrom(this.gameService.getAllParams())
-    this.totalPages = this.data.totalPages
-  }
-
-  async Refresh():Promise<void>{
-    await this.LoadData();
+  async refresh(): Promise<void>{
+    await this.loadData();
     this.changeRef.detectChanges();
+  }
+
+  async loadData(params = new BaseParams()): Promise<void>{
+    this.data = await lastValueFrom(this.gameService.getAllParams(params));
+    this.totalPages = this.data.totalPages;
+  }
+
+  async loadParam(field: string, target: any): Promise<void> {
+    if(target instanceof EventTarget) {
+      let elemento = target as HTMLInputElement;
+      this.value = elemento.value as string;
+    }
+    const params = {
+      [field]: this.value
+    } as BaseParams;
+    await this.loadData(params);
   }
 
   async onDelete(id:number):Promise<void>{
@@ -46,7 +59,7 @@ export class GameAdminComponent implements OnInit {
     this.confirmModal.closed.subscribe(async (result) => {
       if (result) {
         await lastValueFrom(this.gameService.delete(id));
-        await this.Refresh();
+        await this.refresh();
       }
     });
   }
@@ -56,7 +69,7 @@ export class GameAdminComponent implements OnInit {
       take: event.pageSize,
       skip: event.pageIndex * event.pageSize,
     } as BaseParams;
-    await this.LoadData(params);
+    await this.loadData(params);
   }
 
 }
