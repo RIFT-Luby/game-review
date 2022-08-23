@@ -31,7 +31,8 @@ const routes: Routes = [
         ]},
         {path:'games',children:[
           {path:'',component: GameAdminComponent},
-          {path:'form',component: GameAdminFormComponent}
+          {path:'form',component: GameAdminFormComponent},
+          {path:'form/:id',component: GameAdminFormComponent},
         ]}
         ],
     },

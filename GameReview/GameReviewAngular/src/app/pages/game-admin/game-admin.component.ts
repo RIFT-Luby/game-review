@@ -16,8 +16,8 @@ import { GameService } from 'src/app/shared/services/game.service';
 })
 export class GameAdminComponent implements OnInit {
 
-  public columns: string[] = ["id" , "name" , "summary" , "developer", "gameGender", "score"];
-  data!: ApiPaginationResponse<Game>;
+  public columns: string[] = ["id" , "name" , "summary" , "developer", "gameGender", "score","edit", "delete"];
+  data: ApiPaginationResponse<Game> = new ApiPaginationResponse<Game>();
   totalPages!:number
 
 

@@ -81,12 +81,12 @@ export class GameAdminFormComponent implements OnInit {
         if(this.id){
           //Edit Mode
           await lastValueFrom(this.gameService.update(game, this.id));
-          this.router.navigate(['/home/games']);
+          this.router.navigate(['/home/admin/games']);
         }else{
           //Add Mode
           const data = this.form.value as Game;
           await lastValueFrom(this.gameService.create(data));
-          this.router.navigate(['/home/games']);
+          this.router.navigate(['/home/admin/games']);
         }
       }
     }
