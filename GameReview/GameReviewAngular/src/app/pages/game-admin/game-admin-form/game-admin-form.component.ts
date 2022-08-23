@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { CdkTextareaAutosize } from '@angular/cdk/text-field';
+import { Component, NgZone, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
-import { lastValueFrom } from 'rxjs';
+import { take, lastValueFrom } from 'rxjs';
 import { Enumeration } from 'src/app/shared/entities/enumeration';
 import { Game } from 'src/app/shared/entities/game.entity';
 import { GameService } from 'src/app/shared/services/game.service';
@@ -25,7 +26,8 @@ export class GameAdminFormComponent implements OnInit {
     private gameService: GameService,
     private formBuilder: FormBuilder,
     private snackBar: MatSnackBar,
-    private router: Router
+    private router: Router,
+    private _ngZone: NgZone
   ) { 
 
   }
@@ -104,5 +106,10 @@ export class GameAdminFormComponent implements OnInit {
     return isValid;
   }
 
+  @ViewChild('autosize') autosize!: CdkTextareaAutosize;
 
+  triggerResize() {
+    // Wait for changes to be applied, then trigger textarea resize.
+    this._ngZone.onStable.pipe(take(1)).subscribe(() => this.autosize.resizeToFitContent(true));
+  }
 }

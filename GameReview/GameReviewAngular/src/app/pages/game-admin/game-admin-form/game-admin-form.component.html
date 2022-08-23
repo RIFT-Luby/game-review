@@ -13,11 +13,16 @@
     </mat-form-field>
     
     <mat-form-field appearance="outline">
-      <input matInput
-             type="text" id="summary"
-             formControlName="summary" required
-             placeholder="Summary:"
-             class="form-control" />
+      <mat-label>Summary</mat-label>
+      <textarea matInput
+                type="text" id="summary"
+                formControlName="summary" required
+                placeholder="Insert your summary here..."
+                class="form-control"
+                cdkTextareaAutosize
+                #autosize="cdkTextareaAutosize"
+                cdkAutosizeMinRows="1"
+                cdkAutosizeMaxRows="5"></textarea>
     </mat-form-field>
     
     <mat-form-field appearance="outline">
