@@ -100,13 +100,9 @@ namespace GameReview.Application.Services
             return _mapper.Map<ReviewResponse>(reviewExist);
         }
 
-        public async Task<IEnumerable<ReviewResponse>> GetReviewsPerDate(DateTime minDate, DateTime? maxDate)
+        public async Task<IEnumerable<ReviewResponse>> GetMyReviewsAsync(Expression<Func<Review, bool>> expression = null, int? skip = null, int? take = null)
         {
-            if (!maxDate.HasValue)
-                maxDate = DateTime.Now;
-
-            var result = await _reviewRepository.GetDataAsync(x => x.CreatedAt >= minDate && x.CreatedAt <= maxDate);
-            return _mapper.Map<IEnumerable<ReviewResponse>>(result);
+            return _mapper.Map<IEnumerable<ReviewResponse>>(await _reviewRepository.GetDataAsync(x => x.UserId == _authService.Id, skip: skip, take: take));
         }
 
         public Task<int> CountAll(Expression<Func<Review, bool>> filter = null)
