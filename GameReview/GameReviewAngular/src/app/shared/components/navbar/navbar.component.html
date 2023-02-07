@@ -1,0 +1,12 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <h2>-- GameReview Angular -- </h2>
+    <span class="menu-spacer"></span>
+    <div>
+      <a mat-button *ngFor="let item of items" [routerLink]="item.url">
+        {{item.name}}
+      </a>
+      <a mat-button (click)="logout()">Logout</a>
+    </div>
+  </mat-toolbar-row>
+</mat-toolbar>

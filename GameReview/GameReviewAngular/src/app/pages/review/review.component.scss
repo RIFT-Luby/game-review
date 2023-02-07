@@ -1,0 +1,60 @@
+button{
+  margin-right: 5px;
+}
+
+.button-header{
+  margin-left: 200px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.delete-icon {
+  color: rgb(189, 42, 42);
+}
+
+.panel-body {
+  border: 1px solid rgb(207, 207, 207);
+  border-radius: 5px;
+}
+
+.add-btn {
+  margin-bottom: 20px;
+  margin-right: 20px;
+}
+
+.table {
+  display: flex;
+  flex-direction: column;
+
+}
+
+.table-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: #131313;
+  color: #f9f9f9;
+  height: 40px;
+
+}
+
+.table-body {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border-bottom: 1px solid rgb(207, 207, 207);
+  height: 40px;
+}
+
+.header-label {
+  margin-left: 20px;
+  margin-right: 20px;
+  width: 100px;
+}
+
+.body-label {
+  margin-left: 20px;
+  margin-right: 20px;
+  width: 100px;
+}

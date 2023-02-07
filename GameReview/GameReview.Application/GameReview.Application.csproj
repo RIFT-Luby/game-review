@@ -3,23 +3,26 @@
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="11.0.1" />
     <PackageReference Include="FluentValidation" Version="11.0.3" />
+    <PackageReference Include="LinqKit" Version="1.2.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Http.Features" Version="5.0.17" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.19.0" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Constants\" />
-    <Folder Include="Interfaces\" />
-    <Folder Include="Mappers\" />
-    <Folder Include="Validations\" />
     <Folder Include="Utils\" />
-    <Folder Include="Services\" />
-    <Folder Include="Params\" />
-    <Folder Include="Options\" />
-    <Folder Include="ViewModels\" />
+    <Folder Include="Mappers\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\GameReview.Domain\GameReview.Domain.csproj" />
+    <ProjectReference Include="..\GameReview.Infrastructure\GameReview.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

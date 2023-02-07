@@ -1,0 +1,51 @@
+<div class="form-container">
+  <div [formGroup]="form" class="form-group">
+    <ng-container>
+      <mat-form-field appearance="outline">
+        <mat-label>Name</mat-label>
+        <input matInput type="text" formControlName="name">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>UserName</mat-label>
+        <input matInput type="text" formControlName="userName">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Email</mat-label>
+        <input matInput type="email" formControlName="email">
+      </mat-form-field>
+
+      <ng-container *ngIf="!isEditMode">
+        <mat-form-field appearance="outline">
+          <mat-label>Password</mat-label>
+          <input matInput type="password" formControlName="password">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Confirm password</mat-label>
+          <input matInput type="password" formControlName="confirmPassword">
+        </mat-form-field>
+      </ng-container>
+
+
+      <mat-form-field appearance="outline">
+        <mat-label>Role</mat-label>
+        <mat-select formControlName="userRoleId">
+          <mat-option *ngFor="let item of roles" [value]="item.id">{{item.name}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </ng-container>
+
+    <div fxLayoutGap="1em">
+      <button mat-raised-button [disabled]="form.invalid" color="primary" (click)="saveAsync()">Save</button>
+    </div>
+
+    <p *ngIf="!changePassword && isEditMode" class="change-password" (click)="changePassword = true">Change password?</p>
+
+  </div>
+
+  <div *ngIf="changePassword" class="password-formGroup">
+    <app-user-password-form></app-user-password-form>
+  </div>
+</div>
