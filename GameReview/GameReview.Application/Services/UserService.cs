@@ -6,10 +6,12 @@ using GameReview.Application.Options;
 using GameReview.Application.ViewModels;
 using GameReview.Application.ViewModels.Email;
 using GameReview.Application.ViewModels.UserViews;
+using GameReview.Domain.Core;
 using GameReview.Domain.Interfaces.Commom;
 using GameReview.Domain.Interfaces.Repositories;
 using GameReview.Domain.Interfaces.Storage;
 using GameReview.Domain.Models;
+using GameReview.Domain.Models.Enumerations;
 using GameReview.Infrastructure.Utils;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
@@ -17,6 +19,7 @@ using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -59,7 +62,9 @@ namespace GameReview.Application.Services
 
         public async Task<UserResponse> UpdateAsync(UserRequest model, int id)
         {
-            var entity = await _userRepository.FirstAsync(e => e.Id == id) ?? throw new NotFoundRequestException($"Usuario com id: {id} não encontrado.");
+            var entity = await _userRepository.FirstAsync(e => e.Id == id)
+                ?? throw new BadRequestException(nameof(id), $"Usuário com {id} não encontrado.");
+
             var contextValidation = new ValidationContext<UserRequest>(model);
             contextValidation.RootContextData["userId"] = id;
             var validation = await _validatorFactory.GetValidator<UserRequest>().ValidateAsync(contextValidation);
@@ -76,8 +81,9 @@ namespace GameReview.Application.Services
 
         public async Task<UserResponse> UpdatePasswordAsync(PasswordRequest model, int id)
         {
-            var entity = await _userRepository.FirstAsync(e => e.Id == id) ?? throw new NotFoundRequestException($"Usuario com id: {id} não encontrado.");
-            
+            var entity = await _userRepository.FirstAsync(e => e.Id == id)
+                ?? throw new BadRequestException(nameof(id), $"Usuário com {id} não encontrado.");
+
             var contextValidation = new ValidationContext<PasswordRequest>(model);
             contextValidation.RootContextData["userId"] = id;
             var validation = await _validatorFactory.GetValidator<PasswordRequest>().ValidateAsync(contextValidation);
@@ -95,7 +101,9 @@ namespace GameReview.Application.Services
 
         public async Task<UserResponse> RemoveAsync(int id)
         {
-            var result = await _userRepository.FirstAsync(u => u.Id == id) ?? throw new NotFoundRequestException($"Usuario com id: {id} não encontrado.");
+            var result = await _userRepository.FirstAsync(u => u.Id == id)
+                ?? throw new BadRequestException(nameof(id), $"Usuário com {id} não encontrado.");
+
             await _userRepository.DeleteAsync(new User { Id = id });
             await _unitOfWork.CommitAsync();
             return _mapper.Map<UserResponse>(result);
@@ -103,7 +111,8 @@ namespace GameReview.Application.Services
 
         public async Task<UserResponse> GetByIdAsync(int id)
         {
-            var result = await _userRepository.FirstAsync(filter: c => c.Id == id, include: i => i.Include(r => r.UserRole)) ?? throw new NotFoundRequestException($"Usuario com id: {id} não encontrado.");
+            var result = await _userRepository.FirstAsync(filter: c => c.Id == id, include: i => i.Include(r => r.UserRole))
+                    ?? throw new BadRequestException(nameof(id), $"Usuário com {id} não encontrado.");
             return _mapper.Map<UserResponse>(result);
         }
 
@@ -121,7 +130,8 @@ namespace GameReview.Application.Services
 
         public async Task<UserResponse> UploadImg(int id, IFormFile img)
         {
-            var entity = await _userRepository.FirstAsyncAsTracking(u => u.Id == id) ?? throw new NotFoundRequestException($"Usuario com id: {id} não encontrado.");
+            var entity = await _userRepository.FirstAsyncAsTracking(u => u.Id == id)
+                ?? throw new BadRequestException(nameof(id), $"Usuário com {id} não encontrado.");
 
             if (img == null || img.Length == 0)
                 throw new BadRequestException("Nenhuma imagem foi fornecida.");
@@ -145,8 +155,10 @@ namespace GameReview.Application.Services
 
         public async Task<UserResponse> RemoveImg(int id)
         {
-            var entity = await _userRepository.FirstAsyncAsTracking(u => u.Id == id) ?? throw new NotFoundRequestException($"Usuario com id: {id} não encontrado.");
-            if(entity.ImgPath != null)
+            var entity = await _userRepository.FirstAsyncAsTracking(u => u.Id == id)
+                ?? throw new BadRequestException(nameof(id), $"Usuário com {id} não encontrado.");
+
+            if (entity.ImgPath != null)
             {
                 await _fileStorage.RemoveFile(entity.ImgPath);
                 entity.ImgPath = null;
@@ -158,7 +170,8 @@ namespace GameReview.Application.Services
 
         public FileStream GetImg(int id)
         {
-            var entity = _userRepository.FirstAsync(u => u.Id == id).GetAwaiter().GetResult()  ?? throw new NotFoundRequestException($"Usuario com id: {id} não encontrado.");
+            var entity = _userRepository.FirstAsync(u => u.Id == id).GetAwaiter().GetResult()
+                ?? throw new BadRequestException(nameof(id), $"Usuário com {id} não encontrado.");
 
             var pathImg = _fileApiOptions.DefaultUserImgPath;
 
@@ -174,7 +187,8 @@ namespace GameReview.Application.Services
 
         public async Task<UserResponse> RecoverPassword(string userName)
         {
-            var entity = _userRepository.FirstAsyncAsTracking(u => u.UserName == userName).GetAwaiter().GetResult() ?? throw new NotFoundRequestException($"Usuario com username: {userName} não encontrado.");
+            var entity = _userRepository.FirstAsyncAsTracking(u => u.UserName == userName).GetAwaiter().GetResult()
+                ?? throw new BadRequestException($"{userName} não encontrado.");
 
             var newPassword = Guid.NewGuid().ToString().Substring(0,8);
             entity.Password = PasswordHasher.Hash(newPassword);
@@ -191,6 +205,16 @@ namespace GameReview.Application.Services
             await _unitOfWork.CommitAsync();
 
             return _mapper.Map<UserResponse>(entity);
+        }
+
+        public Task<int> CountAll(Expression<Func<UserRequest, bool>> filter = null)
+        {
+            return _userRepository.CountAll();
+        }
+
+        public IEnumerable<UserRoleResponse> GetUserRoles()
+        {
+            return _mapper.Map<IEnumerable<UserRoleResponse>>(Enumeration.GetAll<UserRole>());
         }
     }
 }

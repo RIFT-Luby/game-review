@@ -1,6 +1,8 @@
-﻿using GameReview.Application.Constants;
+﻿using Agenda.Application.ViewModels.Pagination;
+using GameReview.Application.Constants;
 using GameReview.Application.Interfaces;
 using GameReview.Application.Params;
+using GameReview.Application.ViewModels.Review;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -27,11 +29,17 @@ namespace GameReview.API.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAllAsync([FromQuery] int? skip, [FromQuery] int? take)
+        public async Task<PaginationResponse<ReviewResponse>> GetAllAsync([FromQuery] ReviewAdminParams query)
         {
-            var reviews = await _reviewAdminService.GetAllAsync(skip: skip, take: take);
-            return Ok(reviews);
+            return new PaginationResponse<ReviewResponse>
+            {
+                Info = await _reviewAdminService.GetAllAsync(query.Filter(), skip: query.skip, take: query.take),
+                TotalPages = await _reviewAdminService.CountAll(),
+                Skip = query.skip,
+                Take = query.take,
+            };
         }
+
 
         [HttpGet("{id:int}")]
         [AllowAnonymous]

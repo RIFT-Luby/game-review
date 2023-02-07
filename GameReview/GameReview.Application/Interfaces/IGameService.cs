@@ -20,5 +20,7 @@ namespace GameReview.Application.Interfaces
         Task<GameResponse> RemoveImg(int id);
         FileStream GetImg(int id);
         Task UpdateGameScore(int newScore, Review review, bool removeReview = false);
+        Task<int> CountAll(Expression<Func<GameRequest, bool>>? filter = null);
+        IEnumerable<GameGenderResponse> GetGameTypes();
     }
 }

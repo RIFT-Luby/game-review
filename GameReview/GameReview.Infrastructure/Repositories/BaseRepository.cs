@@ -10,6 +10,7 @@ namespace GameReview.Infrastructure.Repositories
     public class BaseRepository<T> : IBaseRepository<T> where T : Register, new()
     {
         protected readonly ApplicationContext _context;
+        private readonly DbSet<T> _dbSet;
         public BaseRepository(ApplicationContext context)
         {
             _context = context;
@@ -35,7 +36,8 @@ namespace GameReview.Infrastructure.Repositories
             return Task.CompletedTask;
         }
 
-        public async Task<T?> FirstAsync(Expression<Func<T, bool>> filter, Func<IQueryable<T>, IIncludableQueryable<T, object>>? include = null)
+        public async Task<T?> FirstAsync(Expression<Func<T, bool>> filter, Func<IQueryable<T>, 
+            IIncludableQueryable<T, object>>? include = null)
         {
             var query = _context.Set<T>().AsQueryable();
             if (include != null)
@@ -44,7 +46,8 @@ namespace GameReview.Infrastructure.Repositories
             return await query.FirstOrDefaultAsync(filter);
         }
 
-        public async Task<T?> FirstAsyncAsTracking(Expression<Func<T, bool>> filter, Func<IQueryable<T>, IIncludableQueryable<T, object>>? include = null)
+        public async Task<T?> FirstAsyncAsTracking(Expression<Func<T, bool>> filter, Func<IQueryable<T>, 
+            IIncludableQueryable<T, object>>? include = null)
         {
             var query = _context.Set<T>().AsQueryable();
             if (include != null)
@@ -53,7 +56,8 @@ namespace GameReview.Infrastructure.Repositories
             return await query.AsTracking().FirstOrDefaultAsync(filter);
         }
 
-        public async Task<IEnumerable<T>> GetDataAsync(Expression<Func<T, bool>>? filter = null, Func<IQueryable<T>, IIncludableQueryable<T, object>>? include = null, int? skip = null, int? take = null)
+        public async Task<IEnumerable<T>> GetDataAsync(Expression<Func<T, bool>>? filter = null, 
+            Func<IQueryable<T>, IIncludableQueryable<T, object>>? include = null, int? skip = null, int? take = null)
         {
             var query = _context.Set<T>().AsQueryable();
             if (filter != null)
@@ -85,6 +89,15 @@ namespace GameReview.Infrastructure.Repositories
         {
             var result = await _context.Set<T>().AnyAsync(filter);
             return result;
+        }
+
+        public async Task<int> CountAll(Expression<Func<T, bool>>? filter = null)
+        {
+            var query = _context.Set<T>().AsQueryable();
+            if (filter != null)
+                query = query.Where(filter);
+
+            return await query.CountAsync();
         }
     }
 }

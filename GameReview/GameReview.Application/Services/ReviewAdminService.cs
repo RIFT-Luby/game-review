@@ -6,6 +6,7 @@ using GameReview.Application.ViewModels.Review;
 using GameReview.Domain.Interfaces.Commom;
 using GameReview.Domain.Interfaces.Repositories;
 using GameReview.Domain.Models;
+using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 
 namespace GameReview.Application.Services
@@ -27,7 +28,8 @@ namespace GameReview.Application.Services
 
         public async Task<ReviewResponse> RemoveAsync(int id)
         {
-            var reviewExist = await _reviewRepository.FirstAsync(x => x.Id == id) ?? throw new NotFoundRequestException($"Review com id: {id} não encontrado.");
+            var reviewExist = await _reviewRepository.FirstAsync(x => x.Id == id)
+                ?? throw new BadRequestException(nameof(id), $"Review com {id} não encontrado.");
 
             await _gameService.UpdateGameScore(0, reviewExist, removeReview: true);
 
@@ -39,12 +41,16 @@ namespace GameReview.Application.Services
 
         public async Task<IEnumerable<ReviewResponse>> GetAllAsync(Expression<Func<Review, bool>> expression = null, int? skip = null, int? take = null)
         {
-            return _mapper.Map<IEnumerable<ReviewResponse>>(await _reviewRepository.GetDataAsync(filter: expression, skip: skip, take: take));
+            return _mapper.Map<IEnumerable<ReviewResponse>>(
+                await _reviewRepository
+                .GetDataAsync(filter: expression, skip: skip, take: take, 
+                include: i => i.Include(g => g.Game).ThenInclude(gg => gg.GameGender).Include(u => u.User).ThenInclude(u => u.UserRole)));
         }
 
         public async Task<ReviewResponse> GetByIdAsync(int id)
         {
-            var reviewExist = await _reviewRepository.FirstAsync(x => x.Id == id) ?? throw new NotFoundRequestException($"Review com id: {id} não encontrado.");
+            var reviewExist = await _reviewRepository.FirstAsync(x => x.Id == id)
+                ?? throw new BadRequestException(nameof(id), $"Review {id} não encontrado.");
 
             return _mapper.Map<ReviewResponse>(reviewExist);
         }
@@ -54,6 +60,9 @@ namespace GameReview.Application.Services
             return _mapper.Map<IEnumerable<ReviewResponse>>(await _reviewRepository.GetDataAsync(query.Filter(), skip: query.skip, take: query.take));
         }
 
-        
+        public Task<int> CountAll(Expression<Func<ReviewRequest, bool>> filter = null)
+        {
+            return _reviewRepository.CountAll();
+        }
     }
 }

@@ -21,10 +21,13 @@ namespace GameReview.Application.Services
 
         public async Task<IEnumerable<Claim>> Login(LoginRequest login)
         {
-            var result = await _userRepository.FirstAsync(filter: x => x.UserName == login.UserName) ?? throw new NotFoundRequestException($"Usuário {login.UserName} não encontrado");
+            var result = await _userRepository.FirstAsync(filter: x => x.UserName == login.UserName);
+
+            if (result == null)
+                throw new BadRequestException(nameof(login.UserName), "Usuário ou Senha invalida");
 
             if (!PasswordHasher.Verify(login.Password, result.Password))
-                throw new BadRequestException(nameof(login.Password), "Senha invalida");
+                throw new BadRequestException(nameof(login.Password), "Usuário ou Senha invalida");
 
             return new List<Claim>
             {
