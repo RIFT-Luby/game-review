@@ -30,7 +30,6 @@ namespace GameReview.Application.Validations
             RuleFor(g => g.GameGenderId)
                 .Must(id => Enumeration.GetAll<GameGender>().Any(x => x.Id == id))
                 .WithMessage("{PropertyName} do jogo não existe");
-
         }
     }
 }
